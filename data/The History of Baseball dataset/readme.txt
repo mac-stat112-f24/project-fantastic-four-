@@ -838,7 +838,6 @@ schoolNick     nickname for school's baseball team
 
 
 ------------------------------------------------------------------------------
-2.24 CollegePlaying table
 playerid       Player ID code
 schoolID       school ID code
 year           year
