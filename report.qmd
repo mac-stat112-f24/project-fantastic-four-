@@ -1,3 +1,70 @@
 # Report {.unnumbered}
 
-Add your report to this file.
+What question are you trying to answer?
+
+- What baseball teams have won the most over time</li>
+- What are the trends between winners? (Traits, game stats)</li>
+- How do player’s stats affect their salaries?</li>
+- Are there any factors affecting their salaries like location and popularity?</li>
+- Insights in the history of baseball? What factors are associated with success historically? What is the average age of players and how has that changed historically? Which places/locations most of the stars do come from historically?</li>
+
+
+Why is it important or interesting?
+
+- Baseball is one of the most popular sports in the US with millions of viewers each year. There are many factors that contribute to team wins and we would like to explore potential factors contributing to these wins.</li>
+- Baseball is the most analytical sport in the world, and has a long history of accurately recorded data both simple and complex.</li>
+
+
+If needed, What background information is necessary here?
+
+- A comprehension of how the game of baseball has evolved over a 144 year period. Here is a brief summary of the basic changes since MLB’s inception. https://blastmotion.com/blog/evolution-of-sport-baseball/?srsltid=AfmBOooVC-YIx4L9Jc6uylHY6jQFwAok4YbATH4AUn0Qp9lL8C6-U1ji#gref
+- Knowledge of the rules of baseball are necessary to understand this data. An explanation of the rules can be found here: https://en.wikipedia.org/wiki/Baseball_rules
+
+
+If needed, What assumptions or terms or acronyms need to be clarified?
+
+teamID Team
+
+lgID League
+
+W Wins
+
+L Losses
+
+G Games
+
+H Hits
+
+ER Earned Runs
+
+HR Homeruns
+
+BB Walks
+
+SO Strikeouts
+
+BAOpp Opponent’s Batting Average
+
+ERA Earned Run Average
+
+IBB Intentional Walks
+
+WP Wild Pitches
+
+HBP Batters Hit By Pitch
+
+BK Balks
+
+BFP Batters faced by Pitcher
+
+GS Games started
+
+GF Games Finished
+
+R Runs Allowed
+
+SH Sacrifices by opposing batters
+
+SF Sacrifice flies by opposing batters
+
+GIDP Grounded into double plays by opposing batter
