@@ -1,3 +1,19 @@
 # Proposal {.unnumbered}
 
-Write your proposal in this file.
+Title: Moneyball: Visualizations of Baseball Salaries.
+
+Group members: Huthaifa Mohammad, Sidney Langford, Suweda Said, Basir Talayee, Harlan Grady
+
+Description: We aim to look at the relationship between player salary and game stats. Some of these stats include: batting average, pitching stats, and fielding stats. If we have more time, we can also look at how team wins/losses affect player salary. 
+
+Inspirations: Since we are a group interested in sports, we decided to choose a baseball dataset since baseball is one of the most stats-heavy professional sports. With a plethora of data to work with, we plan on exploring our many interests while still creating a cohesive project.
+
+Plan:
+Wednesday 11/13: Complete sketch
+Friday 11/15: Create basic visualizations/better understand the data
+Monday 11/18: Finalize research question + finish wrangling the data
+Friday 11/22: Finalize Visualizations
+Monday 11/25: Finalize Presentation/Report
+Wednesday-Friday 11/27-11/29: Thanksgiving break
+Monday 12/2: Last edits on presentation
+12/9-12/13: Revise/film final presentation
