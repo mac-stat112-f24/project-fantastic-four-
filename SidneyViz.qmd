@@ -1,0 +1,19 @@
+
+```{r}
+library(tidyverse)
+salary <- read.csv("data/The History of Baseball dataset/salary.csv")
+pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
+batting <- read.csv("data/The History of Baseball dataset/batting.csv")
+```
+
+```{r}
+head(salary)
+head(pitching)
+sal_pitch <- salary %>% 
+  left_join(pitching)
+
+sal_bat <- salary %>% 
+  left_join(batting)
+```
+
+
