@@ -1,0 +1,60 @@
+---
+title: "Basir"
+---
+
+
+```{r}
+library(tidyverse)
+# import Data
+History_of_Baseball <- read_csv("data/The History of Baseball dataset/hall_of_fame.csv")
+
+str(History_of_Baseball)
+head(History_of_Baseball)
+```
+
+----
+2.3 Pitching table
+
+playerID       Player ID code
+yearID         Year
+stint          player's stint (order of appearances within a season)
+teamID         Team
+lgID           League
+W              Wins
+L              Losses
+G              Games
+GS             Games Started
+CG             Complete Games 
+SHO            Shutouts
+SV             Saves
+IPOuts         Outs Pitched (innings pitched x 3)
+H              Hits
+ER             Earned Runs
+HR             Homeruns
+BB             Walks
+SO             Strikeouts
+BAOpp          Opponent's Batting Average
+ERA            Earned Run Average
+IBB            Intentional Walks
+WP             Wild Pitches
+HBP            Batters Hit By Pitch
+BK             Balks
+BFP            Batters faced by Pitcher
+GF             Games Finished
+R              Runs Allowed
+SH             Sacrifices by opposing batters
+SF             Sacrifice flies by opposing batters
+GIDP           Grounded into double plays by opposing batter
+```{r}
+History_of_Baseball <- read_csv("data/The History of Baseball dataset/pitching.csv")
+
+str(History_of_Baseball)
+head(History_of_Baseball)
+```
+
+```{r}
+ggplot(History_of_Baseball) +
+  geom_line(aes(x=year, y=w))
+
+```
+
