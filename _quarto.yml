@@ -19,6 +19,8 @@ book:
     - index.qmd
     - report.qmd
     - Basir.qmd
+    - SidneyViz.qmd
+    - harlanviz.qmd
   
   appendices:
   - proposal.qmd
