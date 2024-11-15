@@ -35,8 +35,8 @@ sal_bat_2 <- sal_bat %>%
 ```{r}
 # salary vs batting avg
 sal_bat_2 %>% 
-  filter(at_bats > 10) %>% 
-ggplot(aes(x = batting_avg, y = salary)) +
+  filter(at_bats > 10, salary != 0) %>% 
+ggplot(aes(x = batting_avg, y = salary, color = home_runs)) +
   geom_point() +
   labs(title = "salary vs batting avg")
 
@@ -45,10 +45,12 @@ ggplot(aes(x = batting_avg, y = salary)) +
 #   geom_point() +
 #   labs(title = "salary vs hits")
 # 
-# # salary vs home runs
-# ggplot(aes(x = home_runs, y = salary), data = sal_bat_2) +
-#   geom_point() +
-#   labs(title = "salary vs home runs")
+# salary vs home runs
+sal_bat_2 %>% 
+    filter(at_bats > 10, salary != 0) %>% 
+ggplot(aes(x = home_runs, y = salary)) +
+  geom_point() +
+  labs(title = "salary vs home runs")
 # 
 # # salary vs batting avg for 1990
 # sal_bat_2 %>% 
@@ -56,5 +58,30 @@ ggplot(aes(x = batting_avg, y = salary)) +
 #   ggplot(aes(x = batting_avg, y = salary)) +
 #   geom_point() +
 #   labs(title = "salary vs batting avg in 1990")
+```
+
+```{r}
+#home run exploration
+sal_bat_2 %>%
+  filter(home_runs != 0) %>% 
+  #group_by(home_runs) %>% 
+  summarise(n(), average = mean(home_runs))
+
+sal_bat_2 %>% 
+  filter(home_runs > 10, salary != 0) %>% 
+  na.omit(home_runs) %>% 
+  ggplot(aes(x = home_runs)) +
+  geom_histogram()
+```
+```{r}
+#at bat exploration
+sal_bat_2 %>% 
+  summarise(bat_avg = mean(at_bats, na.rm = TRUE), sal_avg = mean(salary, na.rm = TRUE))
+
+sal_bat_2 %>% 
+  filter(at_bats >= 100, salary != 0, year >= 2000, batting_avg >= .3) %>% 
+  ggplot(aes(x = batting_avg, y = salary)) +
+  geom_point() +
+  geom_smooth(method = "lm")
 ```
 
