@@ -1,0 +1,85 @@
+---
+title: "Interactive Wins and Losses by Decade"
+format: html
+editor: visual
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(shiny)
+library(ggplot2)
+library(dplyr)
+
+pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
+
+# Sample dataset
+# Replace with your actual dataset
+pitching<- pitching %>%
+  mutate(decade = paste0(floor(year / 10) * 10, "s"))  # Group years into decades
+```
+
+
+```{r}
+# Define UI for selecting a decade
+selectInput("selected_decade", 
+            "Choose a Decade:", 
+            choices = unique(pitching$decade), 
+            selected = unique(pitching$decade)[1])
+
+# Render the plot dynamically
+renderPlot({
+  filtered_data <- pitching %>% filter(decade == input$selected_decade)
+  
+  ggplot(filtered_data, aes(x = team_id, group = league_id)) +
+    geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge",alpha = 0.4) +
+    geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge",alpha = 0.4) +
+    labs(title = paste("Wins and Losses in", input$selected_decade), 
+         x = "Year", y = "Count") +
+    scale_fill_manual(values = c("Wins" = "blue", "Losses" = "red")) +
+    theme_minimal()+
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))# Rotate team labels for clarity
+
+})
+```
+
+
+```{r}
+library(plotly)
+# UI to select filters
+sidebarLayout(
+  sidebarPanel(
+    sliderInput("top_n", 
+                "Select Top N Players by Home Runs:", 
+                min = 5, max = 50, value = 10, step = 5),
+    selectInput("filter_team", 
+                "Filter by Team (Optional):", 
+                choices = c("All", unique(pitching$team_id)), 
+                selected = "All")
+  ),
+  mainPanel(
+    plotOutput("hr_bb_plot")
+  )
+)
+
+# Server logic
+renderPlot({
+  # Filter and sort data
+  filtered_data <- pitching %>%
+    filter(if (input$filter_team != "All") team_id == input$filter_team else TRUE) %>%
+    arrange(desc(hr)) %>%
+    slice_head(n = input$top_n)  # Top N players
+  
+  ggplot(filtered_data, aes(x = bb, y = hr, color = player_id, label = player_id)) +
+    geom_point(size = 3, alpha = 0.7) +
+    geom_text(vjust = -0.5, size = 3) +
+    labs(title = "Home Runs vs. Walks", 
+         x = "Walks (BB)", y = "Home Runs (HR)") +
+    theme_minimal() +
+    theme(legend.position = "none")
+
+})
+
+```
+
+
+
