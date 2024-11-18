@@ -1,0 +1,46 @@
+```{r}
+#cleaning salary
+#still in progress
+
+
+#load packages
+library(tidyverse)
+library(ggplot2)
+
+playersal <- salary
+dim(playersal)
+
+data.frame(playersal)
+
+ggplot(data=playersal, aes(x=year, y=salary))+geom_boxplot()
+
+summarize(playersal, salary)
+
+#average min and max salary
+
+playersal |> summarise(minsal=min(salary),
+                       avgsal=mean(salary),
+                       maxsal=max(salary)
+                       
+                       )
+
+playersal |> summarize(min(salary))
+
+tail(playersal)
+playersal|> count(salary) |> arrange(desc(n))
+playersal |> arrange((desc(salary)))
+
+#similar problem
+#making new minimum
+
+
+trips_new |> summarize(minlength=min(duration),
+                       avglength=mean(duration),
+                       maxlength=max(duration)
+                       
+                       )
+
+                      
+
+```
+
