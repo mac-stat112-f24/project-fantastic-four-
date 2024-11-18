@@ -9,7 +9,7 @@ project:
   output-dir: docs
 
 book:
-  title: "write your project title here"
+  title: "Moneyball: Visualizations of Baseball Salaries"
   author: ["Huthaifa Mohammad", "Sidney Langford", "Suweda Said", "Basir Talayee", "Harlan Grady"]
   date: today
   date-format: full
@@ -18,6 +18,9 @@ book:
   chapters:
     - index.qmd
     - report.qmd
+    - Basir.qmd
+    - SidneyViz.qmd
+    - harlanviz.qmd
   
   appendices:
   - proposal.qmd
@@ -34,6 +37,7 @@ format:
     code-copy: true
     code-line-numbers: true
     code-tools: true
+#    CSS: styles.css
 
 
 

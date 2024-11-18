@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>write your project title here - Proposal</title>
+<title>Moneyball: Visualizations of Baseball Salaries - Proposal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./sketch.html" rel="next">
-<link href="./report.html" rel="prev">
+<link href="./harlanviz.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -132,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">write your project title here</a> 
+      <a href="./">Moneyball: Visualizations of Baseball Salaries</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -160,6 +160,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./report.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Report</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Basir.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basir</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SidneyViz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">salary vs batting avg</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./harlanviz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">harlanviz.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -219,7 +237,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Group members: Huthaifa Mohammad, Sidney Langford, Suweda Said, Basir Talayee, Harlan Grady</p>
 <p>Description: We aim to look at the relationship between player salary and game stats. Some of these stats include: batting average, pitching stats, and fielding stats. If we have more time, we can also look at how team wins/losses affect player salary.</p>
 <p>Inspirations: Since we are a group interested in sports, we decided to choose a baseball dataset since baseball is one of the most stats-heavy professional sports. With a plethora of data to work with, we plan on exploring our many interests while still creating a cohesive project.</p>
-<p>Plan: Wednesday 11/13: Complete sketch Friday 11/15: Create basic visualizations/better understand the data Monday 11/18: Finalize research question + finish wrangling the data Friday 11/22: Finalize Visualizations Monday 11/25: Finalize Presentation/Report Wednesday-Friday 11/27-11/29: Thanksgiving break Monday 12/2: Last edits on presentation 12/9-12/13: Revise/film final presentation</p>
+<p>Plan:</p>
+<p>Wednesday 11/13: Complete sketch</p>
+<p>Friday 11/15: Create basic visualizations/better understand the data</p>
+<p>Monday 11/18: Finalize research question + finish wrangling the data</p>
+<p>Friday 11/22: Finalize Visualizations</p>
+<p>Monday 11/25: Finalize Presentation/Report</p>
+<p>Wednesday-Friday 11/27-11/29: Thanksgiving break</p>
+<p>Monday 12/2: Last edits on presentation</p>
+<p>12/9-12/13: Revise/film final presentation</p>
 
 
 <!-- -->
@@ -832,8 +858,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./report.html" class="pagination-link" aria-label="Report">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Report</span>
+      <a href="./harlanviz.html" class="pagination-link" aria-label="harlanviz.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">harlanviz.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -853,14 +879,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-9"><a href="#cb1-9"></a>Inspirations: Since we are a group interested in sports, we decided to choose a baseball dataset since baseball is one of the most stats-heavy professional sports. With a plethora of data to work with, we plan on exploring our many interests while still creating a cohesive project.</span>
 <span id="cb1-10"><a href="#cb1-10"></a></span>
 <span id="cb1-11"><a href="#cb1-11"></a>Plan:</span>
-<span id="cb1-12"><a href="#cb1-12"></a>Wednesday 11/13: Complete sketch</span>
-<span id="cb1-13"><a href="#cb1-13"></a>Friday 11/15: Create basic visualizations/better understand the data</span>
-<span id="cb1-14"><a href="#cb1-14"></a>Monday 11/18: Finalize research question + finish wrangling the data</span>
-<span id="cb1-15"><a href="#cb1-15"></a>Friday 11/22: Finalize Visualizations</span>
-<span id="cb1-16"><a href="#cb1-16"></a>Monday 11/25: Finalize Presentation/Report</span>
-<span id="cb1-17"><a href="#cb1-17"></a>Wednesday-Friday 11/27-11/29: Thanksgiving break</span>
-<span id="cb1-18"><a href="#cb1-18"></a>Monday 12/2: Last edits on presentation</span>
-<span id="cb1-19"><a href="#cb1-19"></a>12/9-12/13: Revise/film final presentation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a>Wednesday 11/13: Complete sketch</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>Friday 11/15: Create basic visualizations/better understand the data</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a>Monday 11/18: Finalize research question + finish wrangling the data</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>Friday 11/22: Finalize Visualizations</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a>Monday 11/25: Finalize Presentation/Report</span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a>Wednesday-Friday 11/27-11/29: Thanksgiving break</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>Monday 12/2: Last edits on presentation</span>
+<span id="cb1-26"><a href="#cb1-26"></a></span>
+<span id="cb1-27"><a href="#cb1-27"></a>12/9-12/13: Revise/film final presentation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -1,0 +1,87 @@
+
+```{r}
+library(tidyverse)
+salary <- read.csv("data/The History of Baseball dataset/salary.csv")
+pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
+batting <- read.csv("data/The History of Baseball dataset/batting.csv")
+```
+
+```{r}
+head(salary)
+head(pitching)
+#merging salary and pitching data
+sal_pitch <- salary %>% 
+  left_join(pitching)
+
+#merging salary and batting data
+sal_bat <- salary %>% 
+  left_join(batting)
+
+#cleaning up variable names
+sal_bat_2 <- sal_bat %>% 
+  rename(games = g,
+         at_bats = ab,
+         runs = r,
+         hits = h,
+         home_runs = hr,
+         stolen_bases = sb,
+         caught_stealing = cs,
+         strikeouts = so) %>% 
+  select(year, team_id, player_id, salary, games, at_bats, runs, hits, double, triple, home_runs, stolen_bases, caught_stealing, strikeouts) %>% 
+  mutate(batting_avg = hits/at_bats)
+```
+
+
+```{r}
+# salary vs batting avg
+sal_bat_2 %>% 
+  filter(at_bats > 10, salary != 0) %>% 
+ggplot(aes(x = batting_avg, y = salary, color = home_runs)) +
+  geom_point() +
+  labs(title = "salary vs batting avg")
+
+# salary vs hits
+# ggplot(aes(x = hits, y = salary), data = sal_bat_2) +
+#   geom_point() +
+#   labs(title = "salary vs hits")
+# 
+# salary vs home runs
+sal_bat_2 %>% 
+    filter(at_bats > 10, salary != 0) %>% 
+ggplot(aes(x = home_runs, y = salary)) +
+  geom_point() +
+  labs(title = "salary vs home runs")
+# 
+# # salary vs batting avg for 1990
+# sal_bat_2 %>% 
+#   filter(year == '1990') %>% 
+#   ggplot(aes(x = batting_avg, y = salary)) +
+#   geom_point() +
+#   labs(title = "salary vs batting avg in 1990")
+```
+
+```{r}
+#home run exploration
+sal_bat_2 %>%
+  filter(home_runs != 0) %>% 
+  #group_by(home_runs) %>% 
+  summarise(n(), average = mean(home_runs))
+
+sal_bat_2 %>% 
+  filter(home_runs > 10, salary != 0) %>% 
+  na.omit(home_runs) %>% 
+  ggplot(aes(x = home_runs)) +
+  geom_histogram()
+```
+```{r}
+#at bat exploration
+sal_bat_2 %>% 
+  summarise(bat_avg = mean(at_bats, na.rm = TRUE), sal_avg = mean(salary, na.rm = TRUE))
+
+sal_bat_2 %>% 
+  filter(at_bats >= 100, salary != 0, year >= 2000, batting_avg >= .3) %>% 
+  ggplot(aes(x = batting_avg, y = salary)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
