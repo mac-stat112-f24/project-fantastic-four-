@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Moneyball: Visualizations of Baseball Salaries - 2&nbsp; salary vs batting avg</title>
+<title>Moneyball: Visualizations of Baseball Salaries - 3&nbsp; Sidney Viz</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,6 +104,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/ionrangeslider-javascript-2.3.1/js/ion.rangeSlider.min.js"></script>
+<script src="site_libs/strftime-0.9.2/strftime-min.js"></script>
+<link href="site_libs/ionrangeslider-css-2.3.1/css/ion.rangeSlider.css" rel="stylesheet">
+<link href="site_libs/selectize-0.15.2/css/selectize.bootstrap3.css" rel="stylesheet">
+<script src="site_libs/selectize-0.15.2/js/selectize.min.js"></script>
+<script src="site_libs/selectize-0.15.2/accessibility/js/selectize-plugin-a11y.min.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 
 
 </head>
@@ -117,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./SidneyViz.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">salary vs batting avg</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./SidneyViz.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sidney Viz</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -164,20 +171,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./reportDRAFT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Report Draft</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Basir.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basir</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basir</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./SidneyViz.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">salary vs batting avg</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sidney Viz</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./harlanviz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">harlanviz.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">harlanviz.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -216,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">salary vs batting avg</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sidney Viz</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -247,9 +260,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>salary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/salary.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>pitching <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a>batting <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/batting.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>salary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/salary.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>pitching <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>batting <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/batting.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">head</span>(salary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -302,64 +316,261 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-9"><a href="#cb12-9"></a>         <span class="at">caught_stealing =</span> cs,</span>
 <span id="cb12-10"><a href="#cb12-10"></a>         <span class="at">strikeouts =</span> so) <span class="sc">%&gt;%</span> </span>
 <span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">select</span>(year, team_id, player_id, salary, games, at_bats, runs, hits, double, triple, home_runs, stolen_bases, caught_stealing, strikeouts) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">mutate</span>(<span class="at">batting_avg =</span> hits<span class="sc">/</span>at_bats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary, <span class="at">color =</span> home_runs)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs batting avg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="SidneyViz_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># salary vs hits</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co"># ggplot(aes(x = hits, y = salary), data = sal_bat_2) +</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#   geom_point() +</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#   labs(title = "salary vs hits")</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="co"># </span></span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="co"># salary vs home runs</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-8"><a href="#cb14-8"></a>    <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs home runs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="SidneyViz_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># </span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="co"># # salary vs batting avg for 1990</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co"># sal_bat_2 %&gt;% </span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#   filter(year == '1990') %&gt;% </span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#   ggplot(aes(x = batting_avg, y = salary)) +</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#   geom_point() +</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#   labs(title = "salary vs batting avg in 1990")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">#home run exploration</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>sal_bat_2 <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">filter</span>(home_runs <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="co">#group_by(home_runs) %&gt;% </span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>(), <span class="at">average =</span> <span class="fu">mean</span>(home_runs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    n()  average
-1 12028 10.44662</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">filter</span>(home_runs <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">na.omit</span>(home_runs) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs)) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">mutate</span>(<span class="at">batting_avg =</span> hits<span class="sc">/</span>at_bats)</span>
+<span id="cb12-13"><a href="#cb12-13"></a></span>
+<span id="cb12-14"><a href="#cb12-14"></a>win_loss <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb12-15"><a href="#cb12-15"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-16"><a href="#cb12-16"></a>  <span class="fu">select</span>(player_id, year, team_id, league_id, w, l, g) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-17"><a href="#cb12-17"></a>  <span class="fu">left_join</span>(sal_bat_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>Joining with `by = join_by(player_id, year, team_id)`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in left_join(., sal_bat_2): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 5897 of `x` matches multiple rows in `y`.
+ℹ Row 8624 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># UI to select filters</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">sidebarLayout</span>(</span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">sidebarPanel</span>(</span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="fu">sliderInput</span>(<span class="st">"top_n"</span>, </span>
+<span id="cb20-5"><a href="#cb20-5"></a>                <span class="st">"Select Top N Players by Strikeouts:"</span>, </span>
+<span id="cb20-6"><a href="#cb20-6"></a>                <span class="at">min =</span> <span class="dv">5</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">10</span>, <span class="at">step =</span> <span class="dv">5</span>),</span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="fu">selectInput</span>(<span class="st">"filter_team"</span>, </span>
+<span id="cb20-8"><a href="#cb20-8"></a>                <span class="st">"Filter by Team (Optional):"</span>, </span>
+<span id="cb20-9"><a href="#cb20-9"></a>                <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"All"</span>, <span class="fu">unique</span>(pitching<span class="sc">$</span>team_id)), </span>
+<span id="cb20-10"><a href="#cb20-10"></a>                <span class="at">selected =</span> <span class="st">"All"</span>)</span>
+<span id="cb20-11"><a href="#cb20-11"></a>  ),</span>
+<span id="cb20-12"><a href="#cb20-12"></a>  <span class="fu">mainPanel</span>(</span>
+<span id="cb20-13"><a href="#cb20-13"></a>    <span class="fu">plotOutput</span>(<span class="st">"hr_bb_plot"</span>)</span>
+<span id="cb20-14"><a href="#cb20-14"></a>  )</span>
+<span id="cb20-15"><a href="#cb20-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display no-overflow-x">
+<div class="row">
+<div class="col-sm-4">
+<form class="well" role="complementary">
+<div class="form-group shiny-input-container">
+<label class="control-label" id="top_n-label" for="top_n">Select Top N Players by Strikeouts:</label>
+<input class="js-range-slider" id="top_n" data-skin="shiny" data-min="5" data-max="50" data-from="10" data-step="5" data-grid="true" data-grid-num="9" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number">
+</div>
+<div class="form-group shiny-input-container">
+<label class="control-label" id="filter_team-label" for="filter_team">Filter by Team (Optional):</label>
+<div>
+<select id="filter_team" class="shiny-input-select"><option value="All" selected="">All</option>
+<option value="PH1">PH1</option>
+<option value="WS3">WS3</option>
+<option value="NY2">NY2</option>
+<option value="RC1">RC1</option>
+<option value="TRO">TRO</option>
+<option value="FW1">FW1</option>
+<option value="CL1">CL1</option>
+<option value="CH1">CH1</option>
+<option value="BS1">BS1</option>
+<option value="MID">MID</option>
+<option value="BR2">BR2</option>
+<option value="BL1">BL1</option>
+<option value="BR1">BR1</option>
+<option value="WS4">WS4</option>
+<option value="PH2">PH2</option>
+<option value="ELI">ELI</option>
+<option value="BL4">BL4</option>
+<option value="WS5">WS5</option>
+<option value="CH2">CH2</option>
+<option value="HR1">HR1</option>
+<option value="PH3">PH3</option>
+<option value="SL1">SL1</option>
+<option value="SL2">SL2</option>
+<option value="KEO">KEO</option>
+<option value="NH1">NH1</option>
+<option value="WS6">WS6</option>
+<option value="CHN">CHN</option>
+<option value="SL3">SL3</option>
+<option value="HAR">HAR</option>
+<option value="CN1">CN1</option>
+<option value="NY3">NY3</option>
+<option value="BSN">BSN</option>
+<option value="LS1">LS1</option>
+<option value="PHN">PHN</option>
+<option value="PRO">PRO</option>
+<option value="ML2">ML2</option>
+<option value="IN1">IN1</option>
+<option value="TRN">TRN</option>
+<option value="SR1">SR1</option>
+<option value="BFN">BFN</option>
+<option value="CL2">CL2</option>
+<option value="WOR">WOR</option>
+<option value="DTN">DTN</option>
+<option value="PT1">PT1</option>
+<option value="LS2">LS2</option>
+<option value="SL4">SL4</option>
+<option value="BL2">BL2</option>
+<option value="PH4">PH4</option>
+<option value="CN2">CN2</option>
+<option value="NY1">NY1</option>
+<option value="PHI">PHI</option>
+<option value="CL5">CL5</option>
+<option value="NY4">NY4</option>
+<option value="BLU">BLU</option>
+<option value="CHU">CHU</option>
+<option value="IN2">IN2</option>
+<option value="KCU">KCU</option>
+<option value="WIL">WIL</option>
+<option value="PHU">PHU</option>
+<option value="MLU">MLU</option>
+<option value="WS7">WS7</option>
+<option value="BSU">BSU</option>
+<option value="SLU">SLU</option>
+<option value="CNU">CNU</option>
+<option value="TL1">TL1</option>
+<option value="SPU">SPU</option>
+<option value="ALT">ALT</option>
+<option value="BR3">BR3</option>
+<option value="RIC">RIC</option>
+<option value="WSU">WSU</option>
+<option value="SL5">SL5</option>
+<option value="WS8">WS8</option>
+<option value="KCN">KCN</option>
+<option value="CL3">CL3</option>
+<option value="PIT">PIT</option>
+<option value="IN3">IN3</option>
+<option value="KC2">KC2</option>
+<option value="CL4">CL4</option>
+<option value="CL6">CL6</option>
+<option value="TL2">TL2</option>
+<option value="CLP">CLP</option>
+<option value="BL3">BL3</option>
+<option value="BFP">BFP</option>
+<option value="BRO">BRO</option>
+<option value="CHP">CHP</option>
+<option value="RC2">RC2</option>
+<option value="PHP">PHP</option>
+<option value="SR2">SR2</option>
+<option value="NYP">NYP</option>
+<option value="BR4">BR4</option>
+<option value="BSP">BSP</option>
+<option value="PTP">PTP</option>
+<option value="CIN">CIN</option>
+<option value="BRP">BRP</option>
+<option value="WS9">WS9</option>
+<option value="CN3">CN3</option>
+<option value="BS2">BS2</option>
+<option value="ML3">ML3</option>
+<option value="WAS">WAS</option>
+<option value="SLN">SLN</option>
+<option value="BLN">BLN</option>
+<option value="LS3">LS3</option>
+<option value="CLE">CLE</option>
+<option value="PHA">PHA</option>
+<option value="BOS">BOS</option>
+<option value="BLA">BLA</option>
+<option value="CHA">CHA</option>
+<option value="WS1">WS1</option>
+<option value="DET">DET</option>
+<option value="MLA">MLA</option>
+<option value="SLA">SLA</option>
+<option value="NYA">NYA</option>
+<option value="KCF">KCF</option>
+<option value="PTF">PTF</option>
+<option value="BLF">BLF</option>
+<option value="BUF">BUF</option>
+<option value="IND">IND</option>
+<option value="CHF">CHF</option>
+<option value="BRF">BRF</option>
+<option value="SLF">SLF</option>
+<option value="NEW">NEW</option>
+<option value="ML1">ML1</option>
+<option value="BAL">BAL</option>
+<option value="KC1">KC1</option>
+<option value="SFN">SFN</option>
+<option value="LAN">LAN</option>
+<option value="MIN">MIN</option>
+<option value="WS2">WS2</option>
+<option value="LAA">LAA</option>
+<option value="NYN">NYN</option>
+<option value="HOU">HOU</option>
+<option value="CAL">CAL</option>
+<option value="ATL">ATL</option>
+<option value="OAK">OAK</option>
+<option value="SE1">SE1</option>
+<option value="SDN">SDN</option>
+<option value="KCA">KCA</option>
+<option value="MON">MON</option>
+<option value="ML4">ML4</option>
+<option value="TEX">TEX</option>
+<option value="SEA">SEA</option>
+<option value="TOR">TOR</option>
+<option value="COL">COL</option>
+<option value="FLO">FLO</option>
+<option value="ANA">ANA</option>
+<option value="ARI">ARI</option>
+<option value="TBA">TBA</option>
+<option value="MIL">MIL</option>
+<option value="MIA">MIA</option></select>
+<script type="application/json" data-for="filter_team" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+</div>
+</div>
+</form>
+</div>
+<div class="col-sm-8" role="main">
+<div class="shiny-plot-output html-fill-item" id="hr_bb_plot" style="width:100%;height:400px;"></div>
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Server logic</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="co"># Filter and sort data</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="fu">filter</span>(<span class="cf">if</span> (input<span class="sc">$</span>filter_team <span class="sc">!=</span> <span class="st">"All"</span>) team_id <span class="sc">==</span> input<span class="sc">$</span>filter_team <span class="cf">else</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(hr)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>    <span class="fu">slice_head</span>(<span class="at">n =</span> input<span class="sc">$</span>top_n)  <span class="co"># Top N players</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>  </span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> bb, <span class="at">y =</span> so, <span class="at">color =</span> player_id, <span class="at">label =</span> player_id)) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>    <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs. Walks"</span>, </span>
+<span id="cb21-13"><a href="#cb21-13"></a>         <span class="at">x =</span> <span class="st">"Walks (BB)"</span>, <span class="at">y =</span> <span class="st">"Strikeouts (SO)"</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-15"><a href="#cb21-15"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16"></a></span>
+<span id="cb21-17"><a href="#cb21-17"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="shiny-plot-output html-fill-item" id="out6436e226a347a52f" style="width:100%;height:400px;"></div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">#strikeouts vs wins since 1985</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>, so <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> so, <span class="at">y =</span> w)) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs Wins since 1985"</span>, <span class="at">x =</span> <span class="st">"Strikeouts (SO)"</span>, <span class="at">y =</span> <span class="st">"Wins (W)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -370,21 +581,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">#at bat exploration</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">summarise</span>(<span class="at">bat_avg =</span> <span class="fu">mean</span>(at_bats, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sal_avg =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   bat_avg sal_avg
-1 187.3511 2008100</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;=</span> <span class="dv">100</span>, salary <span class="sc">!=</span> <span class="dv">0</span>, year <span class="sc">&gt;=</span> <span class="dv">2000</span>, batting_avg <span class="sc">&gt;=</span> .<span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">#batting avg vs wins since 1985</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>bat_sm <span class="ot">&lt;-</span> batting <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">mutate</span>(<span class="at">batt_avg =</span> h<span class="sc">/</span>ab) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">select</span>(player_id, year, batt_avg)</span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a>pitching_2 <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb24-7"><a href="#cb24-7"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">left_join</span>(bat_sm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+<pre><code>Joining with `by = join_by(player_id, year)`</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in left_join(., bat_sm): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 7 of `x` matches multiple rows in `y`.
+ℹ Row 62248 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>pitching_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(batt_avg)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batt_avg, <span class="at">y =</span> w, <span class="at">group =</span> team_id)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -392,6 +610,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># salary vs batting avg</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary, <span class="at">color =</span> home_runs)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs batting avg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SidneyViz_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># salary vs hits</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="co"># ggplot(aes(x = hits, y = salary), data = sal_bat_2) +</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co">#   geom_point() +</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co">#   labs(title = "salary vs hits")</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="co"># </span></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="co"># salary vs home runs</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb29-8"><a href="#cb29-8"></a>    <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs home runs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SidneyViz_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># </span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="co"># # salary vs batting avg for 1990</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="co"># sal_bat_2 %&gt;% </span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="co">#   filter(year == '1990') %&gt;% </span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="co">#   ggplot(aes(x = batting_avg, y = salary)) +</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="co">#   geom_point() +</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="co">#   labs(title = "salary vs batting avg in 1990")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#home run exploration</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>sal_bat_2 <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">filter</span>(home_runs <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="co">#group_by(home_runs) %&gt;% </span></span>
+<span id="cb31-5"><a href="#cb31-5"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>(), <span class="at">average =</span> <span class="fu">mean</span>(home_runs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    n()  average
+1 12028 10.44662</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">filter</span>(home_runs <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">na.omit</span>(home_runs) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SidneyViz_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co">#at bat exploration</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3"></a>  <span class="fu">summarise</span>(<span class="at">bat_avg =</span> <span class="fu">mean</span>(at_bats, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sal_avg =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   bat_avg sal_avg
+1 187.3511 2008100</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;=</span> <span class="dv">100</span>, salary <span class="sc">!=</span> <span class="dv">0</span>, year <span class="sc">&gt;=</span> <span class="dv">2000</span>, batting_avg <span class="sc">&gt;=</span> .<span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SidneyViz_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># win_loss %&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="co">#   ggplot(aes(x = team_id, group = league_id)) +</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="co">#     geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge",alpha = 0.4) +</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="co">#     geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge",alpha = 0.4)</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a><span class="co"># </span></span>
+<span id="cb39-6"><a href="#cb39-6"></a><span class="co"># win_loss %&gt;% </span></span>
+<span id="cb39-7"><a href="#cb39-7"></a><span class="co">#   ggplot(aes(x = batting_avg, y = w, color = team_id)) +</span></span>
+<span id="cb39-8"><a href="#cb39-8"></a><span class="co">#   geom_point()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1006,100 +1324,190 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Basir.html" class="pagination-link" aria-label="Basir">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basir</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basir</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./harlanviz.html" class="pagination-link" aria-label="harlanviz.html">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">harlanviz.html</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">harlanviz.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="in">salary &lt;- read.csv("data/The History of Baseball dataset/salary.csv")</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="in">pitching &lt;- read.csv("data/The History of Baseball dataset/pitching.csv")</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="in">batting &lt;- read.csv("data/The History of Baseball dataset/batting.csv")</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a><span class="in">```</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="in">```{r}</span></span>
-<span id="cb24-11"><a href="#cb24-11"></a><span class="fu">head</span>(salary)</span>
-<span id="cb24-12"><a href="#cb24-12"></a><span class="fu">head</span>(pitching)</span>
-<span id="cb24-13"><a href="#cb24-13"></a><span class="co">#merging salary and pitching data</span></span>
-<span id="cb24-14"><a href="#cb24-14"></a>sal_pitch <span class="ot">&lt;-</span> salary <span class="sc">%&gt;%</span> </span>
-<span id="cb24-15"><a href="#cb24-15"></a>  <span class="fu">left_join</span>(pitching)</span>
-<span id="cb24-16"><a href="#cb24-16"></a></span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="co">#merging salary and batting data</span></span>
-<span id="cb24-18"><a href="#cb24-18"></a>sal_bat <span class="ot">&lt;-</span> salary <span class="sc">%&gt;%</span> </span>
-<span id="cb24-19"><a href="#cb24-19"></a>  <span class="fu">left_join</span>(batting)</span>
-<span id="cb24-20"><a href="#cb24-20"></a></span>
-<span id="cb24-21"><a href="#cb24-21"></a><span class="co">#cleaning up variable names</span></span>
-<span id="cb24-22"><a href="#cb24-22"></a>sal_bat_2 <span class="ot">&lt;-</span> sal_bat <span class="sc">%&gt;%</span> </span>
-<span id="cb24-23"><a href="#cb24-23"></a>  <span class="fu">rename</span>(<span class="at">games =</span> g,</span>
-<span id="cb24-24"><a href="#cb24-24"></a>         <span class="at">at_bats =</span> ab,</span>
-<span id="cb24-25"><a href="#cb24-25"></a>         <span class="at">runs =</span> r,</span>
-<span id="cb24-26"><a href="#cb24-26"></a>         <span class="at">hits =</span> h,</span>
-<span id="cb24-27"><a href="#cb24-27"></a>         <span class="at">home_runs =</span> hr,</span>
-<span id="cb24-28"><a href="#cb24-28"></a>         <span class="at">stolen_bases =</span> sb,</span>
-<span id="cb24-29"><a href="#cb24-29"></a>         <span class="at">caught_stealing =</span> cs,</span>
-<span id="cb24-30"><a href="#cb24-30"></a>         <span class="at">strikeouts =</span> so) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-31"><a href="#cb24-31"></a>  <span class="fu">select</span>(year, team_id, player_id, salary, games, at_bats, runs, hits, double, triple, home_runs, stolen_bases, caught_stealing, strikeouts) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-32"><a href="#cb24-32"></a>  <span class="fu">mutate</span>(<span class="at">batting_avg =</span> hits<span class="sc">/</span>at_bats)</span>
-<span id="cb24-33"><a href="#cb24-33"></a><span class="in">```</span></span>
-<span id="cb24-34"><a href="#cb24-34"></a></span>
-<span id="cb24-35"><a href="#cb24-35"></a></span>
-<span id="cb24-38"><a href="#cb24-38"></a><span class="in">```{r}</span></span>
-<span id="cb24-39"><a href="#cb24-39"></a><span class="co"># salary vs batting avg</span></span>
-<span id="cb24-40"><a href="#cb24-40"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb24-41"><a href="#cb24-41"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-42"><a href="#cb24-42"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary, <span class="at">color =</span> home_runs)) <span class="sc">+</span></span>
-<span id="cb24-43"><a href="#cb24-43"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-44"><a href="#cb24-44"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs batting avg"</span>)</span>
-<span id="cb24-45"><a href="#cb24-45"></a></span>
-<span id="cb24-46"><a href="#cb24-46"></a><span class="co"># salary vs hits</span></span>
-<span id="cb24-47"><a href="#cb24-47"></a><span class="co"># ggplot(aes(x = hits, y = salary), data = sal_bat_2) +</span></span>
-<span id="cb24-48"><a href="#cb24-48"></a><span class="co">#   geom_point() +</span></span>
-<span id="cb24-49"><a href="#cb24-49"></a><span class="co">#   labs(title = "salary vs hits")</span></span>
-<span id="cb24-50"><a href="#cb24-50"></a><span class="co"># </span></span>
-<span id="cb24-51"><a href="#cb24-51"></a><span class="co"># salary vs home runs</span></span>
-<span id="cb24-52"><a href="#cb24-52"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb24-53"><a href="#cb24-53"></a>    <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-54"><a href="#cb24-54"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
-<span id="cb24-55"><a href="#cb24-55"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-56"><a href="#cb24-56"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs home runs"</span>)</span>
-<span id="cb24-57"><a href="#cb24-57"></a><span class="co"># </span></span>
-<span id="cb24-58"><a href="#cb24-58"></a><span class="co"># # salary vs batting avg for 1990</span></span>
-<span id="cb24-59"><a href="#cb24-59"></a><span class="co"># sal_bat_2 %&gt;% </span></span>
-<span id="cb24-60"><a href="#cb24-60"></a><span class="co">#   filter(year == '1990') %&gt;% </span></span>
-<span id="cb24-61"><a href="#cb24-61"></a><span class="co">#   ggplot(aes(x = batting_avg, y = salary)) +</span></span>
-<span id="cb24-62"><a href="#cb24-62"></a><span class="co">#   geom_point() +</span></span>
-<span id="cb24-63"><a href="#cb24-63"></a><span class="co">#   labs(title = "salary vs batting avg in 1990")</span></span>
-<span id="cb24-64"><a href="#cb24-64"></a><span class="in">```</span></span>
-<span id="cb24-65"><a href="#cb24-65"></a></span>
-<span id="cb24-68"><a href="#cb24-68"></a><span class="in">```{r}</span></span>
-<span id="cb24-69"><a href="#cb24-69"></a><span class="co">#home run exploration</span></span>
-<span id="cb24-70"><a href="#cb24-70"></a>sal_bat_2 <span class="sc">%&gt;%</span></span>
-<span id="cb24-71"><a href="#cb24-71"></a>  <span class="fu">filter</span>(home_runs <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-72"><a href="#cb24-72"></a>  <span class="co">#group_by(home_runs) %&gt;% </span></span>
-<span id="cb24-73"><a href="#cb24-73"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>(), <span class="at">average =</span> <span class="fu">mean</span>(home_runs))</span>
-<span id="cb24-74"><a href="#cb24-74"></a></span>
-<span id="cb24-75"><a href="#cb24-75"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb24-76"><a href="#cb24-76"></a>  <span class="fu">filter</span>(home_runs <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-77"><a href="#cb24-77"></a>  <span class="fu">na.omit</span>(home_runs) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-78"><a href="#cb24-78"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs)) <span class="sc">+</span></span>
-<span id="cb24-79"><a href="#cb24-79"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb24-80"><a href="#cb24-80"></a><span class="in">```</span></span>
-<span id="cb24-83"><a href="#cb24-83"></a><span class="in">```{r}</span></span>
-<span id="cb24-84"><a href="#cb24-84"></a><span class="co">#at bat exploration</span></span>
-<span id="cb24-85"><a href="#cb24-85"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb24-86"><a href="#cb24-86"></a>  <span class="fu">summarise</span>(<span class="at">bat_avg =</span> <span class="fu">mean</span>(at_bats, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sal_avg =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb24-87"><a href="#cb24-87"></a></span>
-<span id="cb24-88"><a href="#cb24-88"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb24-89"><a href="#cb24-89"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;=</span> <span class="dv">100</span>, salary <span class="sc">!=</span> <span class="dv">0</span>, year <span class="sc">&gt;=</span> <span class="dv">2000</span>, batting_avg <span class="sc">&gt;=</span> .<span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-90"><a href="#cb24-90"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
-<span id="cb24-91"><a href="#cb24-91"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-92"><a href="#cb24-92"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb24-93"><a href="#cb24-93"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb40" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1"></a><span class="co">---</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="an">title:</span><span class="co"> "Sidney Viz"</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a><span class="an">runtime:</span><span class="co"> shiny</span></span>
+<span id="cb40-6"><a href="#cb40-6"></a><span class="co">---</span></span>
+<span id="cb40-7"><a href="#cb40-7"></a></span>
+<span id="cb40-8"><a href="#cb40-8"></a></span>
+<span id="cb40-11"><a href="#cb40-11"></a><span class="in">```{r}</span></span>
+<span id="cb40-12"><a href="#cb40-12"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb40-13"><a href="#cb40-13"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb40-14"><a href="#cb40-14"></a>salary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/salary.csv"</span>)</span>
+<span id="cb40-15"><a href="#cb40-15"></a>pitching <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span>
+<span id="cb40-16"><a href="#cb40-16"></a>batting <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/The History of Baseball dataset/batting.csv"</span>)</span>
+<span id="cb40-17"><a href="#cb40-17"></a><span class="in">```</span></span>
+<span id="cb40-18"><a href="#cb40-18"></a></span>
+<span id="cb40-21"><a href="#cb40-21"></a><span class="in">```{r}</span></span>
+<span id="cb40-22"><a href="#cb40-22"></a><span class="fu">head</span>(salary)</span>
+<span id="cb40-23"><a href="#cb40-23"></a><span class="fu">head</span>(pitching)</span>
+<span id="cb40-24"><a href="#cb40-24"></a><span class="co">#merging salary and pitching data</span></span>
+<span id="cb40-25"><a href="#cb40-25"></a>sal_pitch <span class="ot">&lt;-</span> salary <span class="sc">%&gt;%</span> </span>
+<span id="cb40-26"><a href="#cb40-26"></a>  <span class="fu">left_join</span>(pitching)</span>
+<span id="cb40-27"><a href="#cb40-27"></a></span>
+<span id="cb40-28"><a href="#cb40-28"></a><span class="co">#merging salary and batting data</span></span>
+<span id="cb40-29"><a href="#cb40-29"></a>sal_bat <span class="ot">&lt;-</span> salary <span class="sc">%&gt;%</span> </span>
+<span id="cb40-30"><a href="#cb40-30"></a>  <span class="fu">left_join</span>(batting)</span>
+<span id="cb40-31"><a href="#cb40-31"></a></span>
+<span id="cb40-32"><a href="#cb40-32"></a><span class="co">#cleaning up variable names</span></span>
+<span id="cb40-33"><a href="#cb40-33"></a>sal_bat_2 <span class="ot">&lt;-</span> sal_bat <span class="sc">%&gt;%</span> </span>
+<span id="cb40-34"><a href="#cb40-34"></a>  <span class="fu">rename</span>(<span class="at">games =</span> g,</span>
+<span id="cb40-35"><a href="#cb40-35"></a>         <span class="at">at_bats =</span> ab,</span>
+<span id="cb40-36"><a href="#cb40-36"></a>         <span class="at">runs =</span> r,</span>
+<span id="cb40-37"><a href="#cb40-37"></a>         <span class="at">hits =</span> h,</span>
+<span id="cb40-38"><a href="#cb40-38"></a>         <span class="at">home_runs =</span> hr,</span>
+<span id="cb40-39"><a href="#cb40-39"></a>         <span class="at">stolen_bases =</span> sb,</span>
+<span id="cb40-40"><a href="#cb40-40"></a>         <span class="at">caught_stealing =</span> cs,</span>
+<span id="cb40-41"><a href="#cb40-41"></a>         <span class="at">strikeouts =</span> so) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-42"><a href="#cb40-42"></a>  <span class="fu">select</span>(year, team_id, player_id, salary, games, at_bats, runs, hits, double, triple, home_runs, stolen_bases, caught_stealing, strikeouts) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-43"><a href="#cb40-43"></a>  <span class="fu">mutate</span>(<span class="at">batting_avg =</span> hits<span class="sc">/</span>at_bats)</span>
+<span id="cb40-44"><a href="#cb40-44"></a></span>
+<span id="cb40-45"><a href="#cb40-45"></a>win_loss <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb40-46"><a href="#cb40-46"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-47"><a href="#cb40-47"></a>  <span class="fu">select</span>(player_id, year, team_id, league_id, w, l, g) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-48"><a href="#cb40-48"></a>  <span class="fu">left_join</span>(sal_bat_2)</span>
+<span id="cb40-49"><a href="#cb40-49"></a><span class="in">```</span></span>
+<span id="cb40-50"><a href="#cb40-50"></a></span>
+<span id="cb40-53"><a href="#cb40-53"></a><span class="in">```{r}</span></span>
+<span id="cb40-54"><a href="#cb40-54"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb40-55"><a href="#cb40-55"></a><span class="co"># UI to select filters</span></span>
+<span id="cb40-56"><a href="#cb40-56"></a><span class="fu">sidebarLayout</span>(</span>
+<span id="cb40-57"><a href="#cb40-57"></a>  <span class="fu">sidebarPanel</span>(</span>
+<span id="cb40-58"><a href="#cb40-58"></a>    <span class="fu">sliderInput</span>(<span class="st">"top_n"</span>, </span>
+<span id="cb40-59"><a href="#cb40-59"></a>                <span class="st">"Select Top N Players by Strikeouts:"</span>, </span>
+<span id="cb40-60"><a href="#cb40-60"></a>                <span class="at">min =</span> <span class="dv">5</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">10</span>, <span class="at">step =</span> <span class="dv">5</span>),</span>
+<span id="cb40-61"><a href="#cb40-61"></a>    <span class="fu">selectInput</span>(<span class="st">"filter_team"</span>, </span>
+<span id="cb40-62"><a href="#cb40-62"></a>                <span class="st">"Filter by Team (Optional):"</span>, </span>
+<span id="cb40-63"><a href="#cb40-63"></a>                <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"All"</span>, <span class="fu">unique</span>(pitching<span class="sc">$</span>team_id)), </span>
+<span id="cb40-64"><a href="#cb40-64"></a>                <span class="at">selected =</span> <span class="st">"All"</span>)</span>
+<span id="cb40-65"><a href="#cb40-65"></a>  ),</span>
+<span id="cb40-66"><a href="#cb40-66"></a>  <span class="fu">mainPanel</span>(</span>
+<span id="cb40-67"><a href="#cb40-67"></a>    <span class="fu">plotOutput</span>(<span class="st">"hr_bb_plot"</span>)</span>
+<span id="cb40-68"><a href="#cb40-68"></a>  )</span>
+<span id="cb40-69"><a href="#cb40-69"></a>)</span>
+<span id="cb40-70"><a href="#cb40-70"></a></span>
+<span id="cb40-71"><a href="#cb40-71"></a><span class="co"># Server logic</span></span>
+<span id="cb40-72"><a href="#cb40-72"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb40-73"><a href="#cb40-73"></a>  <span class="co"># Filter and sort data</span></span>
+<span id="cb40-74"><a href="#cb40-74"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span></span>
+<span id="cb40-75"><a href="#cb40-75"></a>    <span class="fu">filter</span>(<span class="cf">if</span> (input<span class="sc">$</span>filter_team <span class="sc">!=</span> <span class="st">"All"</span>) team_id <span class="sc">==</span> input<span class="sc">$</span>filter_team <span class="cf">else</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-76"><a href="#cb40-76"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(hr)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-77"><a href="#cb40-77"></a>    <span class="fu">slice_head</span>(<span class="at">n =</span> input<span class="sc">$</span>top_n)  <span class="co"># Top N players</span></span>
+<span id="cb40-78"><a href="#cb40-78"></a>  </span>
+<span id="cb40-79"><a href="#cb40-79"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> bb, <span class="at">y =</span> so, <span class="at">color =</span> player_id, <span class="at">label =</span> player_id)) <span class="sc">+</span></span>
+<span id="cb40-80"><a href="#cb40-80"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb40-81"><a href="#cb40-81"></a>    <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb40-82"><a href="#cb40-82"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs. Walks"</span>, </span>
+<span id="cb40-83"><a href="#cb40-83"></a>         <span class="at">x =</span> <span class="st">"Walks (BB)"</span>, <span class="at">y =</span> <span class="st">"Strikeouts (SO)"</span>) <span class="sc">+</span></span>
+<span id="cb40-84"><a href="#cb40-84"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb40-85"><a href="#cb40-85"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb40-86"><a href="#cb40-86"></a></span>
+<span id="cb40-87"><a href="#cb40-87"></a>})</span>
+<span id="cb40-88"><a href="#cb40-88"></a><span class="in">```</span></span>
+<span id="cb40-89"><a href="#cb40-89"></a></span>
+<span id="cb40-92"><a href="#cb40-92"></a><span class="in">```{r}</span></span>
+<span id="cb40-93"><a href="#cb40-93"></a><span class="co">#strikeouts vs wins since 1985</span></span>
+<span id="cb40-94"><a href="#cb40-94"></a>pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb40-95"><a href="#cb40-95"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>, so <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-96"><a href="#cb40-96"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> so, <span class="at">y =</span> w)) <span class="sc">+</span></span>
+<span id="cb40-97"><a href="#cb40-97"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-98"><a href="#cb40-98"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb40-99"><a href="#cb40-99"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs Wins since 1985"</span>, <span class="at">x =</span> <span class="st">"Strikeouts (SO)"</span>, <span class="at">y =</span> <span class="st">"Wins (W)"</span>)</span>
+<span id="cb40-100"><a href="#cb40-100"></a><span class="in">```</span></span>
+<span id="cb40-101"><a href="#cb40-101"></a></span>
+<span id="cb40-104"><a href="#cb40-104"></a><span class="in">```{r}</span></span>
+<span id="cb40-105"><a href="#cb40-105"></a><span class="co">#batting avg vs wins since 1985</span></span>
+<span id="cb40-106"><a href="#cb40-106"></a>bat_sm <span class="ot">&lt;-</span> batting <span class="sc">%&gt;%</span> </span>
+<span id="cb40-107"><a href="#cb40-107"></a>  <span class="fu">mutate</span>(<span class="at">batt_avg =</span> h<span class="sc">/</span>ab) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-108"><a href="#cb40-108"></a>  <span class="fu">select</span>(player_id, year, batt_avg)</span>
+<span id="cb40-109"><a href="#cb40-109"></a></span>
+<span id="cb40-110"><a href="#cb40-110"></a>pitching_2 <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb40-111"><a href="#cb40-111"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-112"><a href="#cb40-112"></a>  <span class="fu">left_join</span>(bat_sm)</span>
+<span id="cb40-113"><a href="#cb40-113"></a>  </span>
+<span id="cb40-114"><a href="#cb40-114"></a>pitching_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-115"><a href="#cb40-115"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(batt_avg)) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-116"><a href="#cb40-116"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batt_avg, <span class="at">y =</span> w, <span class="at">group =</span> team_id)) <span class="sc">+</span></span>
+<span id="cb40-117"><a href="#cb40-117"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb40-118"><a href="#cb40-118"></a><span class="in">```</span></span>
+<span id="cb40-119"><a href="#cb40-119"></a></span>
+<span id="cb40-120"><a href="#cb40-120"></a></span>
+<span id="cb40-121"><a href="#cb40-121"></a></span>
+<span id="cb40-124"><a href="#cb40-124"></a><span class="in">```{r}</span></span>
+<span id="cb40-125"><a href="#cb40-125"></a><span class="co"># salary vs batting avg</span></span>
+<span id="cb40-126"><a href="#cb40-126"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-127"><a href="#cb40-127"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-128"><a href="#cb40-128"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary, <span class="at">color =</span> home_runs)) <span class="sc">+</span></span>
+<span id="cb40-129"><a href="#cb40-129"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-130"><a href="#cb40-130"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs batting avg"</span>)</span>
+<span id="cb40-131"><a href="#cb40-131"></a></span>
+<span id="cb40-132"><a href="#cb40-132"></a><span class="co"># salary vs hits</span></span>
+<span id="cb40-133"><a href="#cb40-133"></a><span class="co"># ggplot(aes(x = hits, y = salary), data = sal_bat_2) +</span></span>
+<span id="cb40-134"><a href="#cb40-134"></a><span class="co">#   geom_point() +</span></span>
+<span id="cb40-135"><a href="#cb40-135"></a><span class="co">#   labs(title = "salary vs hits")</span></span>
+<span id="cb40-136"><a href="#cb40-136"></a><span class="co"># </span></span>
+<span id="cb40-137"><a href="#cb40-137"></a><span class="co"># salary vs home runs</span></span>
+<span id="cb40-138"><a href="#cb40-138"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-139"><a href="#cb40-139"></a>    <span class="fu">filter</span>(at_bats <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-140"><a href="#cb40-140"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb40-141"><a href="#cb40-141"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-142"><a href="#cb40-142"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"salary vs home runs"</span>)</span>
+<span id="cb40-143"><a href="#cb40-143"></a><span class="co"># </span></span>
+<span id="cb40-144"><a href="#cb40-144"></a><span class="co"># # salary vs batting avg for 1990</span></span>
+<span id="cb40-145"><a href="#cb40-145"></a><span class="co"># sal_bat_2 %&gt;% </span></span>
+<span id="cb40-146"><a href="#cb40-146"></a><span class="co">#   filter(year == '1990') %&gt;% </span></span>
+<span id="cb40-147"><a href="#cb40-147"></a><span class="co">#   ggplot(aes(x = batting_avg, y = salary)) +</span></span>
+<span id="cb40-148"><a href="#cb40-148"></a><span class="co">#   geom_point() +</span></span>
+<span id="cb40-149"><a href="#cb40-149"></a><span class="co">#   labs(title = "salary vs batting avg in 1990")</span></span>
+<span id="cb40-150"><a href="#cb40-150"></a><span class="in">```</span></span>
+<span id="cb40-151"><a href="#cb40-151"></a></span>
+<span id="cb40-154"><a href="#cb40-154"></a><span class="in">```{r}</span></span>
+<span id="cb40-155"><a href="#cb40-155"></a><span class="co">#home run exploration</span></span>
+<span id="cb40-156"><a href="#cb40-156"></a>sal_bat_2 <span class="sc">%&gt;%</span></span>
+<span id="cb40-157"><a href="#cb40-157"></a>  <span class="fu">filter</span>(home_runs <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-158"><a href="#cb40-158"></a>  <span class="co">#group_by(home_runs) %&gt;% </span></span>
+<span id="cb40-159"><a href="#cb40-159"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>(), <span class="at">average =</span> <span class="fu">mean</span>(home_runs))</span>
+<span id="cb40-160"><a href="#cb40-160"></a></span>
+<span id="cb40-161"><a href="#cb40-161"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-162"><a href="#cb40-162"></a>  <span class="fu">filter</span>(home_runs <span class="sc">&gt;</span> <span class="dv">10</span>, salary <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-163"><a href="#cb40-163"></a>  <span class="fu">na.omit</span>(home_runs) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-164"><a href="#cb40-164"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> home_runs)) <span class="sc">+</span></span>
+<span id="cb40-165"><a href="#cb40-165"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb40-166"><a href="#cb40-166"></a><span class="in">```</span></span>
+<span id="cb40-169"><a href="#cb40-169"></a><span class="in">```{r}</span></span>
+<span id="cb40-170"><a href="#cb40-170"></a><span class="co">#at bat exploration</span></span>
+<span id="cb40-171"><a href="#cb40-171"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-172"><a href="#cb40-172"></a>  <span class="fu">summarise</span>(<span class="at">bat_avg =</span> <span class="fu">mean</span>(at_bats, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sal_avg =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb40-173"><a href="#cb40-173"></a></span>
+<span id="cb40-174"><a href="#cb40-174"></a>sal_bat_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-175"><a href="#cb40-175"></a>  <span class="fu">filter</span>(at_bats <span class="sc">&gt;=</span> <span class="dv">100</span>, salary <span class="sc">!=</span> <span class="dv">0</span>, year <span class="sc">&gt;=</span> <span class="dv">2000</span>, batting_avg <span class="sc">&gt;=</span> .<span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-176"><a href="#cb40-176"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batting_avg, <span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb40-177"><a href="#cb40-177"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-178"><a href="#cb40-178"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb40-179"><a href="#cb40-179"></a><span class="in">```</span></span>
+<span id="cb40-180"><a href="#cb40-180"></a></span>
+<span id="cb40-181"><a href="#cb40-181"></a></span>
+<span id="cb40-184"><a href="#cb40-184"></a><span class="in">```{r}</span></span>
+<span id="cb40-185"><a href="#cb40-185"></a><span class="co"># win_loss %&gt;%</span></span>
+<span id="cb40-186"><a href="#cb40-186"></a><span class="co">#   ggplot(aes(x = team_id, group = league_id)) +</span></span>
+<span id="cb40-187"><a href="#cb40-187"></a><span class="co">#     geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge",alpha = 0.4) +</span></span>
+<span id="cb40-188"><a href="#cb40-188"></a><span class="co">#     geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge",alpha = 0.4)</span></span>
+<span id="cb40-189"><a href="#cb40-189"></a><span class="co"># </span></span>
+<span id="cb40-190"><a href="#cb40-190"></a><span class="co"># win_loss %&gt;% </span></span>
+<span id="cb40-191"><a href="#cb40-191"></a><span class="co">#   ggplot(aes(x = batting_avg, y = w, color = team_id)) +</span></span>
+<span id="cb40-192"><a href="#cb40-192"></a><span class="co">#   geom_point()</span></span>
+<span id="cb40-193"><a href="#cb40-193"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

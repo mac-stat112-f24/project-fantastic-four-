@@ -18,6 +18,7 @@ book:
   chapters:
     - index.qmd
     - report.qmd
+    - reportDRAFT.qmd
     - Basir.qmd
     - SidneyViz.qmd
     - harlanviz.qmd
