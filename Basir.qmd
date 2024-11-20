@@ -1,5 +1,5 @@
 ---
-title: "Basir"
+title: "BasirVis"
 ---
 
 
@@ -12,7 +12,7 @@ str(History_of_Baseball)
 head(History_of_Baseball)
 ```
 
-----
+
 2.3 Pitching table
 
 playerID       Player ID code
@@ -45,6 +45,7 @@ R              Runs Allowed
 SH             Sacrifices by opposing batters
 SF             Sacrifice flies by opposing batters
 GIDP           Grounded into double plays by opposing batter
+
 ```{r}
 History_of_Baseball <- read_csv("data/The History of Baseball dataset/pitching.csv")
 
@@ -52,9 +53,9 @@ str(History_of_Baseball)
 head(History_of_Baseball)
 ```
 
+
 ```{r}
 ggplot(History_of_Baseball) +
   geom_line(aes(x=year, y=w))
-
 ```
 
