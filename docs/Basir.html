@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Moneyball: Visualizations of Baseball Salaries – 2&nbsp; BasirVis</title>
+<title>2&nbsp; BasirVis – Moneyball: Visualizations of Baseball Salaries</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -114,13 +114,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Basir.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">BasirVis</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -132,9 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">
-      Moneyball: Visualizations of Baseball Salaries
-      </a> 
+      <a href="./">Moneyball: Visualizations of Baseball Salaries</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -196,9 +194,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -222,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
@@ -312,39 +310,119 @@ dbl (4): yearid, ballots, needed, votes
 6 lajoina01   1936 BBWAA       226    170   146 N        Player   &lt;NA&gt;       </code></pre>
 </div>
 </div>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 5%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>2.3 Pitching table</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>title: “BasirVis”</td>
-</tr>
-</tbody>
-</table>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># import Data</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/hall_of_fame.csv"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">str</span>(History_of_Baseball)</span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="fu">head</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
 <p>2.3 Pitching table</p>
-<p>playerID Player ID code yearID Year stint player’s stint (order of appearances within a season) teamID Team lgID League W Wins L Losses G Games GS Games Started CG Complete Games SHO Shutouts SV Saves IPOuts Outs Pitched (innings pitched x 3) H Hits ER Earned Runs HR Homeruns BB Walks SO Strikeouts BAOpp Opponent’s Batting Average ERA Earned Run Average IBB Intentional Walks WP Wild Pitches HBP Batters Hit By Pitch BK Balks BFP Batters faced by Pitcher GF Games Finished R Runs Allowed SH Sacrifices by opposing batters SF Sacrifice flies by opposing batters GIDP Grounded into double plays by opposing batter quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">str</span>(History_of_Baseball)</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">head</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(History_of_Baseball) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>``````````````````` :::</p>
+<p>playerID Player ID code yearID Year stint player’s stint (order of appearances within a season) teamID Team lgID League W Wins L Losses G Games GS Games Started CG Complete Games SHO Shutouts SV Saves IPOuts Outs Pitched (innings pitched x 3) H Hits ER Earned Runs HR Homeruns BB Walks SO Strikeouts BAOpp Opponent’s Batting Average ERA Earned Run Average IBB Intentional Walks WP Wild Pitches HBP Batters Hit By Pitch BK Balks BFP Batters faced by Pitcher GF Games Finished R Runs Allowed SH Sacrifices by opposing batters SF Sacrifice flies by opposing batters GIDP Grounded into double plays by opposing batter</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 44139 Columns: 30
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): player_id, team_id, league_id
+dbl (27): year, stint, w, l, g, gs, cg, sho, sv, ipouts, h, er, hr, bb, so, ...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">str</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [44,139 × 30] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ player_id: chr [1:44139] "bechtge01" "brainas01" "fergubo01" "fishech01" ...
+ $ year     : num [1:44139] 1871 1871 1871 1871 1871 ...
+ $ stint    : num [1:44139] 1 1 1 1 1 1 1 1 1 1 ...
+ $ team_id  : chr [1:44139] "PH1" "WS3" "NY2" "RC1" ...
+ $ league_id: chr [1:44139] NA NA NA NA ...
+ $ w        : num [1:44139] 1 12 0 4 0 0 0 6 18 12 ...
+ $ l        : num [1:44139] 2 15 0 16 1 0 1 11 5 15 ...
+ $ g        : num [1:44139] 3 30 1 24 1 1 3 19 25 29 ...
+ $ gs       : num [1:44139] 3 30 0 24 1 0 1 19 25 29 ...
+ $ cg       : num [1:44139] 2 30 0 22 1 0 1 19 25 28 ...
+ $ sho      : num [1:44139] 0 0 0 1 0 0 0 1 0 0 ...
+ $ sv       : num [1:44139] 0 0 0 0 0 0 0 0 0 0 ...
+ $ ipouts   : num [1:44139] 78 792 3 639 27 3 39 507 666 747 ...
+ $ h        : num [1:44139] 43 361 8 295 20 1 20 261 285 430 ...
+ $ er       : num [1:44139] 23 132 3 103 10 0 5 97 113 153 ...
+ $ hr       : num [1:44139] 0 4 0 3 0 0 0 5 3 4 ...
+ $ bb       : num [1:44139] 11 37 0 31 3 0 3 21 40 75 ...
+ $ so       : num [1:44139] 1 13 0 15 0 0 1 17 15 12 ...
+ $ baopp    : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ era      : num [1:44139] 7.96 4.5 27 4.35 10 0 3.46 5.17 4.58 5.53 ...
+ $ ibb      : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ wp       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ hbp      : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ bk       : num [1:44139] 0 0 0 0 0 0 0 2 0 0 ...
+ $ bfp      : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ gf       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ r        : num [1:44139] 42 292 9 257 21 0 30 243 223 362 ...
+ $ sh       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ sf       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ $ g_idp    : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   player_id = col_character(),
+  ..   year = col_double(),
+  ..   stint = col_double(),
+  ..   team_id = col_character(),
+  ..   league_id = col_character(),
+  ..   w = col_double(),
+  ..   l = col_double(),
+  ..   g = col_double(),
+  ..   gs = col_double(),
+  ..   cg = col_double(),
+  ..   sho = col_double(),
+  ..   sv = col_double(),
+  ..   ipouts = col_double(),
+  ..   h = col_double(),
+  ..   er = col_double(),
+  ..   hr = col_double(),
+  ..   bb = col_double(),
+  ..   so = col_double(),
+  ..   baopp = col_double(),
+  ..   era = col_double(),
+  ..   ibb = col_double(),
+  ..   wp = col_double(),
+  ..   hbp = col_double(),
+  ..   bk = col_double(),
+  ..   bfp = col_double(),
+  ..   gf = col_double(),
+  ..   r = col_double(),
+  ..   sh = col_double(),
+  ..   sf = col_double(),
+  ..   g_idp = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">head</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 30
+  player_id  year stint team_id league_id     w     l     g    gs    cg   sho
+  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 bechtge01  1871     1 PH1     &lt;NA&gt;          1     2     3     3     2     0
+2 brainas01  1871     1 WS3     &lt;NA&gt;         12    15    30    30    30     0
+3 fergubo01  1871     1 NY2     &lt;NA&gt;          0     0     1     0     0     0
+4 fishech01  1871     1 RC1     &lt;NA&gt;          4    16    24    24    22     1
+5 fleetfr01  1871     1 NY2     &lt;NA&gt;          0     1     1     1     1     0
+6 flowedi01  1871     1 TRO     &lt;NA&gt;          0     0     1     0     0     0
+# ℹ 19 more variables: sv &lt;dbl&gt;, ipouts &lt;dbl&gt;, h &lt;dbl&gt;, er &lt;dbl&gt;, hr &lt;dbl&gt;,
+#   bb &lt;dbl&gt;, so &lt;dbl&gt;, baopp &lt;dbl&gt;, era &lt;dbl&gt;, ibb &lt;dbl&gt;, wp &lt;dbl&gt;, hbp &lt;dbl&gt;,
+#   bk &lt;dbl&gt;, bfp &lt;dbl&gt;, gf &lt;dbl&gt;, r &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, g_idp &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(History_of_Baseball) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Basir_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -526,18 +604,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -569,7 +636,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -628,7 +717,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -962,7 +1051,69 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sidney Viz</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">---</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="an">title:</span><span class="co"> "BasirVis"</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">---</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="in">```{r}</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co"># import Data</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/hall_of_fame.csv"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12"></a></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="fu">str</span>(History_of_Baseball)</span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="fu">head</span>(History_of_Baseball)</span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="in">```</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a></span>
+<span id="cb16-17"><a href="#cb16-17"></a></span>
+<span id="cb16-18"><a href="#cb16-18"></a>2.3 Pitching table</span>
+<span id="cb16-19"><a href="#cb16-19"></a></span>
+<span id="cb16-20"><a href="#cb16-20"></a>playerID       Player ID code</span>
+<span id="cb16-21"><a href="#cb16-21"></a>yearID         Year</span>
+<span id="cb16-22"><a href="#cb16-22"></a>stint          player's stint (order of appearances within a season)</span>
+<span id="cb16-23"><a href="#cb16-23"></a>teamID         Team</span>
+<span id="cb16-24"><a href="#cb16-24"></a>lgID           League</span>
+<span id="cb16-25"><a href="#cb16-25"></a>W              Wins</span>
+<span id="cb16-26"><a href="#cb16-26"></a>L              Losses</span>
+<span id="cb16-27"><a href="#cb16-27"></a>G              Games</span>
+<span id="cb16-28"><a href="#cb16-28"></a>GS             Games Started</span>
+<span id="cb16-29"><a href="#cb16-29"></a>CG             Complete Games </span>
+<span id="cb16-30"><a href="#cb16-30"></a>SHO            Shutouts</span>
+<span id="cb16-31"><a href="#cb16-31"></a>SV             Saves</span>
+<span id="cb16-32"><a href="#cb16-32"></a>IPOuts         Outs Pitched (innings pitched x 3)</span>
+<span id="cb16-33"><a href="#cb16-33"></a>H              Hits</span>
+<span id="cb16-34"><a href="#cb16-34"></a>ER             Earned Runs</span>
+<span id="cb16-35"><a href="#cb16-35"></a>HR             Homeruns</span>
+<span id="cb16-36"><a href="#cb16-36"></a>BB             Walks</span>
+<span id="cb16-37"><a href="#cb16-37"></a>SO             Strikeouts</span>
+<span id="cb16-38"><a href="#cb16-38"></a>BAOpp          Opponent's Batting Average</span>
+<span id="cb16-39"><a href="#cb16-39"></a>ERA            Earned Run Average</span>
+<span id="cb16-40"><a href="#cb16-40"></a>IBB            Intentional Walks</span>
+<span id="cb16-41"><a href="#cb16-41"></a>WP             Wild Pitches</span>
+<span id="cb16-42"><a href="#cb16-42"></a>HBP            Batters Hit By Pitch</span>
+<span id="cb16-43"><a href="#cb16-43"></a>BK             Balks</span>
+<span id="cb16-44"><a href="#cb16-44"></a>BFP            Batters faced by Pitcher</span>
+<span id="cb16-45"><a href="#cb16-45"></a>GF             Games Finished</span>
+<span id="cb16-46"><a href="#cb16-46"></a>R              Runs Allowed</span>
+<span id="cb16-47"><a href="#cb16-47"></a>SH             Sacrifices by opposing batters</span>
+<span id="cb16-48"><a href="#cb16-48"></a>SF             Sacrifice flies by opposing batters</span>
+<span id="cb16-49"><a href="#cb16-49"></a>GIDP           Grounded into double plays by opposing batter</span>
+<span id="cb16-50"><a href="#cb16-50"></a></span>
+<span id="cb16-53"><a href="#cb16-53"></a><span class="in">```{r}</span></span>
+<span id="cb16-54"><a href="#cb16-54"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span>
+<span id="cb16-55"><a href="#cb16-55"></a></span>
+<span id="cb16-56"><a href="#cb16-56"></a><span class="fu">str</span>(History_of_Baseball)</span>
+<span id="cb16-57"><a href="#cb16-57"></a><span class="fu">head</span>(History_of_Baseball)</span>
+<span id="cb16-58"><a href="#cb16-58"></a><span class="in">```</span></span>
+<span id="cb16-59"><a href="#cb16-59"></a></span>
+<span id="cb16-60"><a href="#cb16-60"></a></span>
+<span id="cb16-63"><a href="#cb16-63"></a><span class="in">```{r}</span></span>
+<span id="cb16-64"><a href="#cb16-64"></a><span class="fu">ggplot</span>(History_of_Baseball) <span class="sc">+</span></span>
+<span id="cb16-65"><a href="#cb16-65"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>w))</span>
+<span id="cb16-66"><a href="#cb16-66"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

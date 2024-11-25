@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Moneyball: Visualizations of Baseball Salaries - 1&nbsp; Report Draft</title>
+<title>1&nbsp; Report Draft – Moneyball: Visualizations of Baseball Salaries</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -121,13 +121,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reportDRAFT.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Report Draft</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -201,9 +201,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -232,8 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introductionmotivation-research-question-background" id="toc-introductionmotivation-research-question-background" class="nav-link active" data-scroll-target="#introductionmotivation-research-question-background"><span class="header-section-number">1.0.1</span> Introduction/Motivation, Research question, &amp; Background</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">1.0.2</span> Data</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1.0.1</span> Introduction</a></li>
   <li><a href="#wins-and-losses-per-team" id="toc-wins-and-losses-per-team" class="nav-link" data-scroll-target="#wins-and-losses-per-team"><span class="header-section-number">1.1</span> Wins and Losses per Team</a>
   <ul class="collapse">
   <li><a href="#data-insights" id="toc-data-insights" class="nav-link" data-scroll-target="#data-insights"><span class="header-section-number">1.1.1</span> Data Insights</a></li>
@@ -276,22 +275,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introductionmotivation-research-question-background" class="level3" data-number="1.0.1">
-<h3 data-number="1.0.1" class="anchored" data-anchor-id="introductionmotivation-research-question-background"><span class="header-section-number">1.0.1</span> Introduction/Motivation, Research question, &amp; Background</h3>
-<ul>
-<li><p>What question are you trying to answer?</p></li>
-<li><p>Why is it important or interesting?</p></li>
-<li><p>If needed, What background information is necessary here?</p></li>
-<li><p>If needed, What assumptions or terms or acronyms need to be clarified?</p></li>
-</ul>
-</section>
-<section id="data" class="level3" data-number="1.0.2">
-<h3 data-number="1.0.2" class="anchored" data-anchor-id="data"><span class="header-section-number">1.0.2</span> Data</h3>
-<ul>
-<li><p>Data collection: What was collected, When was it collected, Why was it collected, How was it collected originally, Who collected it</p></li>
-<li><p>Data acquisition: Where / how did you get the data? What is the source?</p></li>
-<li><p>Data understanding: How much data do you have? What types of measurements? Anything you needed to clean before getting started?</p></li>
-</ul>
+<section id="introduction" class="level3" data-number="1.0.1">
+<h3 data-number="1.0.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.0.1</span> Introduction</h3>
+<p>Baseball is one of the most popular sports in the US with millions of viewers each year. There are many factors that contribute to team wins and we would like to explore potential factors contributing to these wins. With this popularity comes a plethora of interesting data, from batting averages to different measures of success in the field to All-Star players per team. Using this data going as far back as the 1870s, we decided to look into what factors can predict team wins over time. With billions of dollars pouring into the MLB (Major League Baseball) each year, finding potential predictors of which teams will win is quite literally a billion dollar question. Throughout this report, we will explore different relationships between the variable <code>wins</code> and several predictor variables.</p>
+<p>In order to best understand this report, a few terms must be clarified. Firstly, <code>wins</code> refer to the number of games won by a team, while <code>losses</code> refers to the number of games lost by a team. A strikeout is when the pitcher throws three strikes, valid pitches that the batter does not hit, causing the batter to be out and finished with their batting turn. Finally, batting average is a decimal value representing the number of successful hits made by a single batter divided by their total number of hitting attempts.</p>
+<p>This data was acquired from Kaggle. This data set, titled ‘The History of Baseball’ is a reformatted version of a famous data set by Sean Lahman. This data, originally published in the 1990s was the first of its kind, making raw baseball data accessible to the public. This data was most recently updated for the 2015 season, and contains data between 2015 and 1871. Lahman’s data set is actually a collection of several data sets, ranging from pitching data, to data on team managers. For our analysis, we focus on the pitching and batting data sets, which contain information on wins, losses, pitching stats, batting stats, and salary information per player per year. In order to complete our analysis, we have joined the batting and pitching data sets together, added a new variable <code>batting_avg</code>, and cleaned the variable names. The variables are a mix between categorical (player names, team names, etc) and quantitative (wins, losses, batting average, etc).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#TODO: Add numerical summaries?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -344,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-13"><a href="#cb3-13"></a></span>
 <span id="cb3-14"><a href="#cb3-14"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="shiny-plot-output html-fill-item" id="outca5d46fef0558cdb" style="width:100%;height:400px;"></div>
+<div class="shiny-plot-output html-fill-item" id="outb81e1c6b8cc9b8e4" style="width:100%;height:400px;"></div>
 </div>
 </div>
 <section id="data-insights" class="level3" data-number="1.1.1">
@@ -564,7 +552,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-16"><a href="#cb5-16"></a></span>
 <span id="cb5-17"><a href="#cb5-17"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="shiny-plot-output html-fill-item" id="out77b5ef9bfed79ec4" style="width:100%;height:400px;"></div>
+<div class="shiny-plot-output html-fill-item" id="out14d63af9eda77020" style="width:100%;height:400px;"></div>
 </div>
 </div>
 <section id="data-insights-1" class="level3" data-number="1.2.1">
@@ -840,18 +828,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -883,7 +860,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -942,7 +941,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1288,202 +1287,194 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-9"><a href="#cb12-9"></a><span class="in">library(shiny)</span></span>
 <span id="cb12-10"><a href="#cb12-10"></a><span class="in">library(tidyverse)</span></span>
 <span id="cb12-11"><a href="#cb12-11"></a><span class="in">library(plotly)</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="in">pitching &lt;- read.csv("data/The History of Baseball dataset/pitching.csv")</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a><span class="in">batting &lt;- read.csv("data/The History of Baseball dataset/batting.csv")</span></span>
-<span id="cb12-15"><a href="#cb12-15"></a></span>
-<span id="cb12-16"><a href="#cb12-16"></a><span class="in"># Group years into decades</span></span>
-<span id="cb12-17"><a href="#cb12-17"></a><span class="in">pitching &lt;- pitching %&gt;%</span></span>
-<span id="cb12-18"><a href="#cb12-18"></a><span class="in">  mutate(decade = paste0(floor(year / 10) * 10, "s"))</span></span>
-<span id="cb12-19"><a href="#cb12-19"></a></span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="in"># Add batting average to pitching</span></span>
-<span id="cb12-21"><a href="#cb12-21"></a><span class="in">bat_sm &lt;- batting %&gt;% </span></span>
-<span id="cb12-22"><a href="#cb12-22"></a><span class="in">  mutate(batt_avg = h/ab) %&gt;% </span></span>
-<span id="cb12-23"><a href="#cb12-23"></a><span class="in">  select(player_id, year, batt_avg)</span></span>
-<span id="cb12-24"><a href="#cb12-24"></a></span>
-<span id="cb12-25"><a href="#cb12-25"></a><span class="in">pitching_2 &lt;- pitching %&gt;% </span></span>
-<span id="cb12-26"><a href="#cb12-26"></a><span class="in">  filter(year &gt;= 1985) %&gt;% </span></span>
-<span id="cb12-27"><a href="#cb12-27"></a><span class="in">  left_join(bat_sm)</span></span>
-<span id="cb12-28"><a href="#cb12-28"></a><span class="in">```</span></span>
-<span id="cb12-29"><a href="#cb12-29"></a></span>
-<span id="cb12-30"><a href="#cb12-30"></a><span class="fu">### Introduction/Motivation, Research question, &amp; Background</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="in">library(shinylive)</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a></span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="in">pitching &lt;- read.csv("data/The History of Baseball dataset/pitching.csv")</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="in">batting &lt;- read.csv("data/The History of Baseball dataset/batting.csv")</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="in"># Group years into decades</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="in">pitching &lt;- pitching %&gt;%</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a><span class="in">  mutate(decade = paste0(floor(year / 10) * 10, "s"))</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a></span>
+<span id="cb12-22"><a href="#cb12-22"></a><span class="in"># Add batting average to pitching</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="in">bat_sm &lt;- batting %&gt;% </span></span>
+<span id="cb12-24"><a href="#cb12-24"></a><span class="in">  mutate(batt_avg = h/ab) %&gt;% </span></span>
+<span id="cb12-25"><a href="#cb12-25"></a><span class="in">  select(player_id, year, batt_avg)</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a></span>
+<span id="cb12-27"><a href="#cb12-27"></a><span class="in">pitching_2 &lt;- pitching %&gt;% </span></span>
+<span id="cb12-28"><a href="#cb12-28"></a><span class="in">  filter(year &gt;= 1985) %&gt;% </span></span>
+<span id="cb12-29"><a href="#cb12-29"></a><span class="in">  left_join(bat_sm)</span></span>
+<span id="cb12-30"><a href="#cb12-30"></a><span class="in">```</span></span>
 <span id="cb12-31"><a href="#cb12-31"></a></span>
-<span id="cb12-32"><a href="#cb12-32"></a><span class="ss">- </span>What question are you trying to answer?</span>
+<span id="cb12-32"><a href="#cb12-32"></a><span class="fu">### Introduction</span></span>
 <span id="cb12-33"><a href="#cb12-33"></a></span>
-<span id="cb12-34"><a href="#cb12-34"></a><span class="ss">- </span>Why is it important or interesting?</span>
+<span id="cb12-34"><a href="#cb12-34"></a>Baseball is one of the most popular sports in the US with millions of viewers each year. There are many factors that contribute to team wins and we would like to explore potential factors contributing to these wins. With this popularity comes a plethora of interesting data, from batting averages to different measures of success in the field to All-Star players per team. Using this data going as far back as the 1870s, we decided to look into what factors can predict team wins over time. With billions of dollars pouring into the MLB (Major League Baseball) each year, finding potential predictors of which teams will win is quite literally a billion dollar question. Throughout this report, we will explore different relationships between the variable <span class="in">`wins`</span> and several predictor variables.</span>
 <span id="cb12-35"><a href="#cb12-35"></a></span>
-<span id="cb12-36"><a href="#cb12-36"></a><span class="ss">- </span>If needed, What background information is necessary here?</span>
+<span id="cb12-36"><a href="#cb12-36"></a>In order to best understand this report, a few terms must be clarified. Firstly, <span class="in">`wins`</span> refer to the number of games won by a team, while <span class="in">`losses`</span> refers to the number of games lost by a team. A strikeout is when the pitcher throws three strikes, valid pitches that the batter does not hit, causing the batter to be out and finished with their batting turn. Finally, batting average is a decimal value representing the number of successful hits made by a single batter divided by their total number of hitting attempts.</span>
 <span id="cb12-37"><a href="#cb12-37"></a></span>
-<span id="cb12-38"><a href="#cb12-38"></a><span class="ss">- </span>If needed, What assumptions or terms or acronyms need to be clarified?</span>
+<span id="cb12-38"><a href="#cb12-38"></a>This data was acquired from Kaggle. This data set, titled 'The History of Baseball' is a reformatted version of a famous data set by Sean Lahman. This data, originally published in the 1990s was the first of its kind, making raw baseball data accessible to the public. This data was most recently updated for the 2015 season, and contains data between 2015 and 1871. Lahman's data set is actually a collection of several data sets, ranging from pitching data, to data on team managers. For our analysis, we focus on the pitching and batting data sets, which contain information on wins, losses, pitching stats, batting stats, and salary information per player per year. In order to complete our analysis, we have joined the batting and pitching data sets together, added a new variable <span class="in">`batting_avg`</span>, and cleaned the variable names. The variables are a mix between categorical (player names, team names, etc) and quantitative (wins, losses, batting average, etc).</span>
 <span id="cb12-39"><a href="#cb12-39"></a></span>
 <span id="cb12-40"><a href="#cb12-40"></a></span>
-<span id="cb12-41"><a href="#cb12-41"></a><span class="fu">### Data</span></span>
-<span id="cb12-42"><a href="#cb12-42"></a></span>
-<span id="cb12-43"><a href="#cb12-43"></a><span class="ss">- </span>Data collection: What was collected, When was it collected, Why was it collected, How was it collected originally, Who collected it</span>
-<span id="cb12-44"><a href="#cb12-44"></a></span>
-<span id="cb12-45"><a href="#cb12-45"></a><span class="ss">- </span>Data acquisition: Where / how did you get the data? What is the source?</span>
+<span id="cb12-43"><a href="#cb12-43"></a><span class="in">```{r}</span></span>
+<span id="cb12-44"><a href="#cb12-44"></a><span class="co">#TODO: Add numerical summaries?</span></span>
+<span id="cb12-45"><a href="#cb12-45"></a><span class="in">```</span></span>
 <span id="cb12-46"><a href="#cb12-46"></a></span>
-<span id="cb12-47"><a href="#cb12-47"></a><span class="ss">- </span>Data understanding: How much data do you have? What types of measurements? Anything you needed to clean before getting started?</span>
-<span id="cb12-48"><a href="#cb12-48"></a></span>
-<span id="cb12-51"><a href="#cb12-51"></a><span class="in">```{r}</span></span>
-<span id="cb12-52"><a href="#cb12-52"></a><span class="co">#TODO: Add numerical summaries?</span></span>
-<span id="cb12-53"><a href="#cb12-53"></a><span class="in">```</span></span>
-<span id="cb12-54"><a href="#cb12-54"></a></span>
-<span id="cb12-55"><a href="#cb12-55"></a><span class="fu">## Wins and Losses per Team</span></span>
-<span id="cb12-58"><a href="#cb12-58"></a><span class="in">```{r}</span></span>
-<span id="cb12-59"><a href="#cb12-59"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
-<span id="cb12-60"><a href="#cb12-60"></a></span>
-<span id="cb12-61"><a href="#cb12-61"></a><span class="co"># Define UI for selecting a decade</span></span>
-<span id="cb12-62"><a href="#cb12-62"></a><span class="fu">selectInput</span>(<span class="st">"selected_decade"</span>, </span>
-<span id="cb12-63"><a href="#cb12-63"></a>            <span class="st">"Choose a Decade:"</span>, </span>
-<span id="cb12-64"><a href="#cb12-64"></a>            <span class="at">choices =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade), </span>
-<span id="cb12-65"><a href="#cb12-65"></a>            <span class="at">selected =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade)[<span class="dv">1</span>])</span>
-<span id="cb12-66"><a href="#cb12-66"></a></span>
-<span id="cb12-67"><a href="#cb12-67"></a><span class="co"># Render the plot dynamically</span></span>
-<span id="cb12-68"><a href="#cb12-68"></a><span class="fu">renderPlot</span>({</span>
-<span id="cb12-69"><a href="#cb12-69"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> <span class="fu">filter</span>(decade <span class="sc">==</span> input<span class="sc">$</span>selected_decade)</span>
-<span id="cb12-70"><a href="#cb12-70"></a>  </span>
-<span id="cb12-71"><a href="#cb12-71"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> team_id, <span class="at">group =</span> league_id)) <span class="sc">+</span></span>
-<span id="cb12-72"><a href="#cb12-72"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> w, <span class="at">fill =</span> <span class="st">"Wins"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb12-73"><a href="#cb12-73"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> l, <span class="at">fill =</span> <span class="st">"Losses"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb12-74"><a href="#cb12-74"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Wins and Losses in"</span>, input<span class="sc">$</span>selected_decade), </span>
-<span id="cb12-75"><a href="#cb12-75"></a>         <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
-<span id="cb12-76"><a href="#cb12-76"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Wins"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Losses"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb12-77"><a href="#cb12-77"></a>    <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb12-78"><a href="#cb12-78"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="co"># Rotate team labels for clarity</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a><span class="fu">## Wins and Losses per Team</span></span>
+<span id="cb12-50"><a href="#cb12-50"></a><span class="in">```{r}</span></span>
+<span id="cb12-51"><a href="#cb12-51"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
+<span id="cb12-52"><a href="#cb12-52"></a></span>
+<span id="cb12-53"><a href="#cb12-53"></a><span class="co"># Define UI for selecting a decade</span></span>
+<span id="cb12-54"><a href="#cb12-54"></a><span class="fu">selectInput</span>(<span class="st">"selected_decade"</span>, </span>
+<span id="cb12-55"><a href="#cb12-55"></a>            <span class="st">"Choose a Decade:"</span>, </span>
+<span id="cb12-56"><a href="#cb12-56"></a>            <span class="at">choices =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade), </span>
+<span id="cb12-57"><a href="#cb12-57"></a>            <span class="at">selected =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade)[<span class="dv">1</span>])</span>
+<span id="cb12-58"><a href="#cb12-58"></a></span>
+<span id="cb12-59"><a href="#cb12-59"></a><span class="co"># Render the plot dynamically</span></span>
+<span id="cb12-60"><a href="#cb12-60"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb12-61"><a href="#cb12-61"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> <span class="fu">filter</span>(decade <span class="sc">==</span> input<span class="sc">$</span>selected_decade)</span>
+<span id="cb12-62"><a href="#cb12-62"></a>  </span>
+<span id="cb12-63"><a href="#cb12-63"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> team_id, <span class="at">group =</span> league_id)) <span class="sc">+</span></span>
+<span id="cb12-64"><a href="#cb12-64"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> w, <span class="at">fill =</span> <span class="st">"Wins"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb12-65"><a href="#cb12-65"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> l, <span class="at">fill =</span> <span class="st">"Losses"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb12-66"><a href="#cb12-66"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Wins and Losses in"</span>, input<span class="sc">$</span>selected_decade), </span>
+<span id="cb12-67"><a href="#cb12-67"></a>         <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb12-68"><a href="#cb12-68"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Wins"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Losses"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb12-69"><a href="#cb12-69"></a>    <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb12-70"><a href="#cb12-70"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="co"># Rotate team labels for clarity</span></span>
+<span id="cb12-71"><a href="#cb12-71"></a></span>
+<span id="cb12-72"><a href="#cb12-72"></a>})</span>
+<span id="cb12-73"><a href="#cb12-73"></a></span>
+<span id="cb12-74"><a href="#cb12-74"></a><span class="in">```</span></span>
+<span id="cb12-75"><a href="#cb12-75"></a></span>
+<span id="cb12-76"><a href="#cb12-76"></a><span class="fu">### Data Insights</span></span>
+<span id="cb12-77"><a href="#cb12-77"></a></span>
+<span id="cb12-78"><a href="#cb12-78"></a>What are the important takeaways from the data? What was interesting?</span>
 <span id="cb12-79"><a href="#cb12-79"></a></span>
-<span id="cb12-80"><a href="#cb12-80"></a>})</span>
+<span id="cb12-80"><a href="#cb12-80"></a>Why do these takeaways matter?</span>
 <span id="cb12-81"><a href="#cb12-81"></a></span>
-<span id="cb12-82"><a href="#cb12-82"></a><span class="in">```</span></span>
+<span id="cb12-82"><a href="#cb12-82"></a>Was there anything surprising?</span>
 <span id="cb12-83"><a href="#cb12-83"></a></span>
-<span id="cb12-84"><a href="#cb12-84"></a><span class="fu">### Data Insights</span></span>
-<span id="cb12-85"><a href="#cb12-85"></a></span>
-<span id="cb12-86"><a href="#cb12-86"></a>What are the important takeaways from the data? What was interesting?</span>
+<span id="cb12-84"><a href="#cb12-84"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
+<span id="cb12-85"><a href="#cb12-85"></a>questions?!?</span>
+<span id="cb12-86"><a href="#cb12-86"></a></span>
 <span id="cb12-87"><a href="#cb12-87"></a></span>
-<span id="cb12-88"><a href="#cb12-88"></a>Why do these takeaways matter?</span>
-<span id="cb12-89"><a href="#cb12-89"></a></span>
-<span id="cb12-90"><a href="#cb12-90"></a>Was there anything surprising?</span>
-<span id="cb12-91"><a href="#cb12-91"></a></span>
-<span id="cb12-92"><a href="#cb12-92"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
-<span id="cb12-93"><a href="#cb12-93"></a>questions?!?</span>
-<span id="cb12-94"><a href="#cb12-94"></a></span>
-<span id="cb12-95"><a href="#cb12-95"></a></span>
-<span id="cb12-96"><a href="#cb12-96"></a><span class="fu">## Strikeouts VS Walks</span></span>
-<span id="cb12-99"><a href="#cb12-99"></a><span class="in">```{r}</span></span>
-<span id="cb12-100"><a href="#cb12-100"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
-<span id="cb12-101"><a href="#cb12-101"></a></span>
-<span id="cb12-102"><a href="#cb12-102"></a><span class="co"># UI to select filters</span></span>
-<span id="cb12-103"><a href="#cb12-103"></a><span class="fu">sidebarLayout</span>(</span>
-<span id="cb12-104"><a href="#cb12-104"></a>  <span class="fu">sidebarPanel</span>(</span>
-<span id="cb12-105"><a href="#cb12-105"></a>    <span class="fu">sliderInput</span>(<span class="st">"top_n"</span>, </span>
-<span id="cb12-106"><a href="#cb12-106"></a>                <span class="st">"Select Top N Players by Strikeouts:"</span>, </span>
-<span id="cb12-107"><a href="#cb12-107"></a>                <span class="at">min =</span> <span class="dv">5</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">10</span>, <span class="at">step =</span> <span class="dv">5</span>),</span>
-<span id="cb12-108"><a href="#cb12-108"></a>    <span class="fu">selectInput</span>(<span class="st">"filter_team"</span>, </span>
-<span id="cb12-109"><a href="#cb12-109"></a>                <span class="st">"Filter by Team (Optional):"</span>, </span>
-<span id="cb12-110"><a href="#cb12-110"></a>                <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"All"</span>, <span class="fu">unique</span>(pitching<span class="sc">$</span>team_id)), </span>
-<span id="cb12-111"><a href="#cb12-111"></a>                <span class="at">selected =</span> <span class="st">"All"</span>)</span>
-<span id="cb12-112"><a href="#cb12-112"></a>  ),</span>
-<span id="cb12-113"><a href="#cb12-113"></a>  <span class="fu">mainPanel</span>(</span>
-<span id="cb12-114"><a href="#cb12-114"></a>    <span class="fu">plotOutput</span>(<span class="st">"hr_bb_plot"</span>)</span>
-<span id="cb12-115"><a href="#cb12-115"></a>  )</span>
-<span id="cb12-116"><a href="#cb12-116"></a>)</span>
-<span id="cb12-117"><a href="#cb12-117"></a></span>
-<span id="cb12-118"><a href="#cb12-118"></a><span class="co"># Server logic</span></span>
-<span id="cb12-119"><a href="#cb12-119"></a><span class="fu">renderPlot</span>({</span>
-<span id="cb12-120"><a href="#cb12-120"></a>  <span class="co"># Filter and sort data</span></span>
-<span id="cb12-121"><a href="#cb12-121"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span></span>
-<span id="cb12-122"><a href="#cb12-122"></a>    <span class="fu">filter</span>(<span class="cf">if</span> (input<span class="sc">$</span>filter_team <span class="sc">!=</span> <span class="st">"All"</span>) team_id <span class="sc">==</span> input<span class="sc">$</span>filter_team <span class="cf">else</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-123"><a href="#cb12-123"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(hr)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-124"><a href="#cb12-124"></a>    <span class="fu">slice_head</span>(<span class="at">n =</span> input<span class="sc">$</span>top_n)  <span class="co"># Top N players</span></span>
-<span id="cb12-125"><a href="#cb12-125"></a>  </span>
-<span id="cb12-126"><a href="#cb12-126"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> bb, <span class="at">y =</span> so, <span class="at">color =</span> player_id, <span class="at">label =</span> player_id)) <span class="sc">+</span></span>
-<span id="cb12-127"><a href="#cb12-127"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb12-128"><a href="#cb12-128"></a>    <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb12-129"><a href="#cb12-129"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs. Walks"</span>, </span>
-<span id="cb12-130"><a href="#cb12-130"></a>         <span class="at">x =</span> <span class="st">"Walks (BB)"</span>, <span class="at">y =</span> <span class="st">"Strikeouts (SO)"</span>) <span class="sc">+</span></span>
-<span id="cb12-131"><a href="#cb12-131"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-132"><a href="#cb12-132"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb12-133"><a href="#cb12-133"></a></span>
-<span id="cb12-134"><a href="#cb12-134"></a>})</span>
-<span id="cb12-135"><a href="#cb12-135"></a><span class="in">```</span></span>
+<span id="cb12-88"><a href="#cb12-88"></a><span class="fu">## Strikeouts VS Walks</span></span>
+<span id="cb12-91"><a href="#cb12-91"></a><span class="in">```{r}</span></span>
+<span id="cb12-92"><a href="#cb12-92"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
+<span id="cb12-93"><a href="#cb12-93"></a></span>
+<span id="cb12-94"><a href="#cb12-94"></a><span class="co"># UI to select filters</span></span>
+<span id="cb12-95"><a href="#cb12-95"></a><span class="fu">sidebarLayout</span>(</span>
+<span id="cb12-96"><a href="#cb12-96"></a>  <span class="fu">sidebarPanel</span>(</span>
+<span id="cb12-97"><a href="#cb12-97"></a>    <span class="fu">sliderInput</span>(<span class="st">"top_n"</span>, </span>
+<span id="cb12-98"><a href="#cb12-98"></a>                <span class="st">"Select Top N Players by Strikeouts:"</span>, </span>
+<span id="cb12-99"><a href="#cb12-99"></a>                <span class="at">min =</span> <span class="dv">5</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">10</span>, <span class="at">step =</span> <span class="dv">5</span>),</span>
+<span id="cb12-100"><a href="#cb12-100"></a>    <span class="fu">selectInput</span>(<span class="st">"filter_team"</span>, </span>
+<span id="cb12-101"><a href="#cb12-101"></a>                <span class="st">"Filter by Team (Optional):"</span>, </span>
+<span id="cb12-102"><a href="#cb12-102"></a>                <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"All"</span>, <span class="fu">unique</span>(pitching<span class="sc">$</span>team_id)), </span>
+<span id="cb12-103"><a href="#cb12-103"></a>                <span class="at">selected =</span> <span class="st">"All"</span>)</span>
+<span id="cb12-104"><a href="#cb12-104"></a>  ),</span>
+<span id="cb12-105"><a href="#cb12-105"></a>  <span class="fu">mainPanel</span>(</span>
+<span id="cb12-106"><a href="#cb12-106"></a>    <span class="fu">plotOutput</span>(<span class="st">"hr_bb_plot"</span>)</span>
+<span id="cb12-107"><a href="#cb12-107"></a>  )</span>
+<span id="cb12-108"><a href="#cb12-108"></a>)</span>
+<span id="cb12-109"><a href="#cb12-109"></a></span>
+<span id="cb12-110"><a href="#cb12-110"></a><span class="co"># Server logic</span></span>
+<span id="cb12-111"><a href="#cb12-111"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb12-112"><a href="#cb12-112"></a>  <span class="co"># Filter and sort data</span></span>
+<span id="cb12-113"><a href="#cb12-113"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span></span>
+<span id="cb12-114"><a href="#cb12-114"></a>    <span class="fu">filter</span>(<span class="cf">if</span> (input<span class="sc">$</span>filter_team <span class="sc">!=</span> <span class="st">"All"</span>) team_id <span class="sc">==</span> input<span class="sc">$</span>filter_team <span class="cf">else</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-115"><a href="#cb12-115"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(hr)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-116"><a href="#cb12-116"></a>    <span class="fu">slice_head</span>(<span class="at">n =</span> input<span class="sc">$</span>top_n)  <span class="co"># Top N players</span></span>
+<span id="cb12-117"><a href="#cb12-117"></a>  </span>
+<span id="cb12-118"><a href="#cb12-118"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> bb, <span class="at">y =</span> so, <span class="at">color =</span> player_id, <span class="at">label =</span> player_id)) <span class="sc">+</span></span>
+<span id="cb12-119"><a href="#cb12-119"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb12-120"><a href="#cb12-120"></a>    <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb12-121"><a href="#cb12-121"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs. Walks"</span>, </span>
+<span id="cb12-122"><a href="#cb12-122"></a>         <span class="at">x =</span> <span class="st">"Walks (BB)"</span>, <span class="at">y =</span> <span class="st">"Strikeouts (SO)"</span>) <span class="sc">+</span></span>
+<span id="cb12-123"><a href="#cb12-123"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-124"><a href="#cb12-124"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb12-125"><a href="#cb12-125"></a></span>
+<span id="cb12-126"><a href="#cb12-126"></a>})</span>
+<span id="cb12-127"><a href="#cb12-127"></a><span class="in">```</span></span>
+<span id="cb12-128"><a href="#cb12-128"></a></span>
+<span id="cb12-129"><a href="#cb12-129"></a><span class="fu">### Data Insights</span></span>
+<span id="cb12-130"><a href="#cb12-130"></a></span>
+<span id="cb12-131"><a href="#cb12-131"></a>What are the important takeaways from the data? What was interesting?</span>
+<span id="cb12-132"><a href="#cb12-132"></a></span>
+<span id="cb12-133"><a href="#cb12-133"></a>Why do these takeaways matter?</span>
+<span id="cb12-134"><a href="#cb12-134"></a></span>
+<span id="cb12-135"><a href="#cb12-135"></a>Was there anything surprising?</span>
 <span id="cb12-136"><a href="#cb12-136"></a></span>
-<span id="cb12-137"><a href="#cb12-137"></a><span class="fu">### Data Insights</span></span>
-<span id="cb12-138"><a href="#cb12-138"></a></span>
-<span id="cb12-139"><a href="#cb12-139"></a>What are the important takeaways from the data? What was interesting?</span>
+<span id="cb12-137"><a href="#cb12-137"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
+<span id="cb12-138"><a href="#cb12-138"></a>questions?!?</span>
+<span id="cb12-139"><a href="#cb12-139"></a></span>
 <span id="cb12-140"><a href="#cb12-140"></a></span>
-<span id="cb12-141"><a href="#cb12-141"></a>Why do these takeaways matter?</span>
-<span id="cb12-142"><a href="#cb12-142"></a></span>
-<span id="cb12-143"><a href="#cb12-143"></a>Was there anything surprising?</span>
-<span id="cb12-144"><a href="#cb12-144"></a></span>
-<span id="cb12-145"><a href="#cb12-145"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
-<span id="cb12-146"><a href="#cb12-146"></a>questions?!?</span>
+<span id="cb12-141"><a href="#cb12-141"></a><span class="fu">## Strikeouts VS Wins Since 1985</span></span>
+<span id="cb12-144"><a href="#cb12-144"></a><span class="in">```{r}</span></span>
+<span id="cb12-145"><a href="#cb12-145"></a><span class="co"># still a WIP, feel free to mess around with it</span></span>
+<span id="cb12-146"><a href="#cb12-146"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
 <span id="cb12-147"><a href="#cb12-147"></a></span>
-<span id="cb12-148"><a href="#cb12-148"></a></span>
-<span id="cb12-149"><a href="#cb12-149"></a><span class="fu">## Strikeouts VS Wins Since 1985</span></span>
-<span id="cb12-152"><a href="#cb12-152"></a><span class="in">```{r}</span></span>
-<span id="cb12-153"><a href="#cb12-153"></a><span class="co"># still a WIP, feel free to mess around with it</span></span>
-<span id="cb12-154"><a href="#cb12-154"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
+<span id="cb12-148"><a href="#cb12-148"></a>pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb12-149"><a href="#cb12-149"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>, so <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-150"><a href="#cb12-150"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> so, <span class="at">y =</span> w)) <span class="sc">+</span></span>
+<span id="cb12-151"><a href="#cb12-151"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-152"><a href="#cb12-152"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb12-153"><a href="#cb12-153"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs Wins since 1985"</span>, <span class="at">x =</span> <span class="st">"Strikeouts (SO)"</span>, <span class="at">y =</span> <span class="st">"Wins (W)"</span>)</span>
+<span id="cb12-154"><a href="#cb12-154"></a><span class="in">```</span></span>
 <span id="cb12-155"><a href="#cb12-155"></a></span>
-<span id="cb12-156"><a href="#cb12-156"></a>pitching <span class="sc">%&gt;%</span> </span>
-<span id="cb12-157"><a href="#cb12-157"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>, so <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-158"><a href="#cb12-158"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> so, <span class="at">y =</span> w)) <span class="sc">+</span></span>
-<span id="cb12-159"><a href="#cb12-159"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-160"><a href="#cb12-160"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb12-161"><a href="#cb12-161"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Strikeouts vs Wins since 1985"</span>, <span class="at">x =</span> <span class="st">"Strikeouts (SO)"</span>, <span class="at">y =</span> <span class="st">"Wins (W)"</span>)</span>
-<span id="cb12-162"><a href="#cb12-162"></a><span class="in">```</span></span>
+<span id="cb12-156"><a href="#cb12-156"></a><span class="fu">### Data Insights</span></span>
+<span id="cb12-157"><a href="#cb12-157"></a></span>
+<span id="cb12-158"><a href="#cb12-158"></a>What are the important takeaways from the data? What was interesting?</span>
+<span id="cb12-159"><a href="#cb12-159"></a></span>
+<span id="cb12-160"><a href="#cb12-160"></a>Why do these takeaways matter?</span>
+<span id="cb12-161"><a href="#cb12-161"></a></span>
+<span id="cb12-162"><a href="#cb12-162"></a>Was there anything surprising?</span>
 <span id="cb12-163"><a href="#cb12-163"></a></span>
-<span id="cb12-164"><a href="#cb12-164"></a><span class="fu">### Data Insights</span></span>
-<span id="cb12-165"><a href="#cb12-165"></a></span>
-<span id="cb12-166"><a href="#cb12-166"></a>What are the important takeaways from the data? What was interesting?</span>
+<span id="cb12-164"><a href="#cb12-164"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
+<span id="cb12-165"><a href="#cb12-165"></a>questions?!?</span>
+<span id="cb12-166"><a href="#cb12-166"></a></span>
 <span id="cb12-167"><a href="#cb12-167"></a></span>
-<span id="cb12-168"><a href="#cb12-168"></a>Why do these takeaways matter?</span>
-<span id="cb12-169"><a href="#cb12-169"></a></span>
-<span id="cb12-170"><a href="#cb12-170"></a>Was there anything surprising?</span>
-<span id="cb12-171"><a href="#cb12-171"></a></span>
-<span id="cb12-172"><a href="#cb12-172"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
-<span id="cb12-173"><a href="#cb12-173"></a>questions?!?</span>
+<span id="cb12-168"><a href="#cb12-168"></a><span class="fu">## Batting Average VS Wins Since 1985</span></span>
+<span id="cb12-171"><a href="#cb12-171"></a><span class="in">```{r}</span></span>
+<span id="cb12-172"><a href="#cb12-172"></a><span class="co"># still a WIP, feel free to mess around with it maybe add an interactive team selector?</span></span>
+<span id="cb12-173"><a href="#cb12-173"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
 <span id="cb12-174"><a href="#cb12-174"></a></span>
-<span id="cb12-175"><a href="#cb12-175"></a></span>
-<span id="cb12-176"><a href="#cb12-176"></a><span class="fu">## Batting Average VS Wins Since 1985</span></span>
-<span id="cb12-179"><a href="#cb12-179"></a><span class="in">```{r}</span></span>
-<span id="cb12-180"><a href="#cb12-180"></a><span class="co"># still a WIP, feel free to mess around with it maybe add an interactive team selector?</span></span>
-<span id="cb12-181"><a href="#cb12-181"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Add alt-cap, make sure color palette is accessible</span></span>
-<span id="cb12-182"><a href="#cb12-182"></a></span>
-<span id="cb12-183"><a href="#cb12-183"></a>bat_sm <span class="ot">&lt;-</span> batting <span class="sc">%&gt;%</span> </span>
-<span id="cb12-184"><a href="#cb12-184"></a>  <span class="fu">mutate</span>(<span class="at">batt_avg =</span> h<span class="sc">/</span>ab) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-185"><a href="#cb12-185"></a>  <span class="fu">select</span>(player_id, year, batt_avg)</span>
-<span id="cb12-186"><a href="#cb12-186"></a></span>
-<span id="cb12-187"><a href="#cb12-187"></a>pitching_2 <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> </span>
-<span id="cb12-188"><a href="#cb12-188"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-189"><a href="#cb12-189"></a>  <span class="fu">left_join</span>(bat_sm)</span>
-<span id="cb12-190"><a href="#cb12-190"></a>  </span>
-<span id="cb12-191"><a href="#cb12-191"></a>pitching_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb12-192"><a href="#cb12-192"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(batt_avg)) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-193"><a href="#cb12-193"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batt_avg, <span class="at">y =</span> w, <span class="at">group =</span> team_id)) <span class="sc">+</span></span>
-<span id="cb12-194"><a href="#cb12-194"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb12-195"><a href="#cb12-195"></a><span class="in">```</span></span>
+<span id="cb12-175"><a href="#cb12-175"></a>bat_sm <span class="ot">&lt;-</span> batting <span class="sc">%&gt;%</span> </span>
+<span id="cb12-176"><a href="#cb12-176"></a>  <span class="fu">mutate</span>(<span class="at">batt_avg =</span> h<span class="sc">/</span>ab) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-177"><a href="#cb12-177"></a>  <span class="fu">select</span>(player_id, year, batt_avg)</span>
+<span id="cb12-178"><a href="#cb12-178"></a></span>
+<span id="cb12-179"><a href="#cb12-179"></a>pitching_2 <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> </span>
+<span id="cb12-180"><a href="#cb12-180"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-181"><a href="#cb12-181"></a>  <span class="fu">left_join</span>(bat_sm)</span>
+<span id="cb12-182"><a href="#cb12-182"></a>  </span>
+<span id="cb12-183"><a href="#cb12-183"></a>pitching_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb12-184"><a href="#cb12-184"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(batt_avg)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-185"><a href="#cb12-185"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> batt_avg, <span class="at">y =</span> w, <span class="at">group =</span> team_id)) <span class="sc">+</span></span>
+<span id="cb12-186"><a href="#cb12-186"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb12-187"><a href="#cb12-187"></a><span class="in">```</span></span>
+<span id="cb12-188"><a href="#cb12-188"></a></span>
+<span id="cb12-189"><a href="#cb12-189"></a><span class="fu">### Data Insights</span></span>
+<span id="cb12-190"><a href="#cb12-190"></a></span>
+<span id="cb12-191"><a href="#cb12-191"></a>What are the important takeaways from the data? What was interesting?</span>
+<span id="cb12-192"><a href="#cb12-192"></a></span>
+<span id="cb12-193"><a href="#cb12-193"></a>Why do these takeaways matter?</span>
+<span id="cb12-194"><a href="#cb12-194"></a></span>
+<span id="cb12-195"><a href="#cb12-195"></a>Was there anything surprising?</span>
 <span id="cb12-196"><a href="#cb12-196"></a></span>
-<span id="cb12-197"><a href="#cb12-197"></a><span class="fu">### Data Insights</span></span>
-<span id="cb12-198"><a href="#cb12-198"></a></span>
-<span id="cb12-199"><a href="#cb12-199"></a>What are the important takeaways from the data? What was interesting?</span>
+<span id="cb12-197"><a href="#cb12-197"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
+<span id="cb12-198"><a href="#cb12-198"></a>questions?!?</span>
+<span id="cb12-199"><a href="#cb12-199"></a></span>
 <span id="cb12-200"><a href="#cb12-200"></a></span>
-<span id="cb12-201"><a href="#cb12-201"></a>Why do these takeaways matter?</span>
-<span id="cb12-202"><a href="#cb12-202"></a></span>
-<span id="cb12-203"><a href="#cb12-203"></a>Was there anything surprising?</span>
-<span id="cb12-204"><a href="#cb12-204"></a></span>
-<span id="cb12-205"><a href="#cb12-205"></a>Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research </span>
-<span id="cb12-206"><a href="#cb12-206"></a>questions?!?</span>
+<span id="cb12-201"><a href="#cb12-201"></a></span>
+<span id="cb12-202"><a href="#cb12-202"></a><span class="fu">### Conclusion/Big Picture</span></span>
+<span id="cb12-203"><a href="#cb12-203"></a></span>
+<span id="cb12-204"><a href="#cb12-204"></a>How do the insights connect to answer your research question?</span>
+<span id="cb12-205"><a href="#cb12-205"></a></span>
+<span id="cb12-206"><a href="#cb12-206"></a>What improvements might someone make to your analysis?</span>
 <span id="cb12-207"><a href="#cb12-207"></a></span>
-<span id="cb12-208"><a href="#cb12-208"></a></span>
-<span id="cb12-209"><a href="#cb12-209"></a></span>
-<span id="cb12-210"><a href="#cb12-210"></a><span class="fu">### Conclusion/Big Picture</span></span>
-<span id="cb12-211"><a href="#cb12-211"></a></span>
-<span id="cb12-212"><a href="#cb12-212"></a>How do the insights connect to answer your research question?</span>
-<span id="cb12-213"><a href="#cb12-213"></a></span>
-<span id="cb12-214"><a href="#cb12-214"></a>What improvements might someone make to your analysis?</span>
-<span id="cb12-215"><a href="#cb12-215"></a></span>
-<span id="cb12-216"><a href="#cb12-216"></a>Are there any limitations or weaknesses of your data / analysis?</span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-208"><a href="#cb12-208"></a>Are there any limitations or weaknesses of your data / analysis?</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
