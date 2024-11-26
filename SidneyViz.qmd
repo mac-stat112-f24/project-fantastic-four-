@@ -5,7 +5,6 @@ editor: visual
 runtime: shiny
 ---
 
-
 ```{r}
 library(tidyverse)
 library(shiny)
@@ -107,8 +106,6 @@ pitching_2 %>%
   geom_boxplot()
 ```
 
-
-
 ```{r}
 # salary vs batting avg
 sal_bat_2 %>% 
@@ -150,6 +147,7 @@ sal_bat_2 %>%
   ggplot(aes(x = home_runs)) +
   geom_histogram()
 ```
+
 ```{r}
 #at bat exploration
 sal_bat_2 %>% 
@@ -162,7 +160,6 @@ sal_bat_2 %>%
   geom_smooth(method = "lm")
 ```
 
-
 ```{r}
 # win_loss %>%
 #   ggplot(aes(x = team_id, group = league_id)) +
@@ -173,4 +170,3 @@ sal_bat_2 %>%
 #   ggplot(aes(x = batting_avg, y = w, color = team_id)) +
 #   geom_point()
 ```
-
