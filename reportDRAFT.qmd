@@ -5,11 +5,10 @@ editor: visual
 runtime: shiny
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message = F}
 library(shiny)
 library(tidyverse)
 library(plotly)
-library(shiny)
 
 
 pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
@@ -44,19 +43,12 @@ This data was acquired from Kaggle. This data set, titled 'The History of Baseba
 ## Wins and Losses per Team
 
 ```{r , echo=FALSE}
-# Transform the data to create a bidirectional chart
-# First reshape data from wide to long format
-library(tidyverse)
-
-# Assuming your data is in 'pitching' dataframe
+# Prepare data for bidirectional chart
 bidirectional_data <- pitching %>%
   filter(decade == "1870s") %>%
-  mutate(
-    # Make losses negative for bidirectional display
-    l = -l
-  )
+  mutate(l = -l)
 
-# Create the bidirectional bar chart
+
 pp <- ggplot(bidirectional_data, aes(x = team_id)) +
   # Wins bars (pointing up)
   geom_bar(aes(y = w, fill = "Wins"), 
@@ -72,7 +64,7 @@ pp <- ggplot(bidirectional_data, aes(x = team_id)) +
   scale_fill_manual(values = c("Wins" = "#0072B2", "Losses" = "#D55E00"),
                     name = "Outcome") +
   # Customize the theme and labels
-  labs(title = "Team Wins and Losses in 2000s",
+  labs(title = "Team Wins and Losses in the 1870s",
        x = "Team",
        y = "Games") +
   theme_minimal() +
@@ -80,7 +72,9 @@ pp <- ggplot(bidirectional_data, aes(x = team_id)) +
     axis.text.x = element_text(angle = 45, hjust = 1),
     panel.grid.major.x = element_blank(),
     legend.position = "top",
-    plot.title = element_text(hjust = 0.5)
+    plot.title = element_text(hjust = 0.5),
+    axis.title = element_text(size = 10),  # Axis titles
+    axis.text = element_text(size = 5)   # Axis text
   ) +
   # Make y-axis symmetric
   scale_y_continuous(
@@ -88,7 +82,28 @@ pp <- ggplot(bidirectional_data, aes(x = team_id)) +
     breaks = pretty(c(-max(abs(bidirectional_data$l)), max(bidirectional_data$w)))
   )
 
-ggplotly(pp)
+# Convert to plotly
+pp_plotly <- ggplotly(pp)
+
+# Add subtitle and caption
+pp_plotly <- pp_plotly %>%
+  layout(
+    title = list(text = "Team Wins and Losses in the 1870s"),
+    annotations = list(
+      list(
+        text = "Win/Loss Record between 1875-1879 for Per Team",
+        x = 0.5, xref = "paper", y = 1.05, yref = "paper",
+        showarrow = FALSE, font = list(size = 12, color = "black"), align = "center"
+      ),
+      list(
+        text = "Source: The History of Baseball Dataset, Author: Huthaifa Mohammad",
+        x = 0, xref = "paper", y = -0.1, yref = "paper",
+        showarrow = FALSE, font = list(size = 7, color = "gray"), align = "right"
+      )
+    )
+  )
+
+pp_plotly
 ```
 
 ### Data Insights
@@ -104,18 +119,28 @@ Overall, what do you want the audience to walk away with? What do you want them 
 Looking at this visualization of baseball team performance in the 2000s, several interesting patterns emerge. The data reveals a generally competitive era in baseball, with most teams maintaining relatively balanced win-loss ratios. BRK1 stands out as a particularly successful team with around 50 wins and comparatively fewer losses, while teams like BL1 and BSN show more evenly matched records. Intriguingly, there's significant variation in the total number of games played across teams, with the WS3-WS6 teams consistently showing lower game counts, possibly indicating partial seasons or specific competition subsets. The similar patterns between teams with related names (like CL1 and CL2) suggest potential franchise relationships or organizational changes during this period. Overall, the data paints a picture of a competitive baseball landscape in the 2000s, where extreme dominance or poor performance was rare, and most teams maintained relatively stable performance levels.
 
 ```{r , echo=FALSE}
-# still a WIP, feel free to mess around with it
-# TODO: Add alt-cap, make sure color palette is accessible
-
+#strikeouts vs wins
 pitching %>% 
   filter(year >= 1985, so >= 5) %>% 
   ggplot(aes(x = so, y = w)) +
-  geom_point(alpha = 0.3) +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
-  labs(title = "Strikeouts vs Wins since 1985", x = "Strikeouts (SO)", y = "Wins (W)")
+  labs(
+    title = "Relationship Between Strikeouts and Wins in MLB since 1985",
+    subtitle = "Analyzing how strikeouts correlate with team wins for pitchers",
+    x = "Strikeouts (SO)",
+    y = "Wins (W)",
+    caption = "Source: The History of Baseball Dataset, Author: Sidney Langford"
+  ) +
+  theme_minimal(base_size = 14) +  # Clean theme with larger text
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  # Title styling
+    plot.subtitle = element_text(size = 12, hjust = 0.5),  # Subtitle styling
+    axis.title = element_text(size = 14),  # Axis titles
+    axis.text = element_text(size = 12),  # Axis text
+    plot.caption = element_text(size = 10, color = "gray", hjust = 0)  # Caption
+  )
 ```
-
-
 
 ### Data Insights
 
@@ -158,7 +183,6 @@ p <- pitching_2 %>%
 
 ggplotly(p)
 ```
-
 
 ### Data Insights
 
