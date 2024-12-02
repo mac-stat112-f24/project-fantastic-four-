@@ -29,28 +29,28 @@ pitching_2 <- pitching %>%
 
 ### Introduction/Motivation, Research question, & Background
 
-- What question are you trying to answer?
+-   What question are you trying to answer?
 
-- Why is it important or interesting?
+-   Why is it important or interesting?
 
-- If needed, What background information is necessary here?
+-   If needed, What background information is necessary here?
 
-- If needed, What assumptions or terms or acronyms need to be clarified?
-
+-   If needed, What assumptions or terms or acronyms need to be clarified?
 
 ### Data
 
-- Data collection: What was collected, When was it collected, Why was it collected, How was it collected originally, Who collected it
+-   Data collection: What was collected, When was it collected, Why was it collected, How was it collected originally, Who collected it
 
-- Data acquisition: Where / how did you get the data? What is the source?
+-   Data acquisition: Where / how did you get the data? What is the source?
 
-- Data understanding: How much data do you have? What types of measurements? Anything you needed to clean before getting started?
+-   Data understanding: How much data do you have? What types of measurements? Anything you needed to clean before getting started?
 
 ```{r}
 #TODO: Add numerical summaries?
 ```
 
 ## Wins and Losses per Team
+
 ```{r}
 # TODO: Add alt-cap, make sure color palette is accessible
 
@@ -85,11 +85,10 @@ Why do these takeaways matter?
 
 Was there anything surprising?
 
-Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research 
-questions?!?
-
+Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
 
 ## Strikeouts VS Walks
+
 ```{r}
 # TODO: Add alt-cap, make sure color palette is accessible
 
@@ -136,11 +135,10 @@ Why do these takeaways matter?
 
 Was there anything surprising?
 
-Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research 
-questions?!?
-
+Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions??
 
 ## Strikeouts VS Wins Since 1985
+
 ```{r}
 # still a WIP, feel free to mess around with it
 # TODO: Add alt-cap, make sure color palette is accessible
@@ -161,11 +159,10 @@ Why do these takeaways matter?
 
 Was there anything surprising?
 
-Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research 
-questions?!?
-
+Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
 
 ## Batting Average VS Wins Since 1985
+
 ```{r}
 # still a WIP, feel free to mess around with it maybe add an interactive team selector?
 # TODO: Add alt-cap, make sure color palette is accessible
@@ -192,10 +189,7 @@ Why do these takeaways matter?
 
 Was there anything surprising?
 
-Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research 
-questions?!?
-
-
+Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
 
 ### Conclusion/Big Picture
 
