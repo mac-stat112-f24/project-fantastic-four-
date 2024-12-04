@@ -158,7 +158,14 @@ pitching_2 <- pitching %>%
 pitching_2 %>% 
   filter(!is.na(batt_avg)) %>% 
   ggplot(aes(x = batt_avg, y = w, group = team_id)) +
-  geom_boxplot()
+  geom_boxplot()+
+  labs(
+    title = "Relationship Between Batting Average and Wins",
+    x = "Batting Average",
+    y = "Wins",
+    caption = "Data: MLB Pitching and Batting Statistics"
+  ) +
+  theme_minimal()
 ```
 
 ```{r}
