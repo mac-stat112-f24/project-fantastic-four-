@@ -67,14 +67,29 @@ SH Sacrifices by opposing batters
 SF Sacrifice flies by opposing batters
 
 GIDP Grounded into double plays by opposing batter
-```{r, echo=FALSE, message = F}
+```{r, echo=FALSE}
 library(shiny)
 library(tidyverse)
 library(plotly)
 
 
+salary <- read.csv("data/The History of Baseball dataset/salary.csv")
 pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
 batting <- read.csv("data/The History of Baseball dataset/batting.csv")
+
+temp <- salary |> 
+  left_join(pitching) |> 
+  select(c("player_id","year","team_id","g","so","w","salary","league_id","hr")) |> 
+  rename("Game" = "g",
+         "Strikeout" =  "so",
+         "Homerun" = "hr",
+         "Win" =  "w") 
+
+teamSalary <- temp |> 
+  mutate(team_id = as.factor(team_id)) %>%
+  group_by(team_id,league_id,year) %>% 
+  summarise(team_salary = sum(salary, na.rm = TRUE),.groups = 'drop') |> 
+  mutate(decade = paste0(floor(year / 10) * 10, "s"))
 
 # Group years into decades
 pitching <- pitching %>%
@@ -206,8 +221,35 @@ The scatter plot analyzing the relationship between strikeouts and wins in baseb
 
 !!!!!!!ADD AN INTRO/TRANSITIONAL SECTION EXPLAINING WHAT THIS PLOT IS!!!!!!!
 
-``` {r}
-#VIZ NUMBER 3
+```{r ,fig.height = 7, echo=FALSE}
+
+
+library(ggplot2)
+library(dplyr)
+
+ggplot(teamSalary, aes(y = team_id, x = team_salary, 
+               color = decade,  # For color mapping
+               shape = decade)) +# For shape mapping
+ # geom_jitter(size = 3, alpha = 0.7)+
+  geom_point(size = 3, alpha = 0.7) +  # Use points instead of hex, adjust size and transparency
+  scale_x_continuous(labels = scales::dollar_format(scale = 1/1000000, suffix = "M")) +
+  scale_color_brewer(palette = "Spectral") +  # Color palette for decades
+  scale_shape_manual(values = c(15, 16, 17, 18, 19, 20, 21, 22, 23, 24)) +  # Different shapes for each decade
+  labs(
+    title = "Team Salary Distribution by Decade",
+    x = "Team ID",
+    y = "Team Salary",
+    color = "Decade",
+    shape = "Decade"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text( hjust = 1),
+    plot.title = element_text(hjust = 0.5),
+    legend.position = "right"
+  )
+
+
 ```
 
 DESCRIPTION/ANALYSIS OF VIZ
