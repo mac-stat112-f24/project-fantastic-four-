@@ -20,58 +20,14 @@ If needed, What background information is necessary here?
 - Knowledge of the rules of baseball are necessary to understand this data. An explanation of the rules can be found here: https://en.wikipedia.org/wiki/Baseball_rules
 
 
-If needed, What assumptions or terms or acronyms need to be clarified?
-
-teamID Team
-
-lgID League
-
-W Wins
-
-L Losses
-
-G Games
-
-H Hits
-
-ER Earned Runs
-
-HR Homeruns
-
-BB Walks
-
-SO Strikeouts
-
-BAOpp Opponent’s Batting Average
-
-ERA Earned Run Average
-
-IBB Intentional Walks
-
-WP Wild Pitches
-
-HBP Batters Hit By Pitch
-
-BK Balks
-
-BFP Batters faced by Pitcher
-
-GS Games started
-
-GF Games Finished
-
-R Runs Allowed
-
-SH Sacrifices by opposing batters
-
-SF Sacrifice flies by opposing batters
-
-GIDP Grounded into double plays by opposing batter
 ```{r, echo=FALSE}
+suppressPackageStartupMessages({
+
 library(shiny)
 library(tidyverse)
 library(plotly)
-
+})
+suppressMessages(suppressWarnings({
 
 salary <- read.csv("data/The History of Baseball dataset/salary.csv")
 pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
@@ -103,6 +59,7 @@ bat_sm <- batting %>%
 pitching_2 <- pitching %>% 
   filter(year >= 1985) %>% 
   left_join(bat_sm)
+}) )
 ```
 
 ### Introduction
@@ -119,7 +76,8 @@ This data was acquired from Kaggle. This data set, titled 'The History of Baseba
 
 ```{r , echo=FALSE}
 # Prepare data for bidirectional chart
-bidirectional_data <- pitching %>%
+suppressMessages(suppressWarnings({
+  bidirectional_data <- pitching %>%
   filter(decade == "1870s") %>%
   mutate(l = -l)
 
@@ -179,6 +137,7 @@ pp_plotly <- pp_plotly %>%
   )
 
 pp_plotly
+}))
 ```
 
 
@@ -189,9 +148,10 @@ Looking at this visualization of baseball team performance in the 2000s, several
 
 !!!!!!!ADD AN INTRO/TRANSITIONAL SECTION EXPLAINING WHAT THIS PLOT IS!!!!!!!
 
-```{r , echo=FALSE}
+```{r , echo=FALSE, message=FALSE, warning=FALSE}
 #strikeouts vs wins
-pitching %>% 
+suppressMessages(suppressWarnings({
+  pitching %>% 
   filter(year >= 1985, so >= 5) %>% 
   ggplot(aes(x = so, y = w)) +
   geom_point(alpha = 0.5) +
@@ -211,22 +171,19 @@ pitching %>%
     axis.text = element_text(size = 12),  # Axis text
     plot.caption = element_text(size = 10, color = "gray", hjust = 0)  # Caption
   )
+}))
 ```
 
 
 The scatter plot analyzing the relationship between strikeouts and wins in baseball since 1985 reveals several fascinating patterns. A clear positive correlation exists, as indicated by the blue trend line, showing that pitchers who record more strikeouts generally secure more wins. The data displays distinct horizontal banding, reflecting the discrete nature of baseball wins, with most pitchers recording between 50-250 strikeouts and winning between 0-25 games per season. Notably, while the relationship between strikeouts and wins is strong, the increasing spread of data points at higher strikeout counts suggests that other factors also influence a pitcher's win total. Some remarkable outliers exist, particularly among pitchers with 300+ strikeouts, highlighting exceptional performances that deviate from the typical pattern. This visualization effectively demonstrates that while strikeout ability is a good predictor of winning games, it's not the only factor determining a pitcher's success.
 
 
-### ADD FINAL VIZ @Huthaifa
+### Team Salary Distribution by Decade
 
 !!!!!!!ADD AN INTRO/TRANSITIONAL SECTION EXPLAINING WHAT THIS PLOT IS!!!!!!!
 
 ```{r ,fig.height = 7, echo=FALSE}
-
-
-library(ggplot2)
-library(dplyr)
-
+suppressMessages(suppressWarnings({
 ggplot(teamSalary, aes(y = team_id, x = team_salary, 
                color = decade,  # For color mapping
                shape = decade)) +# For shape mapping
@@ -248,7 +205,7 @@ ggplot(teamSalary, aes(y = team_id, x = team_salary,
     plot.title = element_text(hjust = 0.5),
     legend.position = "right"
   )
-
+}))
 
 ```
 
