@@ -74,12 +74,7 @@ This data was acquired from Kaggle. This data set, titled 'The History of Baseba
 ```
 
 ## Wins and Losses per Team
-<<<<<<< HEAD
 
-```{r}
-# TODO: Add alt-cap, make sure color palette is accessible
-=======
->>>>>>> cb703d2bb9360e885a064ec34d3ded1fc7dbfc9b
 
 ```{r , echo=FALSE}
 # Transform the data to create a bidirectional chart
