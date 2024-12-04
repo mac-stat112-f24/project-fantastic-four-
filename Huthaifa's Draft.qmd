@@ -1,6 +1,7 @@
 ```
 title : draft to understand the data 
 ```
+
 ```{r}
 library(tidyverse)
 salary <- read.csv("data/The History of Baseball dataset/salary.csv")
@@ -13,7 +14,7 @@ Unusual data that affect the physical or the sport side of the game.
 
 ```{r}
 pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
-View(pitching)
+#View(pitching)
 ```
 
 
@@ -132,61 +133,61 @@ ggplot(temp %>%
 ```{r}
 library(ggplot2)
 library(dplyr)
-pitching <- pitching %>%
-  mutate(decade = paste0(floor(year / 10) * 10, "s"))  # Group years into decades
-# 1. Wins and Losses (Bar Chart)
-ggplot(pitching, aes(x = year , group = team_id)) +
-  geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge") +
-  geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge") +
-    facet_wrap(~decade, scales = "free_x") +  # Separate plots for each decade
-  labs(title = "Wins and Losses by Year", x = "Year", y = "Count") +
-  scale_fill_manual(values = c("Wins" = "blue", "Losses" = "red")) +
-  theme_minimal()
-
-# 2. Earned Run Average (Line Chart)
-ggplot(pitching, aes(x = yearID, y = ERA, group = playerID, color = playerID)) +
-  geom_line() +
-  labs(title = "Earned Run Average Over Time", x = "Year", y = "ERA") +
-  theme_minimal()
-
-# 3. Strikeouts and Walks (Scatter Plot)
-ggplot(, aes(x = SO, y = BB, color = playerID)) +
-  geom_point() +
-  labs(title = "Strikeouts vs. Walks", x = "Strikeouts", y = "Walks") +
-  theme_minimal()
-
-# 4. Opponent’s Batting Average (Heatmap)
-your_data %>%
-  group_by(teamID, yearID) %>%
-  summarize(avg_BAOpp = mean(BAOpp, na.rm = TRUE)) %>%
-  ggplot(aes(x = yearID, y = teamID, fill = avg_BAOpp)) +
-  geom_tile() +
-  labs(title = "Opponent's Batting Average Heatmap", x = "Year", y = "Team") +
-  scale_fill_gradient(low = "blue", high = "red") +
-  theme_minimal()
-
-# 5. Compare Years (Stacked Area Chart)
-your_data %>%
-  group_by(yearID) %>%
-  summarize(total_R = sum(R, na.rm = TRUE), total_GF = sum(GF, na.rm = TRUE)) %>%
-  pivot_longer(cols = c(total_R, total_GF), names_to = "Metric", values_to = "Value") %>%
-  ggplot(aes(x = yearID, y = Value, fill = Metric)) +
-  geom_area(alpha = 0.7) +
-  labs(title = "Runs Allowed vs. Games Finished Over Time", x = "Year", y = "Count") +
-  scale_fill_manual(values = c("total_R" = "orange", "total_GF" = "purple")) +
-  theme_minimal()
-
-```
-```{r}
-temp |> 
-  filter(year == 2010) |> 
-  ggplot( aes(x = Win, y = salary) , color = year) +
-  geom_point(alpha = 0.7, color = "blue") +
-  geom_smooth( color = "red") +
-  labs(title = "Relationship Between Wins and Salary", 
-       x = "Wins", y = "Salary") +
-  facet_wrap(~ league_id)+
-  theme_minimal()
+# pitching <- pitching %>%
+#   mutate(decade = paste0(floor(year / 10) * 10, "s"))  # Group years into decades
+# # 1. Wins and Losses (Bar Chart)
+# ggplot(pitching, aes(x = year , group = team_id)) +
+#   geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge") +
+#   geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge") +
+#     facet_wrap(~decade, scales = "free_x") +  # Separate plots for each decade
+#   labs(title = "Wins and Losses by Year", x = "Year", y = "Count") +
+#   scale_fill_manual(values = c("Wins" = "blue", "Losses" = "red")) +
+#   theme_minimal()
+# 
+# # 2. Earned Run Average (Line Chart)
+# ggplot(pitching, aes(x = yearID, y = ERA, group = playerID, color = playerID)) +
+#   geom_line() +
+#   labs(title = "Earned Run Average Over Time", x = "Year", y = "ERA") +
+#   theme_minimal()
+# 
+# # 3. Strikeouts and Walks (Scatter Plot)
+# ggplot(, aes(x = SO, y = BB, color = playerID)) +
+#   geom_point() +
+#   labs(title = "Strikeouts vs. Walks", x = "Strikeouts", y = "Walks") +
+#   theme_minimal()
+# 
+# # 4. Opponent’s Batting Average (Heatmap)
+# your_data %>%
+#   group_by(teamID, yearID) %>%
+#   summarize(avg_BAOpp = mean(BAOpp, na.rm = TRUE)) %>%
+#   ggplot(aes(x = yearID, y = teamID, fill = avg_BAOpp)) +
+#   geom_tile() +
+#   labs(title = "Opponent's Batting Average Heatmap", x = "Year", y = "Team") +
+#   scale_fill_gradient(low = "blue", high = "red") +
+#   theme_minimal()
+# 
+# # 5. Compare Years (Stacked Area Chart)
+# your_data %>%
+#   group_by(yearID) %>%
+#   summarize(total_R = sum(R, na.rm = TRUE), total_GF = sum(GF, na.rm = TRUE)) %>%
+#   pivot_longer(cols = c(total_R, total_GF), names_to = "Metric", values_to = "Value") %>%
+#   ggplot(aes(x = yearID, y = Value, fill = Metric)) +
+#   geom_area(alpha = 0.7) +
+#   labs(title = "Runs Allowed vs. Games Finished Over Time", x = "Year", y = "Count") +
+#   scale_fill_manual(values = c("total_R" = "orange", "total_GF" = "purple")) +
+#   theme_minimal()
+# 
+# ```
+# ```{r}
+# temp |> 
+#   filter(year == 2010) |> 
+#   ggplot( aes(x = Win, y = salary) , color = year) +
+#   geom_point(alpha = 0.7, color = "blue") +
+#   geom_smooth( color = "red") +
+#   labs(title = "Relationship Between Wins and Salary", 
+#        x = "Wins", y = "Salary") +
+#   facet_wrap(~ league_id)+
+#   theme_minimal()
 
 ```
 

@@ -5,44 +5,79 @@ editor: visual
 runtime: shiny
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE }
 library(shiny)
 library(ggplot2)
 library(dplyr)
-
+salary <- read.csv("data/The History of Baseball dataset/salary.csv")
 pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
 
 # Sample dataset
 # Replace with your actual dataset
 pitching<- pitching %>%
-  mutate(decade = paste0(floor(year / 10) * 10, "s"))  # Group years into decades
+  mutate(decade = paste0(floor(year / 10) * 10, "s"))# Group years into decades
+
 ```
 
 ```{r}
-# Define UI for selecting a decade
-selectInput("selected_decade", 
-            "Choose a Decade:", 
+temp <- salary |> 
+  left_join(pitching) |> 
+  select(c("player_id","year","team_id","g","so","w","salary","league_id","hr")) |> 
+  rename("Game" = "g",
+         "Strikeout" =  "so",
+         "Homerun" = "hr",
+         "Win" =  "w") 
+
+teamSalary <- temp |> 
+  mutate(team_id = as.factor(team_id)) %>%
+  group_by(team_id,league_id,year) %>% 
+  summarise(team_salary = sum(salary, na.rm = TRUE),.groups = 'drop') |> 
+  mutate(decade = paste0(floor(year / 10) * 10, "s"))
+```
+
+```{r echo=FALSE}
+# Unique selectInputs
+selectInput("selected_decade_pitching", 
+            "Choose a Decade (Pitching):", 
             choices = unique(pitching$decade), 
             selected = unique(pitching$decade)[1])
 
-# Render the plot dynamically
-renderPlot({
-  filtered_data <- pitching %>% filter(decade == input$selected_decade)
-  
-  ggplot(filtered_data, aes(x = team_id, group = league_id)) +
-    geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge",alpha = 0.4) +
-    geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge",alpha = 0.4) +
-    labs(title = paste("Wins and Losses in", input$selected_decade), 
-         x = "Year", y = "Count") +
-    scale_fill_manual(values = c("Wins" = "blue", "Losses" = "red")) +
-    theme_minimal()+
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))# Rotate team labels for clarity
 
+
+# Render the pitching plot
+renderPlot({
+  filtered_pitching <- pitching %>% filter(decade == input$selected_decade_pitching)
+  
+  ggplot(filtered_pitching, aes(x = team_id, group = league_id)) +
+    geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge", alpha = 0.4) +
+    geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge", alpha = 0.4) +
+    labs(title = paste("Wins and Losses in", input$selected_decade_pitching), 
+         x = "Team", y = "Count") +
+    scale_fill_manual(values = c("Wins" = "blue", "Losses" = "red")) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for clarity
+})
+
+selectInput("selected_decade_salary", 
+            "Choose a Decade (Salary):", 
+            choices = unique(teamSalary$decade), 
+            selected = unique(teamSalary$decade)[1])
+# Render the salary plot
+renderPlot({
+  filtered_salary <- teamSalary %>% filter(decade == input$selected_decade_salary)
+  
+  ggplot(filtered_salary, aes(x = team_id, y = team_salary, fill = league_id)) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    labs(title = "Total Salary by Team",
+         x = "Team",
+         y = "Total Salary") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    scale_y_continuous(labels = scales::comma)
 })
 ```
 
-```{r}
-library(plotly)
+```{r echo=FALSE}
 # UI to select filters
 sidebarLayout(
   sidebarPanel(
@@ -76,5 +111,6 @@ renderPlot({
     theme(legend.position = "none")
 
 })
+
 
 ```

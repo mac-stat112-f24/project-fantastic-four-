@@ -1,0 +1,34 @@
+```{r}
+library(ggplot2)
+# Importing data
+History_of_baseball_salary <- read_csv("data/The History of Baseball dataset/salary.csv")
+head(History_of_baseball_salary)
+```
+```{r}
+library(scales)
+HOB_allstar <- read_csv("data/The History of Baseball dataset/all_star.csv")
+head(HOB_allstar)
+allstar_after_1985 <- HOB_allstar %>% filter(year>=1985)
+head(allstar_after_1985)
+```
+
+```{r}
+allstar_salary <- inner_join(allstar_after_1985, History_of_baseball_salary, by = c ("player_id", "year"))
+head(allstar_salary)
+```
+```{r}
+ggplot(allstar_salary, aes(x = as.factor(year), y = salary)) +
+  geom_boxplot() +
+  scale_y_continuous(labels=comma) +
+  labs(title = "Distribution of All-Star Player Salaries by Year",
+       x = "Year",
+       y = "Salary (in USD)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+read_csv()
+```
+
+
+
+
+

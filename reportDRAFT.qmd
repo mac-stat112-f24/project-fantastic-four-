@@ -5,10 +5,11 @@ editor: visual
 runtime: shiny
 ---
 
-```{r setup, include=FALSE}
+```{r, echo=FALSE, message = F}
 library(shiny)
 library(tidyverse)
 library(plotly)
+
 
 pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
 batting <- read.csv("data/The History of Baseball dataset/batting.csv")
@@ -27,8 +28,9 @@ pitching_2 <- pitching %>%
   left_join(bat_sm)
 ```
 
-### Introduction/Motivation, Research question, & Background
+### Introduction
 
+<<<<<<< HEAD
 -   What question are you trying to answer?
 
 -   Why is it important or interesting?
@@ -44,12 +46,20 @@ pitching_2 <- pitching %>%
 -   Data acquisition: Where / how did you get the data? What is the source?
 
 -   Data understanding: How much data do you have? What types of measurements? Anything you needed to clean before getting started?
+=======
+Baseball is one of the most popular sports in the US with millions of viewers each year. There are many factors that contribute to team wins and we would like to explore potential factors contributing to these wins. With this popularity comes a plethora of interesting data, from batting averages to different measures of success in the field to All-Star players per team. Using this data going as far back as the 1870s, we decided to look into what factors can predict team wins over time. With billions of dollars pouring into the MLB (Major League Baseball) each year, finding potential predictors of which teams will win is quite literally a billion dollar question. Throughout this report, we will explore different relationships between the variable `wins` and several predictor variables.
+
+In order to best understand this report, a few terms must be clarified. Firstly, `wins` refer to the number of games won by a team, while `losses` refers to the number of games lost by a team. A strikeout is when the pitcher throws three strikes, valid pitches that the batter does not hit, causing the batter to be out and finished with their batting turn. Finally, batting average is a decimal value representing the number of successful hits made by a single batter divided by their total number of hitting attempts.
+
+This data was acquired from Kaggle. This data set, titled 'The History of Baseball' is a reformatted version of a famous data set by Sean Lahman. This data, originally published in the 1990s was the first of its kind, making raw baseball data accessible to the public. This data was most recently updated for the 2015 season, and contains data between 2015 and 1871. Lahman's data set is actually a collection of several data sets, ranging from pitching data, to data on team managers. For our analysis, we focus on the pitching and batting data sets, which contain information on wins, losses, pitching stats, batting stats, and salary information per player per year. In order to complete our analysis, we have joined the batting and pitching data sets together, added a new variable `batting_avg`, and cleaned the variable names. The variables are a mix between categorical (player names, team names, etc) and quantitative (wins, losses, batting average, etc).
+>>>>>>> 0e3cd36591f7f0bb28acb3adbef89db5630c8f2e
 
 ```{r}
 #TODO: Add numerical summaries?
 ```
 
 ## Wins and Losses per Team
+<<<<<<< HEAD
 
 ```{r}
 # TODO: Add alt-cap, make sure color palette is accessible
@@ -105,26 +115,71 @@ sidebarLayout(
   ),
   mainPanel(
     plotOutput("hr_bb_plot")
+=======
+
+```{r , echo=FALSE}
+# Prepare data for bidirectional chart
+bidirectional_data <- pitching %>%
+  filter(decade == "1870s") %>%
+  mutate(l = -l)
+
+
+pp <- ggplot(bidirectional_data, aes(x = team_id)) +
+  # Wins bars (pointing up)
+  geom_bar(aes(y = w, fill = "Wins"), 
+          stat = "identity", 
+          position = "identity") +
+  # Losses bars (pointing down)
+  geom_bar(aes(y = l, fill = "Losses"), 
+          stat = "identity", 
+          position = "identity") +
+  # Add a reference line at 0
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.5) +
+  # Use a colorblind-friendly palette
+  scale_fill_manual(values = c("Wins" = "#0072B2", "Losses" = "#D55E00"),
+                    name = "Outcome") +
+  # Customize the theme and labels
+  labs(title = "Team Wins and Losses in the 1870s",
+       x = "Team",
+       y = "Games") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.major.x = element_blank(),
+    legend.position = "top",
+    plot.title = element_text(hjust = 0.5),
+    axis.title = element_text(size = 10),  # Axis titles
+    axis.text = element_text(size = 5)   # Axis text
+  ) +
+  # Make y-axis symmetric
+  scale_y_continuous(
+    labels = function(x) abs(x),  # Show absolute values on axis
+    breaks = pretty(c(-max(abs(bidirectional_data$l)), max(bidirectional_data$w)))
+>>>>>>> 0e3cd36591f7f0bb28acb3adbef89db5630c8f2e
   )
-)
 
-# Server logic
-renderPlot({
-  # Filter and sort data
-  filtered_data <- pitching %>%
-    filter(if (input$filter_team != "All") team_id == input$filter_team else TRUE) %>%
-    arrange(desc(hr)) %>%
-    slice_head(n = input$top_n)  # Top N players
-  
-  ggplot(filtered_data, aes(x = bb, y = so, color = player_id, label = player_id)) +
-    geom_point(size = 3, alpha = 0.7) +
-    geom_text(vjust = -0.5, size = 3) +
-    labs(title = "Strikeouts vs. Walks", 
-         x = "Walks (BB)", y = "Strikeouts (SO)") +
-    theme_minimal() +
-    theme(legend.position = "none")
+# Convert to plotly
+pp_plotly <- ggplotly(pp)
 
-})
+# Add subtitle and caption
+pp_plotly <- pp_plotly %>%
+  layout(
+    title = list(text = "Team Wins and Losses in the 1870s"),
+    annotations = list(
+      list(
+        text = "Win/Loss Record between 1875-1879 for Per Team",
+        x = 0.5, xref = "paper", y = 1.05, yref = "paper",
+        showarrow = FALSE, font = list(size = 12, color = "black"), align = "center"
+      ),
+      list(
+        text = "Source: The History of Baseball Dataset, Author: Huthaifa Mohammad",
+        x = 0, xref = "paper", y = -0.1, yref = "paper",
+        showarrow = FALSE, font = list(size = 7, color = "gray"), align = "right"
+      )
+    )
+  )
+
+pp_plotly
 ```
 
 ### Data Insights
@@ -135,6 +190,7 @@ Why do these takeaways matter?
 
 Was there anything surprising?
 
+<<<<<<< HEAD
 Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions??
 
 ## Strikeouts VS Wins Since 1985
@@ -143,12 +199,34 @@ Overall, what do you want the audience to walk away with? What do you want them 
 # still a WIP, feel free to mess around with it
 # TODO: Add alt-cap, make sure color palette is accessible
 
+=======
+Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
+
+Looking at this visualization of baseball team performance in the 2000s, several interesting patterns emerge. The data reveals a generally competitive era in baseball, with most teams maintaining relatively balanced win-loss ratios. BRK1 stands out as a particularly successful team with around 50 wins and comparatively fewer losses, while teams like BL1 and BSN show more evenly matched records. Intriguingly, there's significant variation in the total number of games played across teams, with the WS3-WS6 teams consistently showing lower game counts, possibly indicating partial seasons or specific competition subsets. The similar patterns between teams with related names (like CL1 and CL2) suggest potential franchise relationships or organizational changes during this period. Overall, the data paints a picture of a competitive baseball landscape in the 2000s, where extreme dominance or poor performance was rare, and most teams maintained relatively stable performance levels.
+
+```{r , echo=FALSE}
+#strikeouts vs wins
+>>>>>>> 0e3cd36591f7f0bb28acb3adbef89db5630c8f2e
 pitching %>% 
   filter(year >= 1985, so >= 5) %>% 
   ggplot(aes(x = so, y = w)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
-  labs(title = "Strikeouts vs Wins since 1985", x = "Strikeouts (SO)", y = "Wins (W)")
+  labs(
+    title = "Relationship Between Strikeouts and Wins in MLB since 1985",
+    subtitle = "Analyzing how strikeouts correlate with team wins for pitchers",
+    x = "Strikeouts (SO)",
+    y = "Wins (W)",
+    caption = "Source: The History of Baseball Dataset, Author: Sidney Langford"
+  ) +
+  theme_minimal(base_size = 14) +  # Clean theme with larger text
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  # Title styling
+    plot.subtitle = element_text(size = 12, hjust = 0.5),  # Subtitle styling
+    axis.title = element_text(size = 14),  # Axis titles
+    axis.text = element_text(size = 12),  # Axis text
+    plot.caption = element_text(size = 10, color = "gray", hjust = 0)  # Caption
+  )
 ```
 
 ### Data Insights
@@ -160,10 +238,19 @@ Why do these takeaways matter?
 Was there anything surprising?
 
 Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
+<<<<<<< HEAD
 
 ## Batting Average VS Wins Since 1985
 
 ```{r}
+=======
+
+The scatter plot analyzing the relationship between strikeouts and wins in baseball since 1985 reveals several fascinating patterns. A clear positive correlation exists, as indicated by the blue trend line, showing that pitchers who record more strikeouts generally secure more wins. The data displays distinct horizontal banding, reflecting the discrete nature of baseball wins, with most pitchers recording between 50-250 strikeouts and winning between 0-25 games per season. Notably, while the relationship between strikeouts and wins is strong, the increasing spread of data points at higher strikeout counts suggests that other factors also influence a pitcher's win total. Some remarkable outliers exist, particularly among pitchers with 300+ strikeouts, highlighting exceptional performances that deviate from the typical pattern. This visualization effectively demonstrates that while strikeout ability is a good predictor of winning games, it's not the only factor determining a pitcher's success.
+
+## Batting Average VS Wins Since 1985
+
+```{r, echo=FALSE}
+>>>>>>> 0e3cd36591f7f0bb28acb3adbef89db5630c8f2e
 # still a WIP, feel free to mess around with it maybe add an interactive team selector?
 # TODO: Add alt-cap, make sure color palette is accessible
 
@@ -179,6 +266,16 @@ pitching_2 %>%
   filter(!is.na(batt_avg)) %>% 
   ggplot(aes(x = batt_avg, y = w, group = team_id)) +
   geom_boxplot()
+```
+
+```{r}
+p <- pitching_2 %>% 
+  filter(!is.na(batt_avg)) %>% 
+  ggplot(aes(x = batt_avg, y = w)) +
+  geom_hex() +
+  scale_fill_viridis_c()
+
+ggplotly(p)
 ```
 
 ### Data Insights

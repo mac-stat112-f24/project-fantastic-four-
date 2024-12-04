@@ -18,15 +18,17 @@ book:
   chapters:
     - index.qmd
     - report.qmd
-    - reportDRAFT.qmd
-    - Basir.qmd
-    - SidneyViz.qmd
-    - harlanviz.qmd
-    - Huthaifa'sVis.qmd
   
   appendices:
   - proposal.qmd
   - sketch.qmd
+  - reportDRAFT.qmd
+  - Basir.qmd
+  - SidneyViz.qmd
+  - harlanviz.qmd
+  - Huthaifa'sVis.qmd
+  - Huthaifa's Draft.qmd
+
 
 
 format:
