@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; BasirVis – Moneyball: Visualizations of Baseball Salaries</title>
+<title>6&nbsp; Interactive Wins and Losses by Decade – Moneyball: Visualizations of Baseball Salaries</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./SidneyViz.html" rel="next">
-<link href="./reportDRAFT.html" rel="prev">
+<link href="./proposal.html" rel="next">
+<link href="./harlanviz.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -104,6 +104,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/selectize-0.15.2/css/selectize.bootstrap3.css" rel="stylesheet">
+<script src="site_libs/selectize-0.15.2/js/selectize.min.js"></script>
+<script src="site_libs/selectize-0.15.2/accessibility/js/selectize-plugin-a11y.min.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/ionrangeslider-javascript-2.3.1/js/ion.rangeSlider.min.js"></script>
+<script src="site_libs/strftime-0.9.2/strftime-min.js"></script>
+<link href="site_libs/ionrangeslider-css-2.3.1/css/ion.rangeSlider.css" rel="stylesheet">
 
 
 </head>
@@ -117,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Basir.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">BasirVis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Huthaifa'sVis.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interactive Wins and Losses by Decade</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -170,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Basir.html" class="sidebar-item-text sidebar-link active">
+  <a href="./Basir.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">BasirVis</span></span></a>
   </div>
 </li>
@@ -188,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Huthaifa'sVis.html" class="sidebar-item-text sidebar-link">
+  <a href="./Huthaifa'sVis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interactive Wins and Losses by Decade</span></span></a>
   </div>
 </li>
@@ -228,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">BasirVis</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Interactive Wins and Losses by Decade</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -246,177 +253,278 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># import Data</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/hall_of_fame.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 4120 Columns: 9
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (5): player_id, votedby, inducted, category, needed_note
-dbl (4): yearid, ballots, needed, votes
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">str</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [4,120 × 9] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ player_id  : chr [1:4120] "cobbty01" "ruthba01" "wagneho01" "mathech01" ...
- $ yearid     : num [1:4120] 1936 1936 1936 1936 1936 ...
- $ votedby    : chr [1:4120] "BBWAA" "BBWAA" "BBWAA" "BBWAA" ...
- $ ballots    : num [1:4120] 226 226 226 226 226 226 226 226 226 226 ...
- $ needed     : num [1:4120] 170 170 170 170 170 170 170 170 170 170 ...
- $ votes      : num [1:4120] 222 215 215 205 189 146 133 111 105 80 ...
- $ inducted   : chr [1:4120] "Y" "Y" "Y" "Y" ...
- $ category   : chr [1:4120] "Player" "Player" "Player" "Player" ...
- $ needed_note: chr [1:4120] NA NA NA NA ...
- - attr(*, "spec")=
-  .. cols(
-  ..   player_id = col_character(),
-  ..   yearid = col_double(),
-  ..   votedby = col_character(),
-  ..   ballots = col_double(),
-  ..   needed = col_double(),
-  ..   votes = col_double(),
-  ..   inducted = col_character(),
-  ..   category = col_character(),
-  ..   needed_note = col_character()
-  .. )
- - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">head</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 9
-  player_id yearid votedby ballots needed votes inducted category needed_note
-  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;      
-1 cobbty01    1936 BBWAA       226    170   222 Y        Player   &lt;NA&gt;       
-2 ruthba01    1936 BBWAA       226    170   215 Y        Player   &lt;NA&gt;       
-3 wagneho01   1936 BBWAA       226    170   215 Y        Player   &lt;NA&gt;       
-4 mathech01   1936 BBWAA       226    170   205 Y        Player   &lt;NA&gt;       
-5 johnswa01   1936 BBWAA       226    170   189 Y        Player   &lt;NA&gt;       
-6 lajoina01   1936 BBWAA       226    170   146 N        Player   &lt;NA&gt;       </code></pre>
-</div>
-</div>
-<p>2.3 Pitching table</p>
-<p>playerID Player ID code yearID Year stint player’s stint (order of appearances within a season) teamID Team lgID League W Wins L Losses G Games GS Games Started CG Complete Games SHO Shutouts SV Saves IPOuts Outs Pitched (innings pitched x 3) H Hits ER Earned Runs HR Homeruns BB Walks SO Strikeouts BAOpp Opponent’s Batting Average ERA Earned Run Average IBB Intentional Walks WP Wild Pitches HBP Batters Hit By Pitch BK Balks BFP Batters faced by Pitcher GF Games Finished R Runs Allowed SH Sacrifices by opposing batters SF Sacrifice flies by opposing batters GIDP Grounded into double plays by opposing batter</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 44139 Columns: 30
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (3): player_id, team_id, league_id
-dbl (27): year, stint, w, l, g, gs, cg, sho, sv, ipouts, h, er, hr, bb, so, ...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">str</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [44,139 × 30] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ player_id: chr [1:44139] "bechtge01" "brainas01" "fergubo01" "fishech01" ...
- $ year     : num [1:44139] 1871 1871 1871 1871 1871 ...
- $ stint    : num [1:44139] 1 1 1 1 1 1 1 1 1 1 ...
- $ team_id  : chr [1:44139] "PH1" "WS3" "NY2" "RC1" ...
- $ league_id: chr [1:44139] NA NA NA NA ...
- $ w        : num [1:44139] 1 12 0 4 0 0 0 6 18 12 ...
- $ l        : num [1:44139] 2 15 0 16 1 0 1 11 5 15 ...
- $ g        : num [1:44139] 3 30 1 24 1 1 3 19 25 29 ...
- $ gs       : num [1:44139] 3 30 0 24 1 0 1 19 25 29 ...
- $ cg       : num [1:44139] 2 30 0 22 1 0 1 19 25 28 ...
- $ sho      : num [1:44139] 0 0 0 1 0 0 0 1 0 0 ...
- $ sv       : num [1:44139] 0 0 0 0 0 0 0 0 0 0 ...
- $ ipouts   : num [1:44139] 78 792 3 639 27 3 39 507 666 747 ...
- $ h        : num [1:44139] 43 361 8 295 20 1 20 261 285 430 ...
- $ er       : num [1:44139] 23 132 3 103 10 0 5 97 113 153 ...
- $ hr       : num [1:44139] 0 4 0 3 0 0 0 5 3 4 ...
- $ bb       : num [1:44139] 11 37 0 31 3 0 3 21 40 75 ...
- $ so       : num [1:44139] 1 13 0 15 0 0 1 17 15 12 ...
- $ baopp    : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ era      : num [1:44139] 7.96 4.5 27 4.35 10 0 3.46 5.17 4.58 5.53 ...
- $ ibb      : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ wp       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ hbp      : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ bk       : num [1:44139] 0 0 0 0 0 0 0 2 0 0 ...
- $ bfp      : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ gf       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ r        : num [1:44139] 42 292 9 257 21 0 30 243 223 362 ...
- $ sh       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ sf       : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- $ g_idp    : num [1:44139] NA NA NA NA NA NA NA NA NA NA ...
- - attr(*, "spec")=
-  .. cols(
-  ..   player_id = col_character(),
-  ..   year = col_double(),
-  ..   stint = col_double(),
-  ..   team_id = col_character(),
-  ..   league_id = col_character(),
-  ..   w = col_double(),
-  ..   l = col_double(),
-  ..   g = col_double(),
-  ..   gs = col_double(),
-  ..   cg = col_double(),
-  ..   sho = col_double(),
-  ..   sv = col_double(),
-  ..   ipouts = col_double(),
-  ..   h = col_double(),
-  ..   er = col_double(),
-  ..   hr = col_double(),
-  ..   bb = col_double(),
-  ..   so = col_double(),
-  ..   baopp = col_double(),
-  ..   era = col_double(),
-  ..   ibb = col_double(),
-  ..   wp = col_double(),
-  ..   hbp = col_double(),
-  ..   bk = col_double(),
-  ..   bfp = col_double(),
-  ..   gf = col_double(),
-  ..   r = col_double(),
-  ..   sh = col_double(),
-  ..   sf = col_double(),
-  ..   g_idp = col_double()
-  .. )
- - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">head</span>(History_of_Baseball)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 30
-  player_id  year stint team_id league_id     w     l     g    gs    cg   sho
-  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 bechtge01  1871     1 PH1     &lt;NA&gt;          1     2     3     3     2     0
-2 brainas01  1871     1 WS3     &lt;NA&gt;         12    15    30    30    30     0
-3 fergubo01  1871     1 NY2     &lt;NA&gt;          0     0     1     0     0     0
-4 fishech01  1871     1 RC1     &lt;NA&gt;          4    16    24    24    22     1
-5 fleetfr01  1871     1 NY2     &lt;NA&gt;          0     1     1     1     1     0
-6 flowedi01  1871     1 TRO     &lt;NA&gt;          0     0     1     0     0     0
-# ℹ 19 more variables: sv &lt;dbl&gt;, ipouts &lt;dbl&gt;, h &lt;dbl&gt;, er &lt;dbl&gt;, hr &lt;dbl&gt;,
-#   bb &lt;dbl&gt;, so &lt;dbl&gt;, baopp &lt;dbl&gt;, era &lt;dbl&gt;, ibb &lt;dbl&gt;, wp &lt;dbl&gt;, hbp &lt;dbl&gt;,
-#   bk &lt;dbl&gt;, bfp &lt;dbl&gt;, gf &lt;dbl&gt;, r &lt;dbl&gt;, sh &lt;dbl&gt;, sf &lt;dbl&gt;, g_idp &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(History_of_Baseball) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Define UI for selecting a decade</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">selectInput</span>(<span class="st">"selected_decade"</span>, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>            <span class="st">"Choose a Decade:"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4"></a>            <span class="at">choices =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade), </span>
+<span id="cb1-5"><a href="#cb1-5"></a>            <span class="at">selected =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade)[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display no-overflow-x">
+<div class="form-group shiny-input-container">
+<label class="control-label" id="selected_decade-label" for="selected_decade">Choose a Decade:</label>
 <div>
-<figure class="figure">
-<p><img src="Basir_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<select id="selected_decade" class="shiny-input-select"><option value="1870s" selected="">1870s</option>
+<option value="1880s">1880s</option>
+<option value="1890s">1890s</option>
+<option value="1900s">1900s</option>
+<option value="1910s">1910s</option>
+<option value="1920s">1920s</option>
+<option value="1930s">1930s</option>
+<option value="1940s">1940s</option>
+<option value="1950s">1950s</option>
+<option value="1960s">1960s</option>
+<option value="1970s">1970s</option>
+<option value="1980s">1980s</option>
+<option value="1990s">1990s</option>
+<option value="2000s">2000s</option>
+<option value="2010s">2010s</option></select>
+<script type="application/json" data-for="selected_decade" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Render the plot dynamically</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> <span class="fu">filter</span>(decade <span class="sc">==</span> input<span class="sc">$</span>selected_decade)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> team_id, <span class="at">group =</span> league_id)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> w, <span class="at">fill =</span> <span class="st">"Wins"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> l, <span class="at">fill =</span> <span class="st">"Losses"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Wins and Losses in"</span>, input<span class="sc">$</span>selected_decade), </span>
+<span id="cb2-9"><a href="#cb2-9"></a>         <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Wins"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Losses"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="co"># Rotate team labels for clarity</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="shiny-plot-output html-fill-item" id="outde94df21a7a7882e" style="width:100%;height:400px;"></div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># UI to select filters</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">sidebarLayout</span>(</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">sidebarPanel</span>(</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="fu">sliderInput</span>(<span class="st">"top_n"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>                <span class="st">"Select Top N Players by Home Runs:"</span>, </span>
+<span id="cb8-6"><a href="#cb8-6"></a>                <span class="at">min =</span> <span class="dv">5</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">10</span>, <span class="at">step =</span> <span class="dv">5</span>),</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="fu">selectInput</span>(<span class="st">"filter_team"</span>, </span>
+<span id="cb8-8"><a href="#cb8-8"></a>                <span class="st">"Filter by Team (Optional):"</span>, </span>
+<span id="cb8-9"><a href="#cb8-9"></a>                <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"All"</span>, <span class="fu">unique</span>(pitching<span class="sc">$</span>team_id)), </span>
+<span id="cb8-10"><a href="#cb8-10"></a>                <span class="at">selected =</span> <span class="st">"All"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11"></a>  ),</span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">mainPanel</span>(</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="fu">plotOutput</span>(<span class="st">"hr_bb_plot"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14"></a>  )</span>
+<span id="cb8-15"><a href="#cb8-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display no-overflow-x">
+<div class="row">
+<div class="col-sm-4">
+<form class="well" role="complementary">
+<div class="form-group shiny-input-container">
+<label class="control-label" id="top_n-label" for="top_n">Select Top N Players by Home Runs:</label>
+<input class="js-range-slider" id="top_n" data-skin="shiny" data-min="5" data-max="50" data-from="10" data-step="5" data-grid="true" data-grid-num="9" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number">
+</div>
+<div class="form-group shiny-input-container">
+<label class="control-label" id="filter_team-label" for="filter_team">Filter by Team (Optional):</label>
+<div>
+<select id="filter_team" class="shiny-input-select"><option value="All" selected="">All</option>
+<option value="PH1">PH1</option>
+<option value="WS3">WS3</option>
+<option value="NY2">NY2</option>
+<option value="RC1">RC1</option>
+<option value="TRO">TRO</option>
+<option value="FW1">FW1</option>
+<option value="CL1">CL1</option>
+<option value="CH1">CH1</option>
+<option value="BS1">BS1</option>
+<option value="MID">MID</option>
+<option value="BR2">BR2</option>
+<option value="BL1">BL1</option>
+<option value="BR1">BR1</option>
+<option value="WS4">WS4</option>
+<option value="PH2">PH2</option>
+<option value="ELI">ELI</option>
+<option value="BL4">BL4</option>
+<option value="WS5">WS5</option>
+<option value="CH2">CH2</option>
+<option value="HR1">HR1</option>
+<option value="PH3">PH3</option>
+<option value="SL1">SL1</option>
+<option value="SL2">SL2</option>
+<option value="KEO">KEO</option>
+<option value="NH1">NH1</option>
+<option value="WS6">WS6</option>
+<option value="CHN">CHN</option>
+<option value="SL3">SL3</option>
+<option value="HAR">HAR</option>
+<option value="CN1">CN1</option>
+<option value="NY3">NY3</option>
+<option value="BSN">BSN</option>
+<option value="LS1">LS1</option>
+<option value="PHN">PHN</option>
+<option value="PRO">PRO</option>
+<option value="ML2">ML2</option>
+<option value="IN1">IN1</option>
+<option value="TRN">TRN</option>
+<option value="SR1">SR1</option>
+<option value="BFN">BFN</option>
+<option value="CL2">CL2</option>
+<option value="WOR">WOR</option>
+<option value="DTN">DTN</option>
+<option value="PT1">PT1</option>
+<option value="LS2">LS2</option>
+<option value="SL4">SL4</option>
+<option value="BL2">BL2</option>
+<option value="PH4">PH4</option>
+<option value="CN2">CN2</option>
+<option value="NY1">NY1</option>
+<option value="PHI">PHI</option>
+<option value="CL5">CL5</option>
+<option value="NY4">NY4</option>
+<option value="BLU">BLU</option>
+<option value="CHU">CHU</option>
+<option value="IN2">IN2</option>
+<option value="KCU">KCU</option>
+<option value="WIL">WIL</option>
+<option value="PHU">PHU</option>
+<option value="MLU">MLU</option>
+<option value="WS7">WS7</option>
+<option value="BSU">BSU</option>
+<option value="SLU">SLU</option>
+<option value="CNU">CNU</option>
+<option value="TL1">TL1</option>
+<option value="SPU">SPU</option>
+<option value="ALT">ALT</option>
+<option value="BR3">BR3</option>
+<option value="RIC">RIC</option>
+<option value="WSU">WSU</option>
+<option value="SL5">SL5</option>
+<option value="WS8">WS8</option>
+<option value="KCN">KCN</option>
+<option value="CL3">CL3</option>
+<option value="PIT">PIT</option>
+<option value="IN3">IN3</option>
+<option value="KC2">KC2</option>
+<option value="CL4">CL4</option>
+<option value="CL6">CL6</option>
+<option value="TL2">TL2</option>
+<option value="CLP">CLP</option>
+<option value="BL3">BL3</option>
+<option value="BFP">BFP</option>
+<option value="BRO">BRO</option>
+<option value="CHP">CHP</option>
+<option value="RC2">RC2</option>
+<option value="PHP">PHP</option>
+<option value="SR2">SR2</option>
+<option value="NYP">NYP</option>
+<option value="BR4">BR4</option>
+<option value="BSP">BSP</option>
+<option value="PTP">PTP</option>
+<option value="CIN">CIN</option>
+<option value="BRP">BRP</option>
+<option value="WS9">WS9</option>
+<option value="CN3">CN3</option>
+<option value="BS2">BS2</option>
+<option value="ML3">ML3</option>
+<option value="WAS">WAS</option>
+<option value="SLN">SLN</option>
+<option value="BLN">BLN</option>
+<option value="LS3">LS3</option>
+<option value="CLE">CLE</option>
+<option value="PHA">PHA</option>
+<option value="BOS">BOS</option>
+<option value="BLA">BLA</option>
+<option value="CHA">CHA</option>
+<option value="WS1">WS1</option>
+<option value="DET">DET</option>
+<option value="MLA">MLA</option>
+<option value="SLA">SLA</option>
+<option value="NYA">NYA</option>
+<option value="KCF">KCF</option>
+<option value="PTF">PTF</option>
+<option value="BLF">BLF</option>
+<option value="BUF">BUF</option>
+<option value="IND">IND</option>
+<option value="CHF">CHF</option>
+<option value="BRF">BRF</option>
+<option value="SLF">SLF</option>
+<option value="NEW">NEW</option>
+<option value="ML1">ML1</option>
+<option value="BAL">BAL</option>
+<option value="KC1">KC1</option>
+<option value="SFN">SFN</option>
+<option value="LAN">LAN</option>
+<option value="MIN">MIN</option>
+<option value="WS2">WS2</option>
+<option value="LAA">LAA</option>
+<option value="NYN">NYN</option>
+<option value="HOU">HOU</option>
+<option value="CAL">CAL</option>
+<option value="ATL">ATL</option>
+<option value="OAK">OAK</option>
+<option value="SE1">SE1</option>
+<option value="SDN">SDN</option>
+<option value="KCA">KCA</option>
+<option value="MON">MON</option>
+<option value="ML4">ML4</option>
+<option value="TEX">TEX</option>
+<option value="SEA">SEA</option>
+<option value="TOR">TOR</option>
+<option value="COL">COL</option>
+<option value="FLO">FLO</option>
+<option value="ANA">ANA</option>
+<option value="ARI">ARI</option>
+<option value="TBA">TBA</option>
+<option value="MIL">MIL</option>
+<option value="MIA">MIA</option></select>
+<script type="application/json" data-for="filter_team" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+</div>
+</div>
+</form>
+</div>
+<div class="col-sm-8" role="main">
+<div class="shiny-plot-output html-fill-item" id="hr_bb_plot" style="width:100%;height:400px;"></div>
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Server logic</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="co"># Filter and sort data</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="fu">filter</span>(<span class="cf">if</span> (input<span class="sc">$</span>filter_team <span class="sc">!=</span> <span class="st">"All"</span>) team_id <span class="sc">==</span> input<span class="sc">$</span>filter_team <span class="cf">else</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(hr)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="fu">slice_head</span>(<span class="at">n =</span> input<span class="sc">$</span>top_n)  <span class="co"># Top N players</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  </span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> bb, <span class="at">y =</span> hr, <span class="at">color =</span> player_id, <span class="at">label =</span> player_id)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Home Runs vs. Walks"</span>, </span>
+<span id="cb9-13"><a href="#cb9-13"></a>         <span class="at">x =</span> <span class="st">"Walks (BB)"</span>, <span class="at">y =</span> <span class="st">"Home Runs (HR)"</span>) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a></span>
+<span id="cb9-17"><a href="#cb9-17"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="shiny-plot-output html-fill-item" id="out9c59b76b4e9bef4c" style="width:100%;height:400px;"></div>
 </div>
 </div>
 
@@ -1042,76 +1150,96 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./reportDRAFT.html" class="pagination-link" aria-label="Report Draft">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Report Draft</span></span>
+      <a href="./harlanviz.html" class="pagination-link" aria-label="harlanviz.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">harlanviz.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./SidneyViz.html" class="pagination-link" aria-label="Sidney Viz">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sidney Viz</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./proposal.html" class="pagination-link" aria-label="Proposal">
+        <span class="nav-page-text">Proposal</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">---</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="an">title:</span><span class="co"> "BasirVis"</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co">---</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="in">```{r}</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="co"># import Data</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/hall_of_fame.csv"</span>)</span>
-<span id="cb16-12"><a href="#cb16-12"></a></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="fu">str</span>(History_of_Baseball)</span>
-<span id="cb16-14"><a href="#cb16-14"></a><span class="fu">head</span>(History_of_Baseball)</span>
-<span id="cb16-15"><a href="#cb16-15"></a><span class="in">```</span></span>
-<span id="cb16-16"><a href="#cb16-16"></a></span>
-<span id="cb16-17"><a href="#cb16-17"></a></span>
-<span id="cb16-18"><a href="#cb16-18"></a>2.3 Pitching table</span>
-<span id="cb16-19"><a href="#cb16-19"></a></span>
-<span id="cb16-20"><a href="#cb16-20"></a>playerID       Player ID code</span>
-<span id="cb16-21"><a href="#cb16-21"></a>yearID         Year</span>
-<span id="cb16-22"><a href="#cb16-22"></a>stint          player's stint (order of appearances within a season)</span>
-<span id="cb16-23"><a href="#cb16-23"></a>teamID         Team</span>
-<span id="cb16-24"><a href="#cb16-24"></a>lgID           League</span>
-<span id="cb16-25"><a href="#cb16-25"></a>W              Wins</span>
-<span id="cb16-26"><a href="#cb16-26"></a>L              Losses</span>
-<span id="cb16-27"><a href="#cb16-27"></a>G              Games</span>
-<span id="cb16-28"><a href="#cb16-28"></a>GS             Games Started</span>
-<span id="cb16-29"><a href="#cb16-29"></a>CG             Complete Games </span>
-<span id="cb16-30"><a href="#cb16-30"></a>SHO            Shutouts</span>
-<span id="cb16-31"><a href="#cb16-31"></a>SV             Saves</span>
-<span id="cb16-32"><a href="#cb16-32"></a>IPOuts         Outs Pitched (innings pitched x 3)</span>
-<span id="cb16-33"><a href="#cb16-33"></a>H              Hits</span>
-<span id="cb16-34"><a href="#cb16-34"></a>ER             Earned Runs</span>
-<span id="cb16-35"><a href="#cb16-35"></a>HR             Homeruns</span>
-<span id="cb16-36"><a href="#cb16-36"></a>BB             Walks</span>
-<span id="cb16-37"><a href="#cb16-37"></a>SO             Strikeouts</span>
-<span id="cb16-38"><a href="#cb16-38"></a>BAOpp          Opponent's Batting Average</span>
-<span id="cb16-39"><a href="#cb16-39"></a>ERA            Earned Run Average</span>
-<span id="cb16-40"><a href="#cb16-40"></a>IBB            Intentional Walks</span>
-<span id="cb16-41"><a href="#cb16-41"></a>WP             Wild Pitches</span>
-<span id="cb16-42"><a href="#cb16-42"></a>HBP            Batters Hit By Pitch</span>
-<span id="cb16-43"><a href="#cb16-43"></a>BK             Balks</span>
-<span id="cb16-44"><a href="#cb16-44"></a>BFP            Batters faced by Pitcher</span>
-<span id="cb16-45"><a href="#cb16-45"></a>GF             Games Finished</span>
-<span id="cb16-46"><a href="#cb16-46"></a>R              Runs Allowed</span>
-<span id="cb16-47"><a href="#cb16-47"></a>SH             Sacrifices by opposing batters</span>
-<span id="cb16-48"><a href="#cb16-48"></a>SF             Sacrifice flies by opposing batters</span>
-<span id="cb16-49"><a href="#cb16-49"></a>GIDP           Grounded into double plays by opposing batter</span>
-<span id="cb16-50"><a href="#cb16-50"></a></span>
-<span id="cb16-53"><a href="#cb16-53"></a><span class="in">```{r}</span></span>
-<span id="cb16-54"><a href="#cb16-54"></a>History_of_Baseball <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/The History of Baseball dataset/pitching.csv"</span>)</span>
-<span id="cb16-55"><a href="#cb16-55"></a></span>
-<span id="cb16-56"><a href="#cb16-56"></a><span class="fu">str</span>(History_of_Baseball)</span>
-<span id="cb16-57"><a href="#cb16-57"></a><span class="fu">head</span>(History_of_Baseball)</span>
-<span id="cb16-58"><a href="#cb16-58"></a><span class="in">```</span></span>
-<span id="cb16-59"><a href="#cb16-59"></a></span>
-<span id="cb16-60"><a href="#cb16-60"></a></span>
-<span id="cb16-63"><a href="#cb16-63"></a><span class="in">```{r}</span></span>
-<span id="cb16-64"><a href="#cb16-64"></a><span class="fu">ggplot</span>(History_of_Baseball) <span class="sc">+</span></span>
-<span id="cb16-65"><a href="#cb16-65"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>w))</span>
-<span id="cb16-66"><a href="#cb16-66"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="an">title:</span><span class="co"> "Interactive Wins and Losses by Decade"</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="an">runtime:</span><span class="co"> shiny</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">---</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="in">library(shiny)</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="in">library(dplyr)</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="in">pitching &lt;- read.csv("data/The History of Baseball dataset/pitching.csv")</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="in"># Sample dataset</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="in"># Replace with your actual dataset</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="in">pitching&lt;- pitching %&gt;%</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="in">  mutate(decade = paste0(floor(year / 10) * 10, "s"))  # Group years into decades</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="in">```</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="in">```{r}</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="co"># Define UI for selecting a decade</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a><span class="fu">selectInput</span>(<span class="st">"selected_decade"</span>, </span>
+<span id="cb10-26"><a href="#cb10-26"></a>            <span class="st">"Choose a Decade:"</span>, </span>
+<span id="cb10-27"><a href="#cb10-27"></a>            <span class="at">choices =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade), </span>
+<span id="cb10-28"><a href="#cb10-28"></a>            <span class="at">selected =</span> <span class="fu">unique</span>(pitching<span class="sc">$</span>decade)[<span class="dv">1</span>])</span>
+<span id="cb10-29"><a href="#cb10-29"></a></span>
+<span id="cb10-30"><a href="#cb10-30"></a><span class="co"># Render the plot dynamically</span></span>
+<span id="cb10-31"><a href="#cb10-31"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb10-32"><a href="#cb10-32"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span> <span class="fu">filter</span>(decade <span class="sc">==</span> input<span class="sc">$</span>selected_decade)</span>
+<span id="cb10-33"><a href="#cb10-33"></a>  </span>
+<span id="cb10-34"><a href="#cb10-34"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> team_id, <span class="at">group =</span> league_id)) <span class="sc">+</span></span>
+<span id="cb10-35"><a href="#cb10-35"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> w, <span class="at">fill =</span> <span class="st">"Wins"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb10-36"><a href="#cb10-36"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> l, <span class="at">fill =</span> <span class="st">"Losses"</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb10-37"><a href="#cb10-37"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Wins and Losses in"</span>, input<span class="sc">$</span>selected_decade), </span>
+<span id="cb10-38"><a href="#cb10-38"></a>         <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb10-39"><a href="#cb10-39"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Wins"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Losses"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb10-40"><a href="#cb10-40"></a>    <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb10-41"><a href="#cb10-41"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="co"># Rotate team labels for clarity</span></span>
+<span id="cb10-42"><a href="#cb10-42"></a></span>
+<span id="cb10-43"><a href="#cb10-43"></a>})</span>
+<span id="cb10-44"><a href="#cb10-44"></a><span class="in">```</span></span>
+<span id="cb10-45"><a href="#cb10-45"></a></span>
+<span id="cb10-48"><a href="#cb10-48"></a><span class="in">```{r}</span></span>
+<span id="cb10-49"><a href="#cb10-49"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb10-50"><a href="#cb10-50"></a><span class="co"># UI to select filters</span></span>
+<span id="cb10-51"><a href="#cb10-51"></a><span class="fu">sidebarLayout</span>(</span>
+<span id="cb10-52"><a href="#cb10-52"></a>  <span class="fu">sidebarPanel</span>(</span>
+<span id="cb10-53"><a href="#cb10-53"></a>    <span class="fu">sliderInput</span>(<span class="st">"top_n"</span>, </span>
+<span id="cb10-54"><a href="#cb10-54"></a>                <span class="st">"Select Top N Players by Home Runs:"</span>, </span>
+<span id="cb10-55"><a href="#cb10-55"></a>                <span class="at">min =</span> <span class="dv">5</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">10</span>, <span class="at">step =</span> <span class="dv">5</span>),</span>
+<span id="cb10-56"><a href="#cb10-56"></a>    <span class="fu">selectInput</span>(<span class="st">"filter_team"</span>, </span>
+<span id="cb10-57"><a href="#cb10-57"></a>                <span class="st">"Filter by Team (Optional):"</span>, </span>
+<span id="cb10-58"><a href="#cb10-58"></a>                <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"All"</span>, <span class="fu">unique</span>(pitching<span class="sc">$</span>team_id)), </span>
+<span id="cb10-59"><a href="#cb10-59"></a>                <span class="at">selected =</span> <span class="st">"All"</span>)</span>
+<span id="cb10-60"><a href="#cb10-60"></a>  ),</span>
+<span id="cb10-61"><a href="#cb10-61"></a>  <span class="fu">mainPanel</span>(</span>
+<span id="cb10-62"><a href="#cb10-62"></a>    <span class="fu">plotOutput</span>(<span class="st">"hr_bb_plot"</span>)</span>
+<span id="cb10-63"><a href="#cb10-63"></a>  )</span>
+<span id="cb10-64"><a href="#cb10-64"></a>)</span>
+<span id="cb10-65"><a href="#cb10-65"></a></span>
+<span id="cb10-66"><a href="#cb10-66"></a><span class="co"># Server logic</span></span>
+<span id="cb10-67"><a href="#cb10-67"></a><span class="fu">renderPlot</span>({</span>
+<span id="cb10-68"><a href="#cb10-68"></a>  <span class="co"># Filter and sort data</span></span>
+<span id="cb10-69"><a href="#cb10-69"></a>  filtered_data <span class="ot">&lt;-</span> pitching <span class="sc">%&gt;%</span></span>
+<span id="cb10-70"><a href="#cb10-70"></a>    <span class="fu">filter</span>(<span class="cf">if</span> (input<span class="sc">$</span>filter_team <span class="sc">!=</span> <span class="st">"All"</span>) team_id <span class="sc">==</span> input<span class="sc">$</span>filter_team <span class="cf">else</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-71"><a href="#cb10-71"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(hr)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-72"><a href="#cb10-72"></a>    <span class="fu">slice_head</span>(<span class="at">n =</span> input<span class="sc">$</span>top_n)  <span class="co"># Top N players</span></span>
+<span id="cb10-73"><a href="#cb10-73"></a>  </span>
+<span id="cb10-74"><a href="#cb10-74"></a>  <span class="fu">ggplot</span>(filtered_data, <span class="fu">aes</span>(<span class="at">x =</span> bb, <span class="at">y =</span> hr, <span class="at">color =</span> player_id, <span class="at">label =</span> player_id)) <span class="sc">+</span></span>
+<span id="cb10-75"><a href="#cb10-75"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb10-76"><a href="#cb10-76"></a>    <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-77"><a href="#cb10-77"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Home Runs vs. Walks"</span>, </span>
+<span id="cb10-78"><a href="#cb10-78"></a>         <span class="at">x =</span> <span class="st">"Walks (BB)"</span>, <span class="at">y =</span> <span class="st">"Home Runs (HR)"</span>) <span class="sc">+</span></span>
+<span id="cb10-79"><a href="#cb10-79"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-80"><a href="#cb10-80"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb10-81"><a href="#cb10-81"></a></span>
+<span id="cb10-82"><a href="#cb10-82"></a>})</span>
+<span id="cb10-83"><a href="#cb10-83"></a></span>
+<span id="cb10-84"><a href="#cb10-84"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

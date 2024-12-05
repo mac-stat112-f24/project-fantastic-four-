@@ -171,6 +171,7 @@ suppressMessages(suppressWarnings({
     axis.text = element_text(size = 12),  # Axis text
     plot.caption = element_text(size = 10, color = "gray", hjust = 0)  # Caption
   )
+  
 }))
 ```
 
