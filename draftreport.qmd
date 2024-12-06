@@ -1,0 +1,11 @@
+-Motivation
+-Research Question 
+-Background
+-Data
+-Data Insights
+-Conclusions/BPicture
+
+```{r}
+**The Motivation Behind Our Project**
+  
+```
