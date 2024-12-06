@@ -2,7 +2,6 @@
 title: "Report Draft"
 format: html
 editor: visual
-
 ---
 
 ```{r, echo=FALSE}
@@ -109,13 +108,21 @@ ggplotly(pp)
 
 What are the important takeaways from the data? What was interesting?
 
+Important takeaways from this data lie in the team wins above 20 with corresponding losses below 20. Seeing parity (and lack thereof) has been one of the key points of MLB competition for hundreds of years. It's always key to notice where teams took steps forwards.
+
 Why do these takeaways matter?
+
+These takeaways matter because the data determines competition leaguewide when nothing else can. It's an interesting graph because it helps the league realize where they can go further in terms of competitive parity.
 
 Was there anything surprising?
 
+It wasn't a super surprising result.
+
 Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
 
-Looking at this visualization of baseball team performance in the 2000s, several interesting patterns emerge. The data reveals a generally competitive era in baseball, with most teams maintaining relatively balanced win-loss ratios. BRK1 stands out as a particularly successful team with around 50 wins and comparatively fewer losses, while teams like BL1 and BSN show more evenly matched records. Intriguingly, there's significant variation in the total number of games played across teams, with the WS3-WS6 teams consistently showing lower game counts, possibly indicating partial seasons or specific competition subsets. The similar patterns between teams with related names (like CL1 and CL2) suggest potential franchise relationships or organizational changes during this period. Overall, the data paints a picture of a competitive baseball landscape in the 2000s, where extreme dominance or poor performance was rare, and most teams maintained relatively stable performance levels.
+Looking at this visualization of baseball team performance in the 1870s, several interesting patterns emerge. The data reveals a generally competitive era in baseball, with most teams maintaining relatively balanced win-loss ratios. BRK1 stands out as a particularly successful team with around 50 wins and comparatively fewer losses, while teams like BL1 and BSN show more evenly matched records. Intriguingly, there's significant variation in the total number of games played across teams, with the WS3-WS6 teams consistently showing lower game counts, possibly indicating partial seasons or specific competition subsets. The similar patterns between teams with related names (like CL1 and CL2) suggest potential franchise relationships or organizational changes during this period. Overall, the data paints a picture of a competitive baseball landscape in the 2000s, where extreme dominance or poor performance was rare, and most teams maintained relatively stable performance levels.
+
+## Strikeouts vs Wins since 1985
 
 ```{r , echo=FALSE}
 # still a WIP, feel free to mess around with it
@@ -133,9 +140,15 @@ pitching %>%
 
 What are the important takeaways from the data? What was interesting?
 
+The key takeaway from this visualization is that there is an increase in wins that comes with an increase in strikeouts (a negative outcome for the hitter) but only to a certain level. Past a certain level, the strikeouts begin to hinder the team enough to cap wins at about 20 with some outliers.
+
 Why do these takeaways matter?
 
+These takeaways matter because strikeouts are one of the most influential statistics in baseball. They have defined the game for decades and especially in the modern era. Defining their relationship to wins in the big picture could be important for GMs in the major leagues.
+
 Was there anything surprising?
+
+It was a mostly expected report, but it is interesting to examine the outliers and what those came out to be. Striking out more while winning more is often where the best home run hitters live, and striking out less while winning more is where hitters with a bat-to-ball approach thrive.
 
 Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
 
@@ -158,17 +171,10 @@ pitching_2 <- pitching %>%
 pitching_2 %>% 
   filter(!is.na(batt_avg)) %>% 
   ggplot(aes(x = batt_avg, y = w, group = team_id)) +
-  geom_boxplot()+
-  labs(
-    title = "Relationship Between Batting Average and Wins",
-    x = "Batting Average",
-    y = "Wins",
-    caption = "Data: MLB Pitching and Batting Statistics"
-  ) +
-  theme_minimal()
+  geom_boxplot()
 ```
 
-```{r}
+```{r, echo=FALSE}
 
 p <- pitching_2 %>% 
   filter(!is.na(batt_avg)) %>% 
@@ -179,17 +185,7 @@ p <- pitching_2 %>%
 ggplotly(p)
 ```
 
-### Data Insights
-
-What are the important takeaways from the data? What was interesting?
-
-Why do these takeaways matter?
-
-Was there anything surprising?
-
-Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
-
-```{r ,fig.height = 7}
+```{r ,fig.height = 7, echo=FALSE}
 
 # Create the hexbin plot with decade-based coloring
 library(ggplot2)
@@ -220,13 +216,34 @@ ggplot(teamSalary, aes(y = team_id, x = team_salary,
 
 ```
 
+### Data Insights
+
+What are the important takeaways from the data? What was interesting?
+
+This graph displays the lack of parity due to salary in MLB. It is interesting to see which teams are spending more and how often, because this often dictates team performance. It is also interesting to see how under-funded some teams are in a league where all teams are supposedly competitive.
+
+Why do these takeaways matter?
+
+These takeaways matter because salary distribution directly affects team performance. Seeing the lack of parity is key to understanding the affects of salary upon wins.
+
+Was there anything surprising?
+
+Mostly surprising was the lowest spenders, some of whom have spent barely half as much as the higher value teams.
+
+Overall, what do you want the audience to walk away with? What do you want them to understand about your data and research questions?!?
+
+Viewers should understand the direct effects of salary distribution on the lack of parity in the league. The extreme salary differentials are a significant reason why some teams win a lot, while others are bottom-dwellers.
 
 ### Conclusion/Big Picture
 
 How do the insights connect to answer your research question?
 
+All of our team's plots helped further explore what contributes to teams' success in baseball. By examining the effects of different variables on win outcomes, we were able to draw many conclusions about what helped and hindered teams in MLB over a long period of time.
+
 What improvements might someone make to your analysis?
+
+If our group had time to extend our research, furthering our knowledge of the data would allow us to improve clarity in our graphs. Figuring out how to build in the Shiny aspect would have been a great addition as well.
 
 Are there any limitations or weaknesses of your data / analysis?
 
-
+A weakness is how cluttered the dataset was. If it was neater, it would been easier to use.
