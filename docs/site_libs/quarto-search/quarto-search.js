@@ -1275,15 +1275,11 @@ async function fuseSearch(query, fuse, fuseOptions) {
 
   // If we don't have a subfuse and the query is long enough, go ahead
   // and create a subfuse to use for subsequent queries
-<<<<<<< Updated upstream
   if (
     now - then > kFuseMaxWait &&
     subSearchFuse === undefined &&
     resultsRaw.length < fuseOptions.limit
   ) {
-=======
-  if (now - then > kFuseMaxWait && subSearchFuse === undefined) {
->>>>>>> Stashed changes
     subSearchTerm = query;
     subSearchFuse = new window.Fuse([], kFuseIndexOptions);
     resultsRaw.forEach((rr) => {
