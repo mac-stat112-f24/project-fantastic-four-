@@ -1,0 +1,58 @@
+/* Data Sci- class Portfolio */
+
+body {
+  background-color: #FFDF00;  /* Light gray background */
+  color: #333;                /* Dark gray text color for good contrast */
+  font-family: Arial, sans-serif; /* Set a readable font */
+}
+
+/* Customize the background color of the code blocks */
+pre, code {
+  background-color: #FFFACD;  /* Lemon chiffon for code blocks, a lighter yellow */
+  color: #000;                /* Black text color in code blocks for readability */
+  border: 1px solid #FFD700;  /* Golden yellow border for code blocks */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Change the color of headings */
+h1, h2, h3 {d
+  color: #800000;  /* Dark blue-gray color for headings */
+}
+
+/* Modify links */
+a {
+  color: #0000FF;  /* Dark blue color for links to stand out */
+  text-decoration: none; /* Remove underline from links */
+}
+
+/* Adjust the appearance of the table of contents */
+.toc {
+  background-color: #FFFFE0;  /* Light yellow background for TOC */
+  border: 1px solid #FFD700;  /* Golden yellow border for TOC */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Style for blockquotes */
+blockquote {
+  border-left: 4px solid #FFD700; /* Golden yellow border for blockquotes */
+  background-color: #FFF8DC;       /* Cornsilk background for blockquotes */
+  padding: 10px;
+  margin: 10px 0;
+  font-style: italic;  /* Italicize blockquote text */
+}
+
+.right-align-image {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  width: 200px; /* Adjust width as needed */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: 8in;  /* Set the desired figure width */
+  height: 8in; /* Set the desired figure height */
+}
