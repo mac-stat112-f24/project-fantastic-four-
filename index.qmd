@@ -2,5 +2,5 @@
 
 Add introduction to your project here.
 
-
+Welcome to our report - a summary of what statistics have affected wins over the long history of baseball. You'll find interesting graphs, fun data, and a great read in this report! 
 
