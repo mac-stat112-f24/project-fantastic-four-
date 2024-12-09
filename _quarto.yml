@@ -9,7 +9,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Moneyball: Visualizations of Baseball Salaries"
+  title: "Moneyball: Visualizations of Baseball Salaries and Wins"
   author: ["Huthaifa Mohammad", "Sidney Langford", "Suweda Said", "Basir Talayee", "Harlan Grady"]
   date: today
   date-format: full
@@ -18,15 +18,17 @@ book:
   chapters:
     - index.qmd
     - report.qmd
-    - reportDRAFT.qmd
-    - Basir.qmd
-    - SidneyViz.qmd
-    - harlanviz.qmd
-    - Huthaifa'sVis.qmd
+
   
   appendices:
   - proposal.qmd
   - sketch.qmd
+  - Basir.qmd
+  - SidneyViz.qmd
+  - harlanviz.qmd
+  - Huthaifa'sVis.qmd
+  - draftsalaryviz.qmd
+  - reportDRAFT.qmd
 
 
 format:

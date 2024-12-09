@@ -5,7 +5,6 @@ const headroomChanged = new CustomEvent("quarto-hrChanged", {
   composed: false,
 });
 
-<<<<<<< Updated upstream
 const announceDismiss = () => {
   const annEl = window.document.getElementById("quarto-announcement");
   if (annEl) {
@@ -45,11 +44,6 @@ window.document.addEventListener("DOMContentLoaded", function () {
 
   announceRegister();
 
-=======
-window.document.addEventListener("DOMContentLoaded", function () {
-  let init = false;
-
->>>>>>> Stashed changes
   // Manage the back to top button, if one is present.
   let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollDownBuffer = 5;

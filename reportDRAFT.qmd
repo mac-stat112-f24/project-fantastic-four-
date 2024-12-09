@@ -212,8 +212,62 @@ ggplot(teamSalary, aes(y = team_id, x = team_salary,
     plot.title = element_text(hjust = 0.5),
     legend.position = "right"
   )
+top_5_so <- pitching%>%
+   group_by(team_id) %>%
+   summarise(total_SO = sum(so)) %>%
+   arrange(desc(total_SO)) %>%
+   head(5)
+   
+ ggplot(top_5_so, aes(x = reorder(team_id, -total_SO), y = total_SO)) +
+   geom_bar(stat = "identity", fill = "steelblue", alpha = 0.7) +
+   theme_minimal() +
+   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+   labs(
+     title = "Top 5 Teams by Total Strikeouts",
+     x = "Team",
+     y = "Total Strikeouts"
+   )
 
-
+ suppressWarnings(suppressMessages({
+ library(ggplot2)
+ library(dplyr)
+ 
+ # Get top 5 teams by strikeouts and calculate win percentage
+ top_5_stats <- pitching %>%
+   group_by(team_id) %>%
+   summarise(
+     total_SO = sum(so),
+     win_pct = mean(w/g) * 100
+   ) %>%
+   arrange(desc(total_SO)) %>%
+   head(5)
+   
+ # Create plot with secondary y-axis
+ ggplot(top_5_stats) +
+   # Strikeout bars
+   geom_bar(aes(x = reorder(team_id, -total_SO), y = total_SO), 
+            stat = "identity", fill = "steelblue", alpha = 0.7) +
+   # Win percentage bars, scaled and flipped
+   geom_bar(aes(x = reorder(team_id, -total_SO), y = win_pct * max(total_SO)/100),
+            stat = "identity", fill = "red", alpha = 0.4) +
+   # Primary y-axis (Strikeouts)
+   scale_y_continuous(
+     name = "Total Strikeouts",
+     # Secondary y-axis (Win %)
+     sec.axis = sec_axis(~. * 100/max(top_5_stats$total_SO), 
+                        name = "Win Percentage")
+   ) +
+   theme_minimal() +
+   theme(
+     axis.text.x = element_text(angle = 45, hjust = 1),
+     axis.title.y.right = element_text(color = "red"),
+     axis.title.y.left = element_text(color = "steelblue")
+   ) +
+   labs(
+     title = "Top 5 Teams: Strikeouts vs Win Percentage",
+     x = "Team"
+   )
+}))
 ```
 
 ### Data Insights
