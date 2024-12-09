@@ -238,7 +238,7 @@ ggplot(teamSalary, aes(y = team_id, x = team_salary,
     y = "Team Salary",
     color = "Decade",
     shape = "Decade",
-    caption = "Source: The History of Baseball Dataset, Author: Sidney Langford",
+    caption = "Source: The History of Baseball Dataset, Author: Huthaifa Mohammad",
   ) +
   theme_minimal() +
   theme(
