@@ -1,0 +1,172 @@
+---
+title: "Sidney Viz"
+format: html
+editor: visual
+runtime: shiny
+---
+
+```{r}
+library(tidyverse)
+library(shiny)
+salary <- read.csv("data/The History of Baseball dataset/salary.csv")
+pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
+batting <- read.csv("data/The History of Baseball dataset/batting.csv")
+```
+
+```{r}
+head(salary)
+head(pitching)
+#merging salary and pitching data
+sal_pitch <- salary %>% 
+  left_join(pitching)
+
+#merging salary and batting data
+sal_bat <- salary %>% 
+  left_join(batting)
+
+#cleaning up variable names
+sal_bat_2 <- sal_bat %>% 
+  rename(games = g,
+         at_bats = ab,
+         runs = r,
+         hits = h,
+         home_runs = hr,
+         stolen_bases = sb,
+         caught_stealing = cs,
+         strikeouts = so) %>% 
+  select(year, team_id, player_id, salary, games, at_bats, runs, hits, double, triple, home_runs, stolen_bases, caught_stealing, strikeouts) %>% 
+  mutate(batting_avg = hits/at_bats)
+
+win_loss <- pitching %>% 
+  filter(year >= 1985) %>% 
+  select(player_id, year, team_id, league_id, w, l, g) %>% 
+  left_join(sal_bat_2)
+```
+
+```{r}
+library(plotly)
+# UI to select filters
+sidebarLayout(
+  sidebarPanel(
+    sliderInput("top_n", 
+                "Select Top N Players by Strikeouts:", 
+                min = 5, max = 50, value = 10, step = 5),
+    selectInput("filter_team", 
+                "Filter by Team (Optional):", 
+                choices = c("All", unique(pitching$team_id)), 
+                selected = "All")
+  ),
+  mainPanel(
+    plotOutput("hr_bb_plot")
+  )
+)
+
+# Server logic
+renderPlot({
+  # Filter and sort data
+  filtered_data <- pitching %>%
+    filter(if (input$filter_team != "All") team_id == input$filter_team else TRUE) %>%
+    arrange(desc(hr)) %>%
+    slice_head(n = input$top_n)  # Top N players
+  
+  ggplot(filtered_data, aes(x = bb, y = so, color = player_id, label = player_id)) +
+    geom_point(size = 3, alpha = 0.7) +
+    geom_text(vjust = -0.5, size = 3) +
+    labs(title = "Strikeouts vs. Walks", 
+         x = "Walks (BB)", y = "Strikeouts (SO)") +
+    theme_minimal() +
+    theme(legend.position = "none")
+
+})
+```
+
+```{r}
+#strikeouts vs wins since 1985
+pitching %>% 
+  filter(year >= 1985, so >= 5) %>% 
+  ggplot(aes(x = so, y = w)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Strikeouts vs Wins since 1985", x = "Strikeouts (SO)", y = "Wins (W)")
+```
+
+```{r}
+#batting avg vs wins since 1985
+bat_sm <- batting %>% 
+  mutate(batt_avg = h/ab) %>% 
+  select(player_id, year, batt_avg)
+
+pitching_2 <- pitching %>% 
+  filter(year >= 1985) %>% 
+  left_join(bat_sm)
+  
+pitching_2 %>% 
+  filter(!is.na(batt_avg)) %>% 
+  ggplot(aes(x = batt_avg, y = w, group = team_id)) +
+  geom_boxplot()
+```
+
+```{r}
+# salary vs batting avg
+sal_bat_2 %>% 
+  filter(at_bats > 10, salary != 0) %>% 
+ggplot(aes(x = batting_avg, y = salary, color = home_runs)) +
+  geom_point() +
+  labs(title = "salary vs batting avg")
+
+# salary vs hits
+# ggplot(aes(x = hits, y = salary), data = sal_bat_2) +
+#   geom_point() +
+#   labs(title = "salary vs hits")
+# 
+# salary vs home runs
+sal_bat_2 %>% 
+    filter(at_bats > 10, salary != 0) %>% 
+ggplot(aes(x = home_runs, y = salary)) +
+  geom_point() +
+  labs(title = "salary vs home runs")
+# 
+# # salary vs batting avg for 1990
+# sal_bat_2 %>% 
+#   filter(year == '1990') %>% 
+#   ggplot(aes(x = batting_avg, y = salary)) +
+#   geom_point() +
+#   labs(title = "salary vs batting avg in 1990")
+```
+
+```{r}
+#home run exploration
+sal_bat_2 %>%
+  filter(home_runs != 0) %>% 
+  #group_by(home_runs) %>% 
+  summarise(n(), average = mean(home_runs))
+
+sal_bat_2 %>% 
+  filter(home_runs > 10, salary != 0) %>% 
+  na.omit(home_runs) %>% 
+  ggplot(aes(x = home_runs)) +
+  geom_histogram()
+```
+
+```{r}
+#at bat exploration
+sal_bat_2 %>% 
+  summarise(bat_avg = mean(at_bats, na.rm = TRUE), sal_avg = mean(salary, na.rm = TRUE))
+
+sal_bat_2 %>% 
+  filter(at_bats >= 100, salary != 0, year >= 2000, batting_avg >= .3) %>% 
+  ggplot(aes(x = batting_avg, y = salary)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```{r}
+# win_loss %>%
+#   ggplot(aes(x = team_id, group = league_id)) +
+#     geom_bar(aes(y = w, fill = "Wins"), stat = "identity", position = "dodge",alpha = 0.4) +
+#     geom_bar(aes(y = l, fill = "Losses"), stat = "identity", position = "dodge",alpha = 0.4)
+# 
+# win_loss %>% 
+#   ggplot(aes(x = batting_avg, y = w, color = team_id)) +
+#   geom_point()
+```

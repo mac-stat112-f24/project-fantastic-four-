@@ -1,3 +1,262 @@
-# Report {.unnumbered}
+---
+title: "Report"
+format: html
+editor: visual
+---
 
-Add your report to this file.
+```{r, echo=FALSE}
+suppressPackageStartupMessages({
+
+library(shiny)
+library(tidyverse)
+library(plotly)
+})
+suppressMessages(suppressWarnings({
+
+salary <- read.csv("data/The History of Baseball dataset/salary.csv")
+pitching <- read.csv("data/The History of Baseball dataset/pitching.csv")
+batting <- read.csv("data/The History of Baseball dataset/batting.csv")
+
+temp <- salary |> 
+  left_join(pitching) |> 
+  select(c("player_id","year","team_id","g","so","w","salary","league_id","hr")) |> 
+  rename("Game" = "g",
+         "Strikeout" =  "so",
+         "Homerun" = "hr",
+         "Win" =  "w") 
+
+teamSalary <- temp |> 
+  mutate(team_id = as.factor(team_id)) %>%
+  group_by(team_id,league_id,year) %>% 
+  summarise(team_salary = sum(salary, na.rm = TRUE),.groups = 'drop') |> 
+  mutate(decade = paste0(floor(year / 10) * 10, "s"))
+
+# Group years into decades
+pitching <- pitching %>%
+  mutate(decade = paste0(floor(year / 10) * 10, "s"))
+
+# Add batting average to pitching
+bat_sm <- batting %>% 
+  mutate(batt_avg = h/ab) %>% 
+  select(player_id, year, batt_avg)
+
+pitching_2 <- pitching %>% 
+  filter(year >= 1985) %>% 
+  left_join(bat_sm)
+}) )
+```
+
+### Introduction
+
+Baseball is one of the most popular sports in the US with millions of viewers each year. There are many factors that contribute to team wins and we would like to explore potential factors contributing to these wins. With this popularity comes a plethora of interesting data, from batting averages to different measures of success in the field to All-Star players per team. Using this data going as far back as the 1870s, we decided to look into what factors can predict team wins over time. With billions of dollars pouring into the MLB (Major League Baseball) each year, finding potential predictors of which teams will win is quite literally a billion dollar question. Throughout this report, we will explore different relationships between the variable `wins` and several predictor variables.
+
+In order to best understand this report, a few terms must be clarified. Firstly, `wins` refer to the number of games won by a team, while `losses` refers to the number of games lost by a team. A strikeout is when the pitcher throws three strikes, valid pitches that the batter does not hit, causing the batter to be out and finished with their batting turn. Finally, batting average is a decimal value representing the number of successful hits made by a single batter divided by their total number of hitting attempts.
+
+This data was acquired from Kaggle. This data set, titled 'The History of Baseball' is a reformatted version of a famous data set by Sean Lahman. This data, originally published in the 1990s was the first of its kind, making raw baseball data accessible to the public. This data was most recently updated for the 2015 season, and contains data between 2015 and 1871. Lahman's data set is actually a collection of several data sets, ranging from pitching data, to data on team managers. For our analysis, we focus on the pitching and batting data sets, which contain information on wins, losses, pitching stats, batting stats, and salary information per player per year. In order to complete our analysis, we have joined the batting and pitching data sets together, added a new variable `batting_avg`, and cleaned the variable names. The variables are a mix between categorical (player names, team names, etc) and quantitative (wins, losses, batting average, etc).
+# MLB Team Abbreviations Reference Guide
+
+<div style="display: flex; justify-content: space-between; gap: 20px;">
+
+<div style="flex: 1;">
+
+### American League
+| Abbreviation | Team Name |
+|-------------|-----------|
+| ANA | Anaheim Angels |
+| BAL | Baltimore Orioles |
+| BOS | Boston Red Sox |
+| CAL | California Angels |
+| CHA | Chicago White Sox |
+| CLE | Cleveland Indians |
+| DET | Detroit Tigers |
+| KCA | Kansas City Athletics |
+| LAA | Los Angeles Angels |
+| MIN | Minnesota Twins |
+| NYA | New York Yankees |
+| OAK | Oakland Athletics |
+| SEA | Seattle Mariners |
+| TBA | Tampa Bay Rays |
+| TEX | Texas Rangers |
+| TOR | Toronto Blue Jays |
+</div>
+
+<div style="flex: 1;">
+
+### 
+| Abbreviation | Team Name |
+|-------------|-----------|
+| ARI | Arizona Diamondbacks |
+| ATL | Atlanta Braves |
+| CHN | Chicago Cubs |
+| CIN | Cincinnati Reds |
+| COL | Colorado Rockies |
+| FLO | Florida Marlins |
+| HOU | Houston Astros |
+| LAN | Los Angeles Dodgers |
+| MIA | Miami Marlins |
+| MIL | Milwaukee Brewers |
+| ML4 | Milwaukee Brewers |
+| MON | Montreal Expos |
+| NYN | New York Mets |
+| PHI | Philadelphia Phillies |
+| PIT | Pittsburgh Pirates |
+| SDN | San Diego Padres |
+| SFN | San Francisco Giants |
+| SLN | St. Louis Cardinals |
+| WAS | Washington Nationals |
+</div>
+
+</div>
+
+### Looking at Wins vs Losses
+
+First, we will look at the relationship between wins and losses per team in the 1870s.
+
+```{r , echo=FALSE}
+# Prepare data for bidirectional chart
+suppressMessages(suppressWarnings({
+  bidirectional_data <- pitching %>%
+  filter(decade == "1870s") %>%
+  mutate(l = -l)
+
+
+pp <- ggplot(bidirectional_data, aes(x = team_id)) +
+  # Wins bars (pointing up)
+  geom_bar(aes(y = w, fill = "Wins"), 
+          stat = "identity", 
+          position = "identity") +
+  # Losses bars (pointing down)
+  geom_bar(aes(y = l, fill = "Losses"), 
+          stat = "identity", 
+          position = "identity") +
+  # Add a reference line at 0
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.5) +
+  # Use a colorblind-friendly palette
+  scale_fill_manual(values = c("Wins" = "#0072B2", "Losses" = "#D55E00"),
+                    name = "Outcome") +
+  # Customize the theme and labels
+  labs(title = "Team Wins and Losses in the 1870s",
+       x = "Team",
+       y = "Games") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.major.x = element_blank(),
+    legend.position = "top",
+    plot.title = element_text(hjust = 0.5),
+    axis.title = element_text(size = 10),  # Axis titles
+    axis.text = element_text(size = 5)   # Axis text
+  ) +
+  # Make y-axis symmetric
+  scale_y_continuous(
+    labels = function(x) abs(x),  # Show absolute values on axis
+    breaks = pretty(c(-max(abs(bidirectional_data$l)), max(bidirectional_data$w)))
+  )
+
+# Convert to plotly
+pp_plotly <- ggplotly(pp)
+
+# Add subtitle and caption
+pp_plotly <- pp_plotly %>%
+  layout(
+    title = list(text = "Team Wins and Losses in the 1870s"),
+    annotations = list(
+      list(
+        text = "Win/Loss Record between 1875-1879 for Per Team",
+        x = 0.5, xref = "paper", y = 1.05, yref = "paper",
+        showarrow = FALSE, font = list(size = 12, color = "black"), align = "center"
+      ),
+      list(
+        text = "Source: The History of Baseball Dataset, Author: Huthaifa Mohammad",
+        x = 0, xref = "paper", y = -0.1, yref = "paper",
+        showarrow = FALSE, font = list(size = 7, color = "gray"), align = "right"
+      )
+    )
+  )
+
+pp_plotly
+}))
+```
+
+
+Looking at this visualization of baseball team performance in the 1870s, some clear patterns stand out. The data highlights differences in team performance, with some teams achieving over 20 wins and fewer than 20 losses, like the Boston Red Sox (BS1), who dominated with around 50 wins and far fewer losses. In contrast, teams like the Troy Trojans (TRN) struggled with over 40 losses and comparatively fewer wins. Other teams, like the Chicago White Sox (CHN) and St. Louis Red Sox (SL3), had more balanced records. These patterns reflect early league dynamics, where differences in skill, resources, and strategy played a key role in shaping outcomes. Understanding these differences is important because it helps highlight the league's competitive structure and how teams progressed or fell behind.
+
+
+### The Relationship Between Strikeouts and Wins
+
+Next, we look at the relationship between strikeouts and wins overall.
+
+```{r , echo=FALSE, message=FALSE, warning=FALSE}
+#strikeouts vs wins
+suppressMessages(suppressWarnings({
+  pitching %>% 
+  filter(year >= 1985, so >= 5) %>% 
+  ggplot(aes(x = so, y = w)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Relationship Between Strikeouts and Wins in MLB since 1985",
+    subtitle = "Analyzing how strikeouts correlate with team wins for pitchers",
+    x = "Strikeouts (SO)",
+    y = "Wins (W)",
+    caption = "Source: The History of Baseball Dataset, Author: Sidney Langford"
+  ) +
+  theme_minimal(base_size = 14) +  # Clean theme with larger text
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  # Title styling
+    plot.subtitle = element_text(size = 12, hjust = 0.5),  # Subtitle styling
+    axis.title = element_text(size = 14),  # Axis titles
+    axis.text = element_text(size = 12),  # Axis text
+    plot.caption = element_text(size = 10, color = "gray", hjust = 0)  # Caption
+  )
+  
+}))
+```
+
+
+The scatter plot analyzing the relationship between strikeouts and wins in baseball since 1985 reveals several fascinating patterns. A clear positive correlation exists, as indicated by the blue trend line, showing that pitchers who record more strikeouts generally secure more wins. The data displays distinct horizontal banding, reflecting the discrete nature of baseball wins, with most pitchers recording between 50-250 strikeouts and winning between 0-25 games per season. Notably, while the relationship between strikeouts and wins is strong, the increasing spread of data points at higher strikeout counts suggests that other factors also influence a pitcher's win total. Some remarkable outliers exist, particularly among pitchers with 300+ strikeouts, highlighting exceptional performances that deviate from the typical pattern. This visualization effectively demonstrates that while strikeout ability is a good predictor of winning games, it's not the only factor determining a pitcher's success.
+
+
+### Team Salary Distribution by Decade
+
+Finally, we look at the distributions of salary per team across the decades.
+
+```{r ,fig.height = 7, echo=FALSE}
+suppressMessages(suppressWarnings({
+ggplot(teamSalary, aes(y = team_id, x = team_salary, 
+               color = decade  # For color mapping
+               )) +# For shape mapping
+ # geom_jitter(size = 3, alpha = 0.7)+
+  geom_line(size = 3, alpha = 0.7) +  # Use points instead of hex, adjust size and transparency
+  scale_x_continuous(labels = scales::dollar_format(scale = 1/1000000, suffix = "M")) +
+  scale_color_brewer(palette = "Spectral") +  # Color palette for decades
+  scale_shape_manual(values = c(15, 16, 17, 18, 19, 20, 21, 22, 23, 24)) + # Different shapes for each decade 
+    
+  labs(
+    title = "Team Salary Distribution by Decade",
+    x = "Team ID",
+    y = "Team Salary",
+    color = "Decade",
+    shape = "Decade",
+    caption = "Source: The History of Baseball Dataset, Author: Huthaifa Mohammad",
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text( hjust = 1),
+    plot.title = element_text(hjust = 0.5),
+    plot.caption = element_text(size = 10, color = "gray", hjust = 0),
+    legend.position = "right"
+  )
+})) 
+
+```
+
+Mostly surprising was the lowest spenders, some of whom have spent barely half as much as the higher value teams. Viewers should understand the direct effects of salary distribution on the lack of parity in the league. The extreme salary differentials are a significant reason why some teams win a lot, while others are bottom-dwellers.
+
+### Conclusion/Big Picture
+
+All of our team's plots helped further explore what contributes to teams' success in baseball. By examining the effects of different variables on win outcomes, we were able to draw many conclusions about what helped and hindered teams in MLB over a long period of time.
+
+If our group had time to extend our research, furthering our knowledge of the data would allow us to improve clarity in our graphs. Figuring out how to build in the Shiny aspect would have been a great addition as well.
+
+A weakness is how cluttered the dataset was. With so much information, it was often difficult to highlight specific patterns within the data or to find clear relationships between a small number of variables. If it was neater, it would been easier to use.
