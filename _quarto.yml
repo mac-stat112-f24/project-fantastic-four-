@@ -22,7 +22,7 @@ book:
   
   appendices:
   - proposal.qmd
-  - sketch.qmd
+  - video.qmd
   - Basir.qmd
   - SidneyViz.qmd
   - harlanviz.qmd

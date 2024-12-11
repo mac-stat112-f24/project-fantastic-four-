@@ -179,7 +179,7 @@ pp_plotly
 ```
 
 
-Looking at this visualization of baseball team performance in the 1870s, some clear patterns stand out. The data highlights differences in team performance, with some teams achieving over 20 wins and fewer than 20 losses, like the Boston Red Stockings (BS1), who dominated with around 50 wins and far fewer losses. In contrast, teams like the Troy Trojans (TRN) struggled with over 40 losses and comparatively fewer wins. Other teams, like the Chicago White Stockings (CHN) and St. Louis Red Stockings (SL3), had more balanced records. These patterns reflect early league dynamics, where differences in skill, resources, and strategy played a key role in shaping outcomes. Understanding these differences is important because it helps highlight the league's competitive structure and how teams progressed or fell behind.
+Looking at this visualization of baseball team performance in the 1870s, some clear patterns stand out. The data highlights differences in team performance, with some teams achieving over 20 wins and fewer than 20 losses, like the Boston Red Sox (BS1), who dominated with around 50 wins and far fewer losses. In contrast, teams like the Troy Trojans (TRN) struggled with over 40 losses and comparatively fewer wins. Other teams, like the Chicago White Sox (CHN) and St. Louis Red Sox (SL3), had more balanced records. These patterns reflect early league dynamics, where differences in skill, resources, and strategy played a key role in shaping outcomes. Understanding these differences is important because it helps highlight the league's competitive structure and how teams progressed or fell behind.
 
 
 ### The Relationship Between Strikeouts and Wins
